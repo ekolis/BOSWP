@@ -14,16 +14,16 @@ namespace BOSWP
 	{
 		public static IEnumerable<Keys> PressedKeys { get { return pressedKeys; }}
 
-		private static HashSet<Keys> pressedKeys;
+		private static ISet<Keys> pressedKeys = new HashSet<Keys>();
 
 		public static void PressKey(Keys k)
 		{
 			pressedKeys.Add(k);
 		}
 
-		public static void ReleaseKey(Keys k)
+		public static void ClearKeys()
 		{
-			pressedKeys.Remove(k);
+			pressedKeys.Clear();
 		}
 	}
 }

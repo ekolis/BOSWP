@@ -47,6 +47,7 @@
 			// 
 			this.galaxyMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.galaxyMap.BackColor = System.Drawing.Color.Black;
+			this.galaxyMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.galaxyMap.Grid = null;
 			this.galaxyMap.Location = new System.Drawing.Point(509, 13);
 			this.galaxyMap.Name = "galaxyMap";
@@ -62,6 +63,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.systemMap.BackColor = System.Drawing.Color.Black;
+			this.systemMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.systemMap.Grid = null;
 			this.systemMap.Location = new System.Drawing.Point(12, 123);
 			this.systemMap.Name = "systemMap";
@@ -82,8 +84,10 @@
 			this.KeyPreview = true;
 			this.Name = "GameForm";
 			this.Text = "Beware of Strange Warp Points";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameForm_FormClosed);
 			this.Load += new System.EventHandler(this.GameForm_Load);
 			this.SizeChanged += new System.EventHandler(this.GameForm_SizeChanged);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
 			this.ResumeLayout(false);
 
 		}

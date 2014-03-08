@@ -78,7 +78,7 @@ namespace BOSWP
 			{
 				for (var y = -Radius; y <= Radius; y++)
 				{
-					if (this[x, y].Equals(item))
+					if (this[x, y].SafeEquals(item))
 						return x;
 				}
 			}
@@ -96,7 +96,7 @@ namespace BOSWP
 			{
 				for (var y = -Radius; y <= Radius; y++)
 				{
-					if (this[x, y].Equals(item))
+					if (this[x, y].SafeEquals(item))
 						return y;
 				}
 			}

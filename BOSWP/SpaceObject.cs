@@ -47,7 +47,7 @@ namespace BOSWP
 		{
 			get
 			{
-				return Galaxy.Current.StarSystems.SingleOrDefault(s => s.SpaceObjects.Contains(this));
+				return Galaxy.Current.StarSystems.SingleOrDefault(s => s != null && s.SpaceObjects.Contains(this));
 			}
 		}
 

@@ -72,6 +72,7 @@
     <Compile Include="SpaceObject.cs" />
     <Compile Include="Star.cs" />
     <Compile Include="StarSystem.cs" />
+    <Compile Include="Utilities.cs" />
     <Compile Include="WarpPoint.cs" />
     <EmbeddedResource Include="CharGridView.resx">
       <DependentUpon>CharGridView.cs</DependentUpon>

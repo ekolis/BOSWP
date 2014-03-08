@@ -33,7 +33,9 @@ namespace BOSWP
 				if (dir != null)
 				{
 					var newx = X + dir.DeltaX;
-					var newy = Y + dir.DeltaX;
+					var newy = Y + dir.DeltaY;
+					if (newx < -StarSystem.SpaceObjects.Radius || newx > StarSystem.SpaceObjects.Radius || newy < -StarSystem.SpaceObjects.Radius || newy > StarSystem.SpaceObjects.Radius)
+						return false; // out of bounds
 					if (StarSystem.SpaceObjects[newx, newy] != null)
 						return StarSystem.SpaceObjects[newx, newy].BeBumped(this);
 					else
