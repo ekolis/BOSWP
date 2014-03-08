@@ -14,7 +14,7 @@ namespace BOSWP
 		/// <summary>
 		/// The galaxy currently in play.
 		/// </summary>
-		public static Galaxy Current { get; set; }
+		public static Galaxy Current { get; private set; }
 
 		/// <summary>
 		/// Creates a galaxy with a specified radius (radius 0 = 1x1, radius 1 = 3x3, etc.)
@@ -22,6 +22,8 @@ namespace BOSWP
 		/// <param name="radius"></param>
 		public Galaxy(int radius, int numSystems, int systemRadius, int planetsPerSystem)
 		{
+			Current = this;
+
 			StarSystems = new Grid<StarSystem>(radius);
 
 			// place star systems on grid
@@ -67,7 +69,29 @@ namespace BOSWP
 			
 			// TODO - place enemy shipyards
 
-			// TODO - delete warp points that lead nowhere
+			// delete warp points that lead nowhere
+			for (int x = -StarSystems.Radius; x <= StarSystems.Radius; x++)
+			{
+				for (int y = -StarSystems.Radius; y <= StarSystems.Radius; y++)
+				{
+					var wpsys = StarSystems[x, y];
+					if (wpsys != null)
+					{
+						for (int sx = -wpsys.SpaceObjects.Radius; sx <= wpsys.SpaceObjects.Radius; sx++)
+						{
+							for (int sy = -wpsys.SpaceObjects.Radius; sy <= wpsys.SpaceObjects.Radius; sy++)
+							{
+								if (wpsys.SpaceObjects[sx, sy] is WarpPoint)
+								{
+									var wp = wpsys.SpaceObjects[sx, sy] as WarpPoint;
+									if (wp.TargetSystem == null)
+										wpsys.SpaceObjects[sx, sy] = null;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>

@@ -58,6 +58,8 @@ namespace BOSWP
 				var y = Galaxy.Current.StarSystems.GetY(sys);
 				var tx = x + Direction.DeltaX;
 				var ty = y + Direction.DeltaY;
+				if (tx < -Galaxy.Current.StarSystems.Radius || tx > Galaxy.Current.StarSystems.Radius || ty < -Galaxy.Current.StarSystems.Radius || ty > Galaxy.Current.StarSystems.Radius)
+					return null;
 				return Galaxy.Current.StarSystems[tx, ty];
 			}
 		}
