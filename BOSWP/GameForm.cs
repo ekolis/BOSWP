@@ -20,8 +20,9 @@ namespace BOSWP
 		private void GameForm_Load(object sender, EventArgs e)
 		{
 			Galaxy.Current = new Galaxy(4, 30, 7, 6);
+			var home = Galaxy.Current.StarSystems.Where(s => s != null && s.SpaceObjects.OfType<PlayerShip>().Any()).Single();
 			galaxyMap.Grid = Galaxy.Current.StarSystems;
-			systemMap.Grid = Galaxy.Current.StarSystems.Where(s => s != null).PickRandom().SpaceObjects;
+			systemMap.Grid = home.SpaceObjects;
 		}
 
 		private void GameForm_SizeChanged(object sender, EventArgs e)

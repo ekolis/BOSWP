@@ -18,24 +18,10 @@ namespace BOSWP
 
 		}
 
-		public override void Move()
-		{
-			// Planets can't move.
-		}
-
-		public override void Attack()
-		{
-			// Planets can't attack.
-		}
-
-		public override void Bump(SpaceObject target)
-		{
-			// Planets can't move.
-		}
-
-		public override void BeBumped(SpaceObject source)
+		public override bool BeBumped(Ship source)
 		{
 			// TODO - explore planets, and buy stuff at allied colonies
+			return false;
 		}
 	}
 }

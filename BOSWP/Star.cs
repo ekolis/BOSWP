@@ -18,24 +18,10 @@ namespace BOSWP
 
 		}
 
-		public override void Move()
-		{
-			// Stars can't move, nothing to do here
-		}
-
-		public override void Attack()
-		{
-			// Stars can't attack, nothing to do here
-		}
-
-		public override void Bump(SpaceObject target)
-		{
-			// Stars can't move, nothing to do here
-		}
-
-		public override void BeBumped(SpaceObject source)
+		public override bool BeBumped(Ship source)
 		{
 			// TODO - message for player when he bumps a star?
+			return false;
 		}
 	}
 }

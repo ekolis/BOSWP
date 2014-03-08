@@ -18,24 +18,9 @@ namespace BOSWP
 
 		}
 
-		public override void Move()
+		public override bool BeBumped(Ship source)
 		{
-			
-		}
-
-		public override void Attack()
-		{
-			
-		}
-
-		public override void Bump(SpaceObject target)
-		{
-			
-		}
-
-		public override void BeBumped(SpaceObject source)
-		{
-			
+			return false;
 		}
 	}
 }

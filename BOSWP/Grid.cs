@@ -66,5 +66,41 @@ namespace BOSWP
 			}
 			return g;
 		}
+
+		/// <summary>
+		/// Finds the x-coordinate of an item, or -1 if it's not found.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public int GetX(T item)
+		{
+			for (var x = -Radius; x <= Radius; x++)
+			{
+				for (var y = -Radius; y <= Radius; y++)
+				{
+					if (this[x, y].Equals(item))
+						return x;
+				}
+			}
+			return -1;
+		}
+
+		/// <summary>
+		/// Finds the y-coordinate of an item, or -1 if it's not found.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public int GetY(T item)
+		{
+			for (var x = -Radius; x <= Radius; x++)
+			{
+				for (var y = -Radius; y <= Radius; y++)
+				{
+					if (this[x, y].Equals(item))
+						return y;
+				}
+			}
+			return -1;
+		}
 	}
 }

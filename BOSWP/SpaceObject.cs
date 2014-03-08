@@ -34,25 +34,43 @@ namespace BOSWP
 		public bool IsCloaked { get; set; }
 
 		/// <summary>
-		/// What happens when it's this space object's turn to move?
-		/// </summary>
-		public abstract void Move();
-
-		/// <summary>
-		/// What happens when it's this space object's turn to attack?
-		/// </summary>
-		public abstract void Attack();
-
-		/// <summary>
-		/// What happens when this space object bumps another space object?
-		/// </summary>
-		/// <param name="target"></param>
-		public abstract void Bump(SpaceObject target);
-
-		/// <summary>
-		/// What happens when this space object is bumped by another space object?
+		/// What happens when this space object is bumped by a ship?
 		/// </summary>
 		/// <param name="source"></param>
-		public abstract void BeBumped(SpaceObject source);
+		/// <returns>Should the bump consume a move?</returns>
+		public abstract bool BeBumped(Ship source);
+
+		/// <summary>
+		/// The star system containing this space object.
+		/// </summary>
+		public StarSystem StarSystem
+		{
+			get
+			{
+				return Galaxy.Current.StarSystems.SingleOrDefault(s => s.SpaceObjects.Contains(this));
+			}
+		}
+
+		/// <summary>
+		/// The x-coordinate of this space object.
+		/// </summary>
+		public int X
+		{
+			get
+			{
+				return StarSystem.SpaceObjects.GetX(this);
+			}
+		}
+
+		/// <summary>
+		/// The y-coordinate of this space object.
+		/// </summary>
+		public int Y
+		{
+			get
+			{
+				return StarSystem.SpaceObjects.GetY(this);
+			}
+		}
 	}
 }

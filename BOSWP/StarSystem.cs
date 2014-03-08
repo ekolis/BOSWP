@@ -109,7 +109,8 @@ namespace BOSWP
 		{
 			get
 			{
-				// TODO - highlight system that player is in
+				if (SpaceObjects.OfType<PlayerShip>().Any())
+					return Color.Blue;
 				return Color.White;
 			}
 		}

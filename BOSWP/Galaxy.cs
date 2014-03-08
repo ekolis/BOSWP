@@ -51,6 +51,22 @@ namespace BOSWP
 				}
 			}
 
+			// place player ship
+			var sys = StarSystems.Where(s => s != null).PickRandom();
+			var pplaces = new List<dynamic>();
+			for (var x = -sys.SpaceObjects.Radius; x <= sys.SpaceObjects.Radius; x++)
+			{
+				for (var y = -sys.SpaceObjects.Radius; y <= sys.SpaceObjects.Radius; y++)
+				{
+					if (sys.SpaceObjects[x, y] == null)
+						pplaces.Add(new { X = x, Y = y });
+				}
+			}
+			var pcoords = pplaces.PickRandom();
+			sys.PlaceSpaceObject(PlayerShip.Instance, pcoords.X, pcoords.Y, 0);
+			
+			// TODO - place enemy shipyards
+
 			// TODO - delete warp points that lead nowhere
 		}
 
