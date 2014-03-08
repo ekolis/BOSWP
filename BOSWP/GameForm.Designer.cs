@@ -42,6 +42,7 @@
 			this.lstMessages.Name = "lstMessages";
 			this.lstMessages.Size = new System.Drawing.Size(491, 95);
 			this.lstMessages.TabIndex = 1;
+			this.lstMessages.TabStop = false;
 			// 
 			// galaxyMap
 			// 
@@ -55,6 +56,7 @@
 			this.galaxyMap.NullGlyph = '\0';
 			this.galaxyMap.Size = new System.Drawing.Size(212, 212);
 			this.galaxyMap.TabIndex = 2;
+			this.galaxyMap.TabStop = false;
 			this.galaxyMap.Text = "charGridView1";
 			// 
 			// systemMap
@@ -72,6 +74,8 @@
 			this.systemMap.Size = new System.Drawing.Size(491, 491);
 			this.systemMap.TabIndex = 0;
 			this.systemMap.Text = "charGridView1";
+			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
+			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
 			// 
 			// GameForm
 			// 
@@ -95,8 +99,8 @@
 		#endregion
 
 		private CharGridView systemMap;
-		private System.Windows.Forms.ListBox lstMessages;
 		private CharGridView galaxyMap;
+		private System.Windows.Forms.ListBox lstMessages;
 	}
 }
 

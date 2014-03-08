@@ -21,9 +21,9 @@ namespace BOSWP
 		private void GameForm_Load(object sender, EventArgs e)
 		{
 			Galaxy.Current = new Galaxy(4, 30, 7, 6);
-			var home = Galaxy.Current.StarSystems.Where(s => s != null && s.SpaceObjects.OfType<PlayerShip>().Any()).Single();
 			galaxyMap.Grid = Galaxy.Current.StarSystems;
-			systemMap.Grid = home.SpaceObjects;
+			systemMap.Grid = FindPlayerSystem().SpaceObjects;
+			systemMap.Focus();
 
 			runner = new Thread(new ThreadStart(RunGame));
 			runner.Start();
@@ -46,9 +46,15 @@ namespace BOSWP
 			// TODO - AI ships, etc.
 			while (true)
 			{
-				PlayerShip.Instance.Move();
+				bool doUpdate = false;
+				doUpdate |= PlayerShip.Instance.Move();
 				PlayerInput.ClearKeys();
-				systemMap.Invalidate();
+				if (doUpdate)
+				{
+					systemMap.Grid = FindPlayerSystem().SpaceObjects;
+					systemMap.Invalidate();
+					galaxyMap.Invalidate();
+				}
 				Application.DoEvents();
 			}
 		}
@@ -56,6 +62,21 @@ namespace BOSWP
 		private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			runner.Abort();
+		}
+
+		private void systemMap_KeyDown(object sender, KeyEventArgs e)
+		{
+			PlayerInput.PressKey(e.KeyCode);
+		}
+
+		private void systemMap_Leave(object sender, EventArgs e)
+		{
+			systemMap.Focus();
+		}
+
+		private StarSystem FindPlayerSystem()
+		{
+			return Galaxy.Current.StarSystems.Where(s => s != null && s.SpaceObjects.OfType<PlayerShip>().Any()).SingleOrDefault();
 		}
 	}
 }

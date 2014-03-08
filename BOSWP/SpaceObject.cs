@@ -72,5 +72,25 @@ namespace BOSWP
 				return StarSystem.SpaceObjects.GetY(this);
 			}
 		}
+
+		/// <summary>
+		/// Places this object at a new location (if the location is unoccupied).
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns>true if successful, false if blocked</returns>
+		public bool Place(StarSystem s, int x, int y)
+		{
+			// check if occupied
+			if (s.SpaceObjects[x, y] != null)
+				return false;
+			
+			// move
+			StarSystem.SpaceObjects[X, Y] = null;
+			s.SpaceObjects[x, y] = this;
+
+			return true;
+		}
 	}
 }

@@ -60,5 +60,21 @@ namespace BOSWP
 				}
 			}
 		}
+
+		/// <summary>
+		/// Don't let winforms eat the arrow keys
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="keyData"></param>
+		/// <returns></returns>
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (Direction.All.Any(d => d.Keys.Contains(keyData)))
+			{
+				OnKeyDown(new KeyEventArgs(keyData));
+				return true;
+			}
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
 	}
 }

@@ -27,7 +27,7 @@ namespace BOSWP
 
 		public override bool Move()
 		{
-			foreach (var k in PlayerInput.PressedKeys)
+			foreach (var k in PlayerInput.PressedKeys.ToArray())
 			{
 				var dir = Direction.All.SingleOrDefault(d => d.Keys.Contains(k));
 				if (dir != null)

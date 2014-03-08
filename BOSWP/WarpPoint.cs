@@ -25,8 +25,53 @@ namespace BOSWP
 
 		public override bool BeBumped(Ship source)
 		{
-			// TODO - warping
-			return true;
+			// velocity in equals velocity out!
+			var dx = X - source.X;
+			var dy = Y - source.Y;
+			var ts = TargetSystem;
+			var tgt = Target;
+			var nx = tgt.X + dx;
+			var ny = tgt.Y + dy;
+			var realBumpee = ts.SpaceObjects[nx, ny];
+			if (realBumpee == null)
+			{
+				// move
+				source.Place(ts, nx, ny);
+				return true;
+			}
+			else
+			{
+				// TODO - notify player if he bumps an occupied sector
+				return true;
+			}
+		}
+
+		/// <summary>
+		/// The star system to warp to.
+		/// </summary>
+		public StarSystem TargetSystem
+		{
+			get
+			{
+				var sys = StarSystem;
+				var x = Galaxy.Current.StarSystems.GetX(sys);
+				var y = Galaxy.Current.StarSystems.GetY(sys);
+				var tx = x + Direction.DeltaX;
+				var ty = y + Direction.DeltaY;
+				return Galaxy.Current.StarSystems[tx, ty];
+			}
+		}
+
+		/// <summary>
+		/// The warp point to warp to.
+		/// </summary>
+		public WarpPoint Target
+		{
+			get
+			{
+				var sys = TargetSystem;
+				return sys.SpaceObjects.OfType<WarpPoint>().Single(wp => wp.Direction == Direction.Opposite);
+			}
 		}
 	}
 }
