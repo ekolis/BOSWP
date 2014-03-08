@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace BOSWP
 	/// <summary>
 	/// A star system in the galaxy. Contains a grid of space objects.
 	/// </summary>
-	public class StarSystem
+	public class StarSystem : IColoredGlyphObject
 	{
 		/// <summary>
 		/// Creates a star system with a specified radius (radius 0 = 1x1, radius 1 = 3x3, etc.)
@@ -97,6 +98,20 @@ namespace BOSWP
 			}
 
 			return true;
+		}
+
+		public char Glyph
+		{
+			get { return '*'; }
+		}
+
+		public Color Color
+		{
+			get
+			{
+				// TODO - highlight system that player is in
+				return Color.White;
+			}
 		}
 	}
 }

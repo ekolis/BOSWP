@@ -10,7 +10,7 @@ namespace BOSWP
 	/// A 2D square grid, with (0,0) being at the center.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class Grid<T> : IEnumerable<T>
+	public class Grid<T> : IReadableGrid<T>
 	{
 		/// <summary>
 		/// Creates a grid with a specified radius (radius 0 = 1 item, radius 1 = 9 items, etc.)

@@ -10,7 +10,7 @@ namespace BOSWP
 	/// <summary>
 	/// An object which can occupy a sector.
 	/// </summary>
-	public abstract class SpaceObject
+	public abstract class SpaceObject : IColoredGlyphObject
 	{
 		protected SpaceObject(char glyph, Color color)
 		{
