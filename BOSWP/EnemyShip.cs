@@ -43,7 +43,12 @@ namespace BOSWP
 
 			// pursue warp point
 			var dir = Utilities.Pathfind(StarSystem, X, Y, WaypointX, WaypointY);
-			Place(StarSystem, X + dir.DeltaX, Y + dir.DeltaY);
+			var x = X + dir.DeltaX;
+			var y = Y + dir.DeltaY;
+			if (StarSystem.SpaceObjects[x, y] is WarpPoint)
+				StarSystem.SpaceObjects[x, y].BeBumped(this);
+			else
+				Place(StarSystem, x, y);
 
 			// no need to wait for player input
 			return true;
