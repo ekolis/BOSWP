@@ -35,6 +35,8 @@ namespace BOSWP
 		/// <param name="source"></param>
 		public override bool BeBumped(Ship source)
 		{
+			if (source == this)
+				return true; // ship is deciding to sit still
 			return false;
 		}
 
