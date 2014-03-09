@@ -53,6 +53,8 @@
     </Compile>
     <Compile Include="Dice.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="EnemyShip.cs" />
+    <Compile Include="EnemyShipyard.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>

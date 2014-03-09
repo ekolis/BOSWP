@@ -114,5 +114,15 @@ namespace BOSWP
 				return Color.White;
 			}
 		}
+
+		/// <summary>
+		/// Finds all space objects of a type.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public IEnumerable<T> FindSpaceObjects<T>()
+		{
+			return SpaceObjects.OfType<T>();
+		}
 	}
 }

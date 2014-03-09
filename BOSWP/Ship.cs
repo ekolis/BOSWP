@@ -37,5 +37,17 @@ namespace BOSWP
 		{
 			return false;
 		}
+
+		/// <summary>
+		/// The cost to build this ship.
+		/// </summary>
+		public int Cost
+		{
+			get
+			{
+				// TODO - compute cost based on components
+				return 1000;
+			}
+		}
 	}
 }

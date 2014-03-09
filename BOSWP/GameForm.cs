@@ -20,7 +20,7 @@ namespace BOSWP
 
 		private void GameForm_Load(object sender, EventArgs e)
 		{
-			new Galaxy(4, 30, 7, 6);
+			new Galaxy(4, 30, 7, 6, 10, 1000);
 			galaxyMap.Grid = Galaxy.Current.StarSystems;
 			systemMap.Grid = FindPlayerSystem().SpaceObjects;
 			systemMap.Focus();
