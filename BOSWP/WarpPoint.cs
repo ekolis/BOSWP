@@ -37,6 +37,8 @@ namespace BOSWP
 			{
 				// move
 				source.Place(ts, nx, ny);
+				if (source is EnemyShip)
+					((EnemyShip)source).NeedsNewWaypoint = true;
 				return true;
 			}
 			else
