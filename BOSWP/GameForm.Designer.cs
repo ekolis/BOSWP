@@ -31,6 +31,8 @@
 			this.lstMessages = new System.Windows.Forms.ListBox();
 			this.galaxyMap = new BOSWP.CharGridView();
 			this.systemMap = new BOSWP.CharGridView();
+			this.label1 = new System.Windows.Forms.Label();
+			this.lblHitpoints = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// lstMessages
@@ -77,11 +79,34 @@
 			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
 			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
 			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(510, 232);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(51, 13);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Hitpoints:";
+			// 
+			// lblHitpoints
+			// 
+			this.lblHitpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblHitpoints.AutoSize = true;
+			this.lblHitpoints.Location = new System.Drawing.Point(703, 232);
+			this.lblHitpoints.Name = "lblHitpoints";
+			this.lblHitpoints.Size = new System.Drawing.Size(13, 13);
+			this.lblHitpoints.TabIndex = 4;
+			this.lblHitpoints.Text = "0";
+			this.lblHitpoints.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// GameForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(728, 626);
+			this.Controls.Add(this.lblHitpoints);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.galaxyMap);
 			this.Controls.Add(this.lstMessages);
 			this.Controls.Add(this.systemMap);
@@ -93,6 +118,7 @@
 			this.SizeChanged += new System.EventHandler(this.GameForm_SizeChanged);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -101,6 +127,8 @@
 		private CharGridView systemMap;
 		private CharGridView galaxyMap;
 		private System.Windows.Forms.ListBox lstMessages;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lblHitpoints;
 	}
 }
 

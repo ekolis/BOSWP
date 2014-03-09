@@ -23,6 +23,7 @@ namespace BOSWP
 			new Galaxy(4, 30, 7, 6, 10, 1000);
 			galaxyMap.Grid = Galaxy.Current.StarSystems;
 			systemMap.Grid = FindPlayerSystem().SpaceObjects;
+			lblHitpoints.Text = PlayerShip.Instance.Hitpoints.ToString();
 			systemMap.Focus();
 
 			runner = new Thread(new ThreadStart(RunGame));
@@ -116,6 +117,8 @@ namespace BOSWP
 					systemMap.Grid = FindPlayerSystem().SpaceObjects;
 					systemMap.Invalidate();
 					galaxyMap.Invalidate();
+					Invoke(new DoStuffDelegate(() =>
+						lblHitpoints.Text = PlayerShip.Instance.Hitpoints.ToString()));
 				}
 				Application.DoEvents();
 			}
