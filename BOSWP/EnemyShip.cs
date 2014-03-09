@@ -31,7 +31,7 @@ namespace BOSWP
 			{
 				if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= 3)
 				{
-					// TODO - log attack
+					Log.Add("The Jraenar ship is firing on us! 20 damage to the hull!");
 					PlayerShip.Instance.TakeDamage(20);
 				}
 			}

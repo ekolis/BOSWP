@@ -66,6 +66,7 @@
     <Compile Include="IColoredGlyphObject.cs" />
     <Compile Include="IDamageable.cs" />
     <Compile Include="IReadableGrid.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="PlayerShip.cs" />

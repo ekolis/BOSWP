@@ -99,6 +99,15 @@ namespace BOSWP
 						MessageBox.Show("You have successfully destroyed all Jraenar shipyards! The remaining Jraenar forces make a hasty retreat. You are promoted to Admiral - Congratulatiions!");
 						Application.Exit();
 					}
+
+					// update log
+					Log.PushNewEntries();
+					Invoke(new DoStuffDelegate(() =>
+							{
+								lstMessages.Items.Clear();
+								foreach (var msg in Log.Entries.Reverse())
+									lstMessages.Items.Add(msg);
+							}));
 				}
 
 				PlayerInput.ClearKeys();
@@ -111,6 +120,8 @@ namespace BOSWP
 				Application.DoEvents();
 			}
 		}
+
+		delegate void DoStuffDelegate();
 
 		private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
 		{

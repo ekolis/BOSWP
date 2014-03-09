@@ -71,7 +71,7 @@ namespace BOSWP
 					}
 				}
 
-				// TODO - log attack
+				Log.Add("Firing on the Jraenar shipyard! 20 damage to their hull!");
 				target.TakeDamage(20);
 				return;
 			}
@@ -93,7 +93,7 @@ namespace BOSWP
 					}
 				}
 
-				// TODO - log attack
+				Log.Add("Firing on the Jraenar ship! 20 damage to their hull!");
 				target.TakeDamage(20);
 				return;
 			}
