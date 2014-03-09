@@ -74,21 +74,24 @@ namespace BOSWP
 				foreach (var dir in Direction.All)
 				{
 					var next = new PathfindingNode(node.X + dir.DeltaX, node.Y + dir.DeltaY, node, node.Cost + 1);
-					var sameNodes = visited.Where(n => n.X == next.X && n.Y == next.Y).ToArray();
-					var queuedNodes = pQueue.Where(n => n.X == next.X && n.Y == next.Y).ToArray();
-					if (!sameNodes.Any() ||
-						queuedNodes.Any(n => n.Cost > next.Cost) ||
-						sameNodes.Any(n => n.Cost > next.Cost))
+					if (sys.SpaceObjects.AreCoordsInBounds(next.X, next.Y))
 					{
-						// if node already exists, get rid of old node with higher cost
-						foreach (var n in sameNodes)
-							visited.Remove(n);
-						foreach (var n in queuedNodes)
-							pQueue.Remove(n);
+						var sameNodes = visited.Where(n => n.X == next.X && n.Y == next.Y).ToArray();
+						var queuedNodes = pQueue.Where(n => n.X == next.X && n.Y == next.Y).ToArray();
+						if (!sameNodes.Any() ||
+							queuedNodes.Any(n => n.Cost > next.Cost) ||
+							sameNodes.Any(n => n.Cost > next.Cost))
+						{
+							// if node already exists, get rid of old node with higher cost
+							foreach (var n in sameNodes)
+								visited.Remove(n);
+							foreach (var n in queuedNodes)
+								pQueue.Remove(n);
 
-						// add to visited list and priority queue
-						pQueue.Add(next);
-						visited.Add(next);
+							// add to visited list and priority queue
+							pQueue.Add(next);
+							visited.Add(next);
+						}
 					}
 				}
 			}
