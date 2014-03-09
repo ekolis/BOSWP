@@ -28,6 +28,11 @@ namespace BOSWP
 
 		public int Diameter {get { return Radius * 2 + 1;}}
 
+		public bool AreCoordsInBounds(int x, int y)
+		{
+			return x >= -Radius && x <= Radius && y >= -Radius && y <= Radius;
+		}
+
 		public T this[int x, int y]
 		{
 			get

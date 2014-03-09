@@ -39,18 +39,15 @@ namespace BOSWP
 			{
 				return
 					MaxBuildRate /
-					Math.Max(1, 
-					(
-						Galaxy.Current.FindSpaceObjects<EnemyShipyard>().Count() * 10 +
-						Galaxy.Current.FindSpaceObjects<EnemyShip>().Count()
-					));
+					Math.Max(1, Galaxy.Current.EnemyShipyardCount * 10 + Galaxy.Current.EnemyShipCount);
 			}
 		}
 
 		/// <summary>
 		/// Increments the shipyard's savings, and attempts to build a ship if possible.
 		/// </summary>
-		public void Build()
+		/// <returns>true if something was built, otherwise false</returns>
+		public bool Build()
 		{
 			Savings += BuildRate;
 
@@ -63,19 +60,23 @@ namespace BOSWP
 				{
 					for (int y = -1; y <= 1; y++)
 					{
-						if (StarSystem.SpaceObjects[X + x, Y + y] == null)
+						if (StarSystem.SpaceObjects.AreCoordsInBounds(X + x, Y + y) && StarSystem.SpaceObjects[X + x, Y + y] == null)
 							places.Add(new { X = X + x, Y = Y + y });
 					}
 				}
 				if (!places.Any())
-					return; // nowhere to put the ship
+					return false; // nowhere to put the ship
 				var coords = places.PickRandom();
 
 				// create the ship and place it
 				var ship = new EnemyShip();
 				Savings -= ship.Cost;
 				StarSystem.PlaceSpaceObject(ship, coords.X, coords.Y, 0);
+				Galaxy.Current.RefreshEnemyCounts();
+				return true;
 			}
+			else
+				return false;
 		}
 	}
 }

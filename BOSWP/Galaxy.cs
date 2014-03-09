@@ -113,6 +113,8 @@ namespace BOSWP
 					}
 				}
 			}
+
+			RefreshEnemyCounts();
 		}
 
 		/// <summary>
@@ -156,6 +158,30 @@ namespace BOSWP
 		public IEnumerable<T> FindSpaceObjects<T>()
 		{
 			return StarSystems.Where(s => s != null).SelectMany(s => s.FindSpaceObjects<T>());
+		}
+
+		private int enemyShipyardCount, enemyShipCount;
+
+		public void RefreshEnemyCounts()
+		{
+			enemyShipyardCount = FindSpaceObjects<EnemyShipyard>().Count();
+			enemyShipCount = FindSpaceObjects<EnemyShip>().Count();
+		}
+
+		public int EnemyShipyardCount
+		{
+			get
+			{
+				return enemyShipyardCount;
+			}
+		}
+
+		public int EnemyShipCount
+		{
+			get
+			{
+				return enemyShipCount;
+			}
 		}
 	}
 }
