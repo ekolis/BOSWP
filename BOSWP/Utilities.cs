@@ -22,5 +22,18 @@ namespace BOSWP
 				return false;
 			return o1.Equals(o2);
 		}
+
+		/// <summary>
+		/// Computes distance along the grid.
+		/// </summary>
+		/// <param name="x1"></param>
+		/// <param name="y1"></param>
+		/// <param name="x2"></param>
+		/// <param name="y2"></param>
+		/// <returns></returns>
+		public static int Distance(int x1, int y1, int x2, int y2)
+		{
+			return Math.Min(Math.Abs(x2 - x1), Math.Abs(y2 - y1));
+		}
 	}
 }

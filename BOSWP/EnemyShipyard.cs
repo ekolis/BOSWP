@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace BOSWP
 {
-	public class EnemyShipyard : SpaceObject
+	public class EnemyShipyard : SpaceObject, IDamageable
 	{
 		public EnemyShipyard(int maxBuildRate)
 			: base('#', Color.Red)
 		{
 			MaxBuildRate = maxBuildRate;
 			Savings = maxBuildRate;
+			Hitpoints = 400;
 		}
 
 		public override bool BeBumped(Ship source)
@@ -80,6 +81,17 @@ namespace BOSWP
 			}
 			else
 				return false;
+		}
+
+		public void TakeDamage(int damage)
+		{
+			Hitpoints -= damage;
+		}
+
+		public int Hitpoints
+		{
+			get;
+			private set;
 		}
 	}
 }

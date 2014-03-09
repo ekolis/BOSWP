@@ -64,6 +64,7 @@
     <Compile Include="Galaxy.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="IColoredGlyphObject.cs" />
+    <Compile Include="IDamageable.cs" />
     <Compile Include="IReadableGrid.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="PlayerInput.cs" />

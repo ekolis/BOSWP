@@ -22,7 +22,7 @@ namespace BOSWP
 		private PlayerShip()
 			: base('@', Color.Blue)
 		{
-
+			Hitpoints = 500;
 		}
 
 		public override bool Move()
@@ -50,6 +50,53 @@ namespace BOSWP
 				}
 			}
 			return false;
+		}
+
+		public override void Attack()
+		{
+			// first targeting priority: shipyards
+			var sys = FindSpaceObjectsInRange<EnemyShipyard>(3);
+			if (sys.Any())
+			{
+				// find closest
+				EnemyShipyard target = null;
+				var dist = int.MaxValue;
+				foreach (var sy in sys)
+				{
+					var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
+					if (nd < dist)
+					{
+						target = sy;
+						dist = nd;
+					}
+				}
+
+				// TODO - log attack
+				target.TakeDamage(20);
+				return;
+			}
+
+			// second targeting priority: enemy ships
+			var ships = FindSpaceObjectsInRange<EnemyShip>(3);
+			if (ships.Any())
+			{
+				// find closest
+				EnemyShip target = null;
+				var dist = int.MaxValue;
+				foreach (var ship in ships)
+				{
+					var nd = Utilities.Distance(X, Y, ship.X, ship.Y);
+					if (nd < dist)
+					{
+						target = ship;
+						dist = nd;
+					}
+				}
+
+				// TODO - log attack
+				target.TakeDamage(20);
+				return;
+			}
 		}
 	}
 }

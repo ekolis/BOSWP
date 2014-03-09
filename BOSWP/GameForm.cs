@@ -46,17 +46,61 @@ namespace BOSWP
 			// TODO - AI ships, etc.
 			while (true)
 			{
+				// refresh the screen?
 				bool doUpdate = false;
+
+				// let player move
 				var moved = PlayerShip.Instance.Move();
 				doUpdate |= moved;
+
+				// other turn stuff (only happens if player moves)
 				if (moved)
 				{
+					// let enemy ships move
+					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray())
+					{
+						var eMoved = ship.Move();
+						doUpdate |= eMoved;
+					}
+
+					// let enemy SYs build
 					foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray())
 					{
 						var built = sy.Build();
 						doUpdate |= built;
 					}
+
+					// let player attack
+					PlayerShip.Instance.Attack();
+
+					// let enemies attack
+					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray())
+						ship.Attack();
+
+					// scan for destroyed stuff
+					if (PlayerShip.Instance.Hitpoints <= 0)
+					{
+						PlayerShip.Instance.Delete();
+						MessageBox.Show("Your ship is destroyed! Game over!");
+						Application.Exit();
+					}
+					foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray().Where(sy => sy.Hitpoints <= 0))
+					{
+						sy.Delete();
+						Galaxy.Current.RefreshEnemyCounts();
+					}
+					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray().Where(s => s.Hitpoints <= 0))
+					{
+						ship.Delete();
+						Galaxy.Current.RefreshEnemyCounts();
+					}
+					if (Galaxy.Current.FindSpaceObjects<EnemyShipyard>().Count() == 0)
+					{
+						MessageBox.Show("You have successfully destroyed all Jraenar shipyards! The remaining Jraenar forces make a hasty retreat. You are promoted to Admiral - Congratulatiions!");
+						Application.Exit();
+					}
 				}
+
 				PlayerInput.ClearKeys();
 				if (doUpdate)
 				{

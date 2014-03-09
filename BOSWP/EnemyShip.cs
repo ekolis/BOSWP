@@ -15,13 +15,26 @@ namespace BOSWP
 		public EnemyShip()
 			: base('J', Color.Firebrick)
 		{
-
+			Hitpoints = 100;
 		}
 
 		public override bool Move()
 		{
 			// TODO - move enemy ships, give them waypoints and such
 			return true;
+		}
+
+		public override void Attack()
+		{
+			// targeting priority: player ship
+			if (PlayerShip.Instance.StarSystem == StarSystem)
+			{
+				if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= 3)
+				{
+					// TODO - log attack
+					PlayerShip.Instance.TakeDamage(20);
+				}
+			}
 		}
 	}
 }

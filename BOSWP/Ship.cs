@@ -10,12 +10,12 @@ namespace BOSWP
 	/// <summary>
 	/// A ship - either the player's ship or an enemy ship.
 	/// </summary>
-	public abstract class Ship : SpaceObject
+	public abstract class Ship : SpaceObject, IDamageable
 	{
 		protected Ship(char glyph, Color color)
 			: base(glyph, color)
 		{
-
+			
 		}
 
 		/// <summary>
@@ -24,10 +24,10 @@ namespace BOSWP
 		/// <returns>true if the space object is done moving, false if waiting for player input</returns>
 		public abstract bool Move();
 		
-		public void Attack()
-		{
-			// TODO - weapons fire
-		}
+		/// <summary>
+		/// Attacks the nearest enemy ship (or the player ship, if this is an enemy ship).
+		/// </summary>
+		public abstract void Attack();
 
 		/// <summary>
 		/// Nothing special happens when a ship is bumped.
@@ -48,6 +48,17 @@ namespace BOSWP
 				// TODO - compute cost based on components
 				return 1000;
 			}
+		}
+
+		public void TakeDamage(int damage)
+		{
+			Hitpoints -= damage;
+		}
+
+		public int Hitpoints
+		{
+			get;
+			protected set;
 		}
 	}
 }

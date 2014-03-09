@@ -92,5 +92,38 @@ namespace BOSWP
 
 			return true;
 		}
+
+		/// <summary>
+		/// Finds other space objects that are in range of this space object.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="range"></param>
+		/// <returns></returns>
+		public IEnumerable<T> FindSpaceObjectsInRange<T>(int range)
+		{
+			var sys = StarSystem;
+			var x = X;
+			var y = Y;
+			for (var dx = -range; dx <= range; dx++)
+			{
+				for (var dy = -range; dy <= range; dy++)
+				{
+					if (sys.SpaceObjects.AreCoordsInBounds(x + dx, y + dy))
+					{
+						var sobj = sys.SpaceObjects[x + dx, y + dy];
+						if (sobj is T && sobj != this)
+							yield return (T)(object)sobj;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Deletes the space object.
+		/// </summary>
+		public void Delete()
+		{
+			StarSystem.SpaceObjects[X, Y] = null;
+		}
 	}
 }
