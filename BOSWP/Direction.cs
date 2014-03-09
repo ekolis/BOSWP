@@ -70,5 +70,21 @@ namespace BOSWP
 				yield return West;
 			}
 		}
+
+		/// <summary>
+		/// Gets a direction given x and y deltas.
+		/// </summary>
+		/// <param name="dx"></param>
+		/// <param name="dy"></param>
+		/// <returns></returns>
+		public static Direction Get(int dx, int dy)
+		{
+			return All.Single(d => Math.Sign(dx) == d.DeltaX && Math.Sign(dy) == d.DeltaY);
+		}
+
+		public override string ToString()
+		{
+			return string.Format("{0}, {1}", DeltaX, DeltaY);
+		}
 	}
 }

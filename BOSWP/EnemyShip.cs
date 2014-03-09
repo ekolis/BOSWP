@@ -16,11 +16,36 @@ namespace BOSWP
 			: base('J', Color.Firebrick)
 		{
 			Hitpoints = 100;
+			NeedsNewWaypoint = true;
 		}
 
 		public override bool Move()
 		{
-			// TODO - move enemy ships, give them waypoints and such
+			if (PlayerShip.Instance.StarSystem == StarSystem)
+			{
+				// player ship sighted! CHASE HIM!!!
+				NeedsNewWaypoint = false;
+				WaypointX = PlayerShip.Instance.X;
+				WaypointY = PlayerShip.Instance.Y;
+			}
+			else if (NeedsNewWaypoint)
+			{
+				// get new waypoint - random warp point to "patrol"
+				NeedsNewWaypoint = false;
+				var wp = StarSystem.FindSpaceObjects<WarpPoint>().PickRandom();
+				WaypointX = wp.X;
+				WaypointY = wp.Y;
+			}
+			else
+			{
+				// continue toward old waypoint, nothing to do here
+			}
+
+			// pursue warp point
+			var dir = Utilities.Pathfind(StarSystem, X, Y, WaypointX, WaypointY);
+			Place(StarSystem, X + dir.DeltaX, Y + dir.DeltaY);
+
+			// no need to wait for player input
 			return true;
 		}
 
@@ -36,5 +61,20 @@ namespace BOSWP
 				}
 			}
 		}
+
+		/// <summary>
+		/// X-coordinate that the ship is navigating to.
+		/// </summary>
+		public int WaypointX { get; set; }
+
+		/// <summary>
+		/// Y-coordinate that the ship is navigating to.
+		/// </summary>
+		public int WaypointY { get; set; }
+
+		/// <summary>
+		/// Does this ship need a new waypoint?
+		/// </summary>
+		public bool NeedsNewWaypoint { get; set; }
 	}
 }
