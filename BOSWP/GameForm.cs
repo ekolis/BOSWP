@@ -47,9 +47,13 @@ namespace BOSWP
 			while (true)
 			{
 				bool doUpdate = false;
-				doUpdate |= PlayerShip.Instance.Move();
-				foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>())
-					doUpdate |= sy.Build();
+				var moved = PlayerShip.Instance.Move();
+				doUpdate |= moved;
+				foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray())
+				{
+					var built = sy.Build();
+					doUpdate |= built;
+				}
 				PlayerInput.ClearKeys();
 				if (doUpdate)
 				{

@@ -56,12 +56,15 @@ namespace BOSWP
 			{
 				// find sector to place ship in
 				var places = new List<dynamic>();
-				for (int x = -1; x <= 1; x++)
+				var sys = StarSystem;
+				var x = X;
+				var y = Y;
+				for (int dx = -1; dx <= 1; dx++)
 				{
-					for (int y = -1; y <= 1; y++)
+					for (int dy = -1; dy <= 1; dy++)
 					{
-						if (StarSystem.SpaceObjects.AreCoordsInBounds(X + x, Y + y) && StarSystem.SpaceObjects[X + x, Y + y] == null)
-							places.Add(new { X = X + x, Y = Y + y });
+						if (sys.SpaceObjects.AreCoordsInBounds(x + dx, y + dy) && sys.SpaceObjects[x + dx, y + dy] == null)
+							places.Add(new { X = x + dx, Y = y + dy });
 					}
 				}
 				if (!places.Any())

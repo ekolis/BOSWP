@@ -19,10 +19,10 @@ namespace BOSWP
 		public Grid(int radius)
 		{
 			Radius = radius;
-			items = new T[Diameter, Diameter];
+			items = new Dictionary<Tuple<int, int>, T>();
 		}
 
-		private T[,] items;
+		private IDictionary<Tuple<int, int>, T> items;
 
 		public int Radius {get; private set;}
 
@@ -37,17 +37,34 @@ namespace BOSWP
 		{
 			get
 			{
-				return items[x + Radius, y + Radius];
+				if (!AreCoordsInBounds(x, y))
+					throw new ArgumentOutOfRangeException("Coordinates out of bounds");
+				var tuple = Tuple.Create(x + Radius, y + Radius);
+				if (items.ContainsKey(tuple))
+					return items[tuple];
+				else
+					return default(T);
 			}
 			set
 			{
-				items[x + Radius, y + Radius] = value;
+				if (!AreCoordsInBounds(x, y))
+					throw new ArgumentOutOfRangeException("Coordinates out of bounds");
+				var tuple = Tuple.Create(x + Radius, y + Radius);
+				if (value == null)
+					items.Remove(tuple);
+				else
+				{
+					if (items.ContainsKey(tuple))
+						items[tuple] = value;
+					else
+						items.Add(tuple, value);
+				}
 			}
 		}
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			return items.Cast<T>().GetEnumerator();
+			return items.Values.GetEnumerator();
 		}
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
