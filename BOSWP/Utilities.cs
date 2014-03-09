@@ -74,7 +74,7 @@ namespace BOSWP
 				foreach (var dir in Direction.All)
 				{
 					var next = new PathfindingNode(node.X + dir.DeltaX, node.Y + dir.DeltaY, node, node.Cost + 1);
-					if (sys.SpaceObjects.AreCoordsInBounds(next.X, next.Y))
+					if (sys.SpaceObjects.AreCoordsInBounds(next.X, next.Y) && (sys.SpaceObjects[next.X, next.Y] == null || sys.SpaceObjects[next.X, next.Y] is WarpPoint))
 					{
 						var sameNodes = visited.Where(n => n.X == next.X && n.Y == next.Y).ToArray();
 						var queuedNodes = pQueue.Where(n => n.X == next.X && n.Y == next.Y).ToArray();
