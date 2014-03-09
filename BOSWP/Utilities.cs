@@ -33,7 +33,7 @@ namespace BOSWP
 		/// <returns></returns>
 		public static int Distance(int x1, int y1, int x2, int y2)
 		{
-			return Math.Min(Math.Abs(x2 - x1), Math.Abs(y2 - y1));
+			return Math.Max(Math.Abs(x2 - x1), Math.Abs(y2 - y1));
 		}
 	}
 }
