@@ -13,38 +13,28 @@ namespace BOSWP
 	{
 		static Log()
 		{
-			newEntries = new List<string>();
 			entries = new List<string>();
 		}
 
-		private static IList<string> newEntries;
-
 		private static IList<string> entries;
-
-		private static readonly int MaxLength = 100;
 
 		public static IEnumerable<string> Entries { get { return entries; } }
 
 		/// <summary>
-		/// Adds an entry as new.
+		/// Adds an entry.
 		/// </summary>
 		/// <param name="entry"></param>
 		public static void Add(string entry)
 		{
-			newEntries.Add(entry);
+			entries.Add(entry);
 		}
 
 		/// <summary>
-		/// Pushes all new entries to the main entries list and clears the new entries list..
-		/// Also deletes entries that are too old (up to MaxLength entries can be kept).
+		/// Clears the log.
 		/// </summary>
-		public static void PushNewEntries()
+		public static void Clear()
 		{
-			foreach (var entry in newEntries)
-				entries.Add(entry);
-			newEntries.Clear();
-			while (entries.Count > MaxLength)
-				entries.RemoveAt(0);
+			entries.Clear();
 		}
 	}
 }

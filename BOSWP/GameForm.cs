@@ -161,12 +161,12 @@ namespace BOSWP
 					}
 
 					// update log
-					Log.PushNewEntries();
 					Invoke(new DoStuffDelegate(() =>
 							{
 								lstMessages.Items.Clear();
 								foreach (var msg in Log.Entries.Reverse())
 									lstMessages.Items.Add(msg);
+								Log.Clear();
 							}));
 				}
 
