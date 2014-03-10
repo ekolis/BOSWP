@@ -29,10 +29,20 @@
 		private void InitializeComponent()
 		{
 			this.lstMessages = new System.Windows.Forms.ListBox();
-			this.galaxyMap = new BOSWP.CharGridView();
-			this.systemMap = new BOSWP.CharGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblHitpoints = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.lblShields = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.lblMass = new System.Windows.Forms.Label();
+			this.lblCrew = new System.Windows.Forms.Label();
+			this.lblThrust = new System.Windows.Forms.Label();
+			this.lblSpeed = new System.Windows.Forms.Label();
+			this.galaxyMap = new BOSWP.CharGridView();
+			this.systemMap = new BOSWP.CharGridView();
 			this.SuspendLayout();
 			// 
 			// lstMessages
@@ -45,6 +55,126 @@
 			this.lstMessages.Size = new System.Drawing.Size(491, 95);
 			this.lstMessages.TabIndex = 1;
 			this.lstMessages.TabStop = false;
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(510, 232);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(51, 13);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Hitpoints:";
+			// 
+			// lblHitpoints
+			// 
+			this.lblHitpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblHitpoints.Location = new System.Drawing.Point(655, 232);
+			this.lblHitpoints.Name = "lblHitpoints";
+			this.lblHitpoints.Size = new System.Drawing.Size(61, 13);
+			this.lblHitpoints.TabIndex = 4;
+			this.lblHitpoints.Text = "0";
+			this.lblHitpoints.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label2
+			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(510, 245);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 13);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "Shields:";
+			// 
+			// lblShields
+			// 
+			this.lblShields.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblShields.Location = new System.Drawing.Point(655, 245);
+			this.lblShields.Name = "lblShields";
+			this.lblShields.Size = new System.Drawing.Size(61, 13);
+			this.lblShields.TabIndex = 6;
+			this.lblShields.Text = "0";
+			this.lblShields.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// label3
+			// 
+			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(510, 271);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(35, 13);
+			this.label3.TabIndex = 7;
+			this.label3.Text = "Mass:";
+			// 
+			// label4
+			// 
+			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(510, 284);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(34, 13);
+			this.label4.TabIndex = 8;
+			this.label4.Text = "Crew:";
+			// 
+			// label5
+			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(511, 297);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(40, 13);
+			this.label5.TabIndex = 9;
+			this.label5.Text = "Thrust:";
+			// 
+			// label6
+			// 
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(511, 310);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(41, 13);
+			this.label6.TabIndex = 10;
+			this.label6.Text = "Speed:";
+			// 
+			// lblMass
+			// 
+			this.lblMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblMass.Location = new System.Drawing.Point(655, 271);
+			this.lblMass.Name = "lblMass";
+			this.lblMass.Size = new System.Drawing.Size(61, 13);
+			this.lblMass.TabIndex = 11;
+			this.lblMass.Text = "0";
+			this.lblMass.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// lblCrew
+			// 
+			this.lblCrew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblCrew.Location = new System.Drawing.Point(655, 284);
+			this.lblCrew.Name = "lblCrew";
+			this.lblCrew.Size = new System.Drawing.Size(61, 13);
+			this.lblCrew.TabIndex = 12;
+			this.lblCrew.Text = "0";
+			this.lblCrew.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// lblThrust
+			// 
+			this.lblThrust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblThrust.Location = new System.Drawing.Point(655, 297);
+			this.lblThrust.Name = "lblThrust";
+			this.lblThrust.Size = new System.Drawing.Size(61, 13);
+			this.lblThrust.TabIndex = 13;
+			this.lblThrust.Text = "0";
+			this.lblThrust.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// lblSpeed
+			// 
+			this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblSpeed.Location = new System.Drawing.Point(655, 310);
+			this.lblSpeed.Name = "lblSpeed";
+			this.lblSpeed.Size = new System.Drawing.Size(61, 13);
+			this.lblSpeed.TabIndex = 14;
+			this.lblSpeed.Text = "0";
+			this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// galaxyMap
 			// 
@@ -79,32 +209,21 @@
 			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
 			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
 			// 
-			// label1
-			// 
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(510, 232);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(51, 13);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Hitpoints:";
-			// 
-			// lblHitpoints
-			// 
-			this.lblHitpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblHitpoints.AutoSize = true;
-			this.lblHitpoints.Location = new System.Drawing.Point(703, 232);
-			this.lblHitpoints.Name = "lblHitpoints";
-			this.lblHitpoints.Size = new System.Drawing.Size(13, 13);
-			this.lblHitpoints.TabIndex = 4;
-			this.lblHitpoints.Text = "0";
-			this.lblHitpoints.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
 			// GameForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(728, 626);
+			this.Controls.Add(this.lblSpeed);
+			this.Controls.Add(this.lblThrust);
+			this.Controls.Add(this.lblCrew);
+			this.Controls.Add(this.lblMass);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.lblShields);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.lblHitpoints);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.galaxyMap);
@@ -129,6 +248,16 @@
 		private System.Windows.Forms.ListBox lstMessages;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lblHitpoints;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label lblShields;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label lblMass;
+		private System.Windows.Forms.Label lblCrew;
+		private System.Windows.Forms.Label lblThrust;
+		private System.Windows.Forms.Label lblSpeed;
 	}
 }
 

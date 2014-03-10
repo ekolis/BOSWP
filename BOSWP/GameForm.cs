@@ -21,14 +21,27 @@ namespace BOSWP
 		private void GameForm_Load(object sender, EventArgs e)
 		{
 			new Galaxy(4, 30, 7, 6, 10, 1000);
-			galaxyMap.Grid = Galaxy.Current.StarSystems;
-			systemMap.Grid = FindPlayerSystem().SpaceObjects;
-			lblHitpoints.Text = PlayerShip.Instance.Hitpoints.ToString();
-			systemMap.Focus();
+			DoUpdate();
 
 			runner = new Thread(new ThreadStart(RunGame));
 			runner.IsBackground = true;
 			runner.Start();
+		}
+
+		private void DoUpdate()
+		{
+			var sys = FindPlayerSystem();
+			if (sys != null)
+				systemMap.Grid = FindPlayerSystem().SpaceObjects;
+			systemMap.Invalidate();
+			galaxyMap.Invalidate();
+
+			lblHitpoints.Text = PlayerShip.Instance.Hitpoints.ToString();
+			lblShields.Text = "0"; // TODO - shields
+			lblMass.Text = PlayerShip.Instance.Mass + " kT";
+			lblCrew.Text = PlayerShip.Instance.Crew.ToString();
+			lblThrust.Text = "N/A"; // TODO - thrust
+			lblSpeed.Text = "1"; // TODO - speed
 		}
 
 		private void GameForm_SizeChanged(object sender, EventArgs e)
@@ -129,15 +142,7 @@ namespace BOSWP
 
 				PlayerInput.ClearKeys();
 				if (doUpdate)
-				{
-					var sys = FindPlayerSystem();
-					if (sys != null)
-						systemMap.Grid = FindPlayerSystem().SpaceObjects;
-					systemMap.Invalidate();
-					galaxyMap.Invalidate();
-					Invoke(new DoStuffDelegate(() =>
-						lblHitpoints.Text = PlayerShip.Instance.Hitpoints.ToString()));
-				}
+					Invoke(new DoStuffDelegate(() => DoUpdate()));
 				Application.DoEvents();
 			}
 		}
