@@ -21,6 +21,7 @@ namespace BOSWP
 		private void GameForm_Load(object sender, EventArgs e)
 		{
 			new Galaxy(4, 30, 7, 6, 10, 2000);
+			galaxyMap.Grid = Galaxy.Current.StarSystems;
 			DoUpdate();
 
 			runner = new Thread(new ThreadStart(RunGame));
