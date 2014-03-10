@@ -100,7 +100,7 @@ namespace BOSWP
 					}
 					if (Galaxy.Current.FindSpaceObjects<EnemyShipyard>().Count() == 0)
 					{
-						MessageBox.Show("You have successfully destroyed all Jraenar shipyards! The remaining Jraenar forces make a hasty retreat. You are promoted to Admiral - Congratulatiions!");
+						MessageBox.Show("You have successfully destroyed all Jraenar shipyards! The remaining Jraenar forces make a hasty retreat. You are promoted to Admiral - Congratulations!");
 						Environment.Exit(0);
 					}
 
