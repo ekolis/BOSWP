@@ -60,7 +60,7 @@ namespace BOSWP
 		private void RunGame()
 		{
 			// TODO - AI ships, etc.
-			while (true)
+			while (!PlayerShip.Instance.IsDestroyed)
 			{
 				// refresh the screen?
 				bool doUpdate = false;
@@ -112,6 +112,13 @@ namespace BOSWP
 							ship.Delete();
 							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
 							Log.Add(name + " has insufficient crew and drifts off into space...");
+						}
+						if (ship.Speed <= 0)
+						{
+							// lack of crew destroys ships
+							ship.Delete();
+							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
+							Log.Add(name + "'s engines are destroyed and it is dead in space!");
 						}
 					}
 					if (PlayerShip.Instance.Hitpoints <= 0 || PlayerShip.Instance.StarSystem == null)

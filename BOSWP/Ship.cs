@@ -23,7 +23,7 @@ namespace BOSWP
 		/// </summary>
 		/// <returns>true if the space object is done moving, false if waiting for player input</returns>
 		public abstract bool Move();
-		
+
 		/// <summary>
 		/// Attacks the nearest enemy ship (or the player ship, if this is an enemy ship).
 		/// </summary>
@@ -78,7 +78,7 @@ namespace BOSWP
 
 		public int MaxHitpoints
 		{
-			get	{ return Components.Sum(c => c.MaxHitpoints); }
+			get { return Components.Sum(c => c.MaxHitpoints); }
 		}
 
 		/// <summary>
@@ -101,11 +101,30 @@ namespace BOSWP
 		/// Thrust divided by mass.
 		/// If this is zero (i.e. thrust is less than mass), the ship will be derelict.
 		/// </summary>
-		public int Speed { get { return Thrust / Mass; } }
+		public int Speed
+		{
+			get
+			{
+				if (Mass == 0)
+					return -1;
+				return Thrust / Mass;
+			}
+		}
 
 		/// <summary>
 		/// How long until this ship can move again?
 		/// </summary>
 		public double Wait { get; set; }
+
+		/// <summary>
+		/// A ship is destroyed when all its components are destroyed, its speed reaches zero, or its crew drops below its mass.
+		/// </summary>
+		public bool IsDestroyed
+		{
+			get
+			{
+				return Hitpoints <= 0 || Speed <= 0 || Crew < Mass;
+			}
+		}
 	}
 }
