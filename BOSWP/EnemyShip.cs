@@ -120,6 +120,8 @@ namespace BOSWP
 		{
 			// TODO - if player has long range scanners, he should see component damage on enemies
 			Log.Add(damage + " damage to the " + this + "'s hull!");
+			if (component.Hitpoints <= 0)
+				Log.Add("Scans indicate an enemy component was destroyed!");
 		}
 
 		public EnemyShip Clone()
