@@ -31,6 +31,11 @@ namespace BOSWP
 		/// </summary>
 		public int ReloadRate { get; set; }
 
+		/// <summary>
+		/// Delay until this weapon can fire.
+		/// </summary>
+		public double Wait { get; set; }
+
 		// TODO - damage types?
 	}
 }

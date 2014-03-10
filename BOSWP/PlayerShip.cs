@@ -66,58 +66,71 @@ namespace BOSWP
 
 			// first targeting priority: shipyards
 			// find weapons to fire
-			foreach (var comp in Components.Where(c => c.WeaponInfo != null))
+			bool didstuff = false;
+			do
 			{
-				var sys = FindSpaceObjectsInRange<EnemyShipyard>(comp.WeaponInfo.Range);
-				if (sys.Any())
+				didstuff = false;
+				foreach (var comp in Components.Where(c => c.WeaponInfo != null && c.WeaponInfo.Wait <= 0))
 				{
-					// find closest
-					EnemyShipyard target = null;
-					var dist = int.MaxValue;
-					foreach (var sy in sys)
+					var sys = FindSpaceObjectsInRange<EnemyShipyard>(comp.WeaponInfo.Range);
+					if (sys.Any())
 					{
-						var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
-						if (nd < dist)
+						// find closest
+						EnemyShipyard target = null;
+						var dist = int.MaxValue;
+						foreach (var sy in sys)
 						{
-							target = sy;
-							dist = nd;
+							var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
+							if (nd < dist)
+							{
+								target = sy;
+								dist = nd;
+							}
 						}
-					}
 
-					// fire!
-					Log.Add("Firing " + comp + " at the Jraenar shipyard!");
-					fired.Add(comp);
-					// TODO - evasion/PD
-					target.TakeDamage(comp.WeaponInfo.Damage);
+						// fire!
+						Log.Add("Firing " + comp + " at the Jraenar shipyard!");
+						fired.Add(comp);
+						// TODO - evasion/PD
+						target.TakeDamage(comp.WeaponInfo.Damage);
+						comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
+						didstuff = true;
+					}
 				}
-			}
+			} while (didstuff);
 
 			// second targeting priority: enemy ships
 			// find weapons to fire
-			foreach (var comp in Components.Where(c => c.WeaponInfo != null && !fired.Contains(c)))
+			do
 			{
-				var ships = FindSpaceObjectsInRange<EnemyShip>(comp.WeaponInfo.Range);
-				if (ships.Any())
+				didstuff = false;
+				foreach (var comp in Components.Where(c => c.WeaponInfo != null && !fired.Contains(c) && c.WeaponInfo.Wait <= 0))
 				{
-					// find closest
-					EnemyShip target = null;
-					var dist = int.MaxValue;
-					foreach (var sy in ships)
+					var ships = FindSpaceObjectsInRange<EnemyShip>(comp.WeaponInfo.Range);
+					if (ships.Any())
 					{
-						var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
-						if (nd < dist)
+						// find closest
+						EnemyShip target = null;
+						var dist = int.MaxValue;
+						foreach (var sy in ships)
 						{
-							target = sy;
-							dist = nd;
+							var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
+							if (nd < dist)
+							{
+								target = sy;
+								dist = nd;
+							}
 						}
-					}
 
-					// fire!
-					Log.Add("Firing " + comp + " at the " + target + "!");
-					// TODO - evasion/PD
-					target.TakeDamage(comp.WeaponInfo.Damage);
+						// fire!
+						Log.Add("Firing " + comp + " at the " + target + "!");
+						// TODO - evasion/PD
+						target.TakeDamage(comp.WeaponInfo.Damage);
+						comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
+						didstuff = true;
+					}
 				}
-			}
+			} while (didstuff);
 		}
 
 		public override void LogComponentDamage(Component component, int damage)

@@ -89,15 +89,21 @@ namespace BOSWP
 			// targeting priority: player ship
 			if (PlayerShip.Instance.StarSystem == StarSystem)
 			{
-				foreach (var comp in Components.Where(c => c.WeaponInfo != null))
+				bool didstuff = false;
+				do
 				{
-					if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= comp.WeaponInfo.Range)
+					didstuff = false;
+					foreach (var comp in Components.Where(c => c.WeaponInfo != null && c.WeaponInfo.Wait <= 0))
 					{
-						Log.Add("The " + this + " is firing its " + comp + "!");
-						// TODO - evasion/PD
-						PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
+						if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= comp.WeaponInfo.Range)
+						{
+							Log.Add("The " + this + " is firing its " + comp + "!");
+							// TODO - evasion/PD
+							PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
+							comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
+						}
 					}
-				}
+				} while (didstuff);
 			}
 		}
 

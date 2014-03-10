@@ -91,12 +91,26 @@ namespace BOSWP
 						doUpdate |= built;
 					}
 
+					// how much time was used?
+					var spd = PlayerShip.Instance.Speed;
+
 					// let player attack
 					PlayerShip.Instance.Attack();
 
 					// let enemies attack
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray())
 						ship.Attack();
+
+					// reload weapons
+					foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>().ToArray())
+					{
+						foreach (var comp in ship.Components.Where(c => c.WeaponInfo != null))
+						{
+							comp.WeaponInfo.Wait -= 1d / spd;
+							if (comp.WeaponInfo.Wait < 0)
+								comp.WeaponInfo.Wait = 0;
+						}
+					}
 
 					// scan for destroyed stuff
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>().ToArray())

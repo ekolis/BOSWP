@@ -95,6 +95,7 @@ namespace BOSWP
 				c.WeaponInfo.Damage = WeaponInfo.Damage;
 				c.WeaponInfo.IsMissile = WeaponInfo.IsMissile;
 				c.WeaponInfo.Range = WeaponInfo.Range;
+				c.WeaponInfo.ReloadRate = WeaponInfo.ReloadRate;
 			}
 			c.Crew = Crew;
 			c.Thrust = Thrust;
