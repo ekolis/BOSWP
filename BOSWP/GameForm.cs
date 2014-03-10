@@ -43,6 +43,9 @@ namespace BOSWP
 			lblCrew.Text = PlayerShip.Instance.Crew.ToString();
 			lblThrust.Text = PlayerShip.Instance.Thrust.ToString();
 			lblSpeed.Text = PlayerShip.Instance.Speed.ToString();
+
+			weaponInfoBindingSource.DataSource = PlayerShip.Instance.Components.Where(c => c.WeaponInfo != null).Select(c => c.WeaponInfo);
+
 		}
 
 		private void GameForm_SizeChanged(object sender, EventArgs e)

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.lstMessages = new System.Windows.Forms.ListBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblHitpoints = new System.Windows.Forms.Label();
@@ -41,8 +42,17 @@
 			this.lblCrew = new System.Windows.Forms.Label();
 			this.lblThrust = new System.Windows.Forms.Label();
 			this.lblSpeed = new System.Windows.Forms.Label();
+			this.gridWeapons = new System.Windows.Forms.DataGridView();
+			this.waitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.damageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.rangeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.isMissileDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.reloadRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.weaponInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.galaxyMap = new BOSWP.CharGridView();
 			this.systemMap = new BOSWP.CharGridView();
+			((System.ComponentModel.ISupportInitialize)(this.gridWeapons)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.weaponInfoBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lstMessages
@@ -52,7 +62,7 @@
 			this.lstMessages.FormattingEnabled = true;
 			this.lstMessages.Location = new System.Drawing.Point(12, 13);
 			this.lstMessages.Name = "lstMessages";
-			this.lstMessages.Size = new System.Drawing.Size(491, 95);
+			this.lstMessages.Size = new System.Drawing.Size(545, 95);
 			this.lstMessages.TabIndex = 1;
 			this.lstMessages.TabStop = false;
 			// 
@@ -60,7 +70,7 @@
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(510, 232);
+			this.label1.Location = new System.Drawing.Point(560, 232);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(51, 13);
 			this.label1.TabIndex = 3;
@@ -69,7 +79,7 @@
 			// lblHitpoints
 			// 
 			this.lblHitpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblHitpoints.Location = new System.Drawing.Point(655, 232);
+			this.lblHitpoints.Location = new System.Drawing.Point(705, 232);
 			this.lblHitpoints.Name = "lblHitpoints";
 			this.lblHitpoints.Size = new System.Drawing.Size(61, 13);
 			this.lblHitpoints.TabIndex = 4;
@@ -80,7 +90,7 @@
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(510, 245);
+			this.label2.Location = new System.Drawing.Point(560, 245);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(44, 13);
 			this.label2.TabIndex = 5;
@@ -89,7 +99,7 @@
 			// lblShields
 			// 
 			this.lblShields.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblShields.Location = new System.Drawing.Point(655, 245);
+			this.lblShields.Location = new System.Drawing.Point(705, 245);
 			this.lblShields.Name = "lblShields";
 			this.lblShields.Size = new System.Drawing.Size(61, 13);
 			this.lblShields.TabIndex = 6;
@@ -100,7 +110,7 @@
 			// 
 			this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(510, 271);
+			this.label3.Location = new System.Drawing.Point(560, 271);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(35, 13);
 			this.label3.TabIndex = 7;
@@ -110,7 +120,7 @@
 			// 
 			this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(510, 284);
+			this.label4.Location = new System.Drawing.Point(560, 284);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(34, 13);
 			this.label4.TabIndex = 8;
@@ -120,7 +130,7 @@
 			// 
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(511, 297);
+			this.label5.Location = new System.Drawing.Point(561, 297);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(40, 13);
 			this.label5.TabIndex = 9;
@@ -130,7 +140,7 @@
 			// 
 			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(511, 310);
+			this.label6.Location = new System.Drawing.Point(561, 310);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(41, 13);
 			this.label6.TabIndex = 10;
@@ -139,7 +149,7 @@
 			// lblMass
 			// 
 			this.lblMass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblMass.Location = new System.Drawing.Point(655, 271);
+			this.lblMass.Location = new System.Drawing.Point(705, 271);
 			this.lblMass.Name = "lblMass";
 			this.lblMass.Size = new System.Drawing.Size(61, 13);
 			this.lblMass.TabIndex = 11;
@@ -149,7 +159,7 @@
 			// lblCrew
 			// 
 			this.lblCrew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblCrew.Location = new System.Drawing.Point(655, 284);
+			this.lblCrew.Location = new System.Drawing.Point(705, 284);
 			this.lblCrew.Name = "lblCrew";
 			this.lblCrew.Size = new System.Drawing.Size(61, 13);
 			this.lblCrew.TabIndex = 12;
@@ -159,7 +169,7 @@
 			// lblThrust
 			// 
 			this.lblThrust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblThrust.Location = new System.Drawing.Point(655, 297);
+			this.lblThrust.Location = new System.Drawing.Point(705, 297);
 			this.lblThrust.Name = "lblThrust";
 			this.lblThrust.Size = new System.Drawing.Size(61, 13);
 			this.lblThrust.TabIndex = 13;
@@ -169,12 +179,85 @@
 			// lblSpeed
 			// 
 			this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblSpeed.Location = new System.Drawing.Point(655, 310);
+			this.lblSpeed.Location = new System.Drawing.Point(705, 310);
 			this.lblSpeed.Name = "lblSpeed";
 			this.lblSpeed.Size = new System.Drawing.Size(61, 13);
 			this.lblSpeed.TabIndex = 14;
 			this.lblSpeed.Text = "0";
 			this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// gridWeapons
+			// 
+			this.gridWeapons.AllowUserToAddRows = false;
+			this.gridWeapons.AllowUserToDeleteRows = false;
+			this.gridWeapons.AllowUserToResizeColumns = false;
+			this.gridWeapons.AllowUserToResizeRows = false;
+			this.gridWeapons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.gridWeapons.AutoGenerateColumns = false;
+			this.gridWeapons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridWeapons.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.waitDataGridViewTextBoxColumn,
+            this.damageDataGridViewTextBoxColumn,
+            this.rangeDataGridViewTextBoxColumn,
+            this.isMissileDataGridViewCheckBoxColumn,
+            this.reloadRateDataGridViewTextBoxColumn});
+			this.gridWeapons.DataSource = this.weaponInfoBindingSource;
+			this.gridWeapons.Location = new System.Drawing.Point(509, 351);
+			this.gridWeapons.Name = "gridWeapons";
+			this.gridWeapons.ReadOnly = true;
+			this.gridWeapons.RowHeadersVisible = false;
+			this.gridWeapons.Size = new System.Drawing.Size(262, 263);
+			this.gridWeapons.TabIndex = 15;
+			// 
+			// waitDataGridViewTextBoxColumn
+			// 
+			this.waitDataGridViewTextBoxColumn.DataPropertyName = "Wait";
+			this.waitDataGridViewTextBoxColumn.HeaderText = "Wait";
+			this.waitDataGridViewTextBoxColumn.Name = "waitDataGridViewTextBoxColumn";
+			this.waitDataGridViewTextBoxColumn.ReadOnly = true;
+			this.waitDataGridViewTextBoxColumn.ToolTipText = "Delay until the weapon can be fired.";
+			this.waitDataGridViewTextBoxColumn.Width = 50;
+			// 
+			// damageDataGridViewTextBoxColumn
+			// 
+			this.damageDataGridViewTextBoxColumn.DataPropertyName = "Damage";
+			this.damageDataGridViewTextBoxColumn.HeaderText = "Damage";
+			this.damageDataGridViewTextBoxColumn.Name = "damageDataGridViewTextBoxColumn";
+			this.damageDataGridViewTextBoxColumn.ReadOnly = true;
+			this.damageDataGridViewTextBoxColumn.ToolTipText = "Damage inflicted by the weapon.";
+			this.damageDataGridViewTextBoxColumn.Width = 50;
+			// 
+			// rangeDataGridViewTextBoxColumn
+			// 
+			this.rangeDataGridViewTextBoxColumn.DataPropertyName = "Range";
+			this.rangeDataGridViewTextBoxColumn.HeaderText = "Range";
+			this.rangeDataGridViewTextBoxColumn.Name = "rangeDataGridViewTextBoxColumn";
+			this.rangeDataGridViewTextBoxColumn.ReadOnly = true;
+			this.rangeDataGridViewTextBoxColumn.ToolTipText = "Range of the weapon.";
+			this.rangeDataGridViewTextBoxColumn.Width = 50;
+			// 
+			// isMissileDataGridViewCheckBoxColumn
+			// 
+			this.isMissileDataGridViewCheckBoxColumn.DataPropertyName = "IsMissile";
+			this.isMissileDataGridViewCheckBoxColumn.HeaderText = "Missile?";
+			this.isMissileDataGridViewCheckBoxColumn.Name = "isMissileDataGridViewCheckBoxColumn";
+			this.isMissileDataGridViewCheckBoxColumn.ReadOnly = true;
+			this.isMissileDataGridViewCheckBoxColumn.ToolTipText = "Is this a missile weapon?";
+			this.isMissileDataGridViewCheckBoxColumn.Width = 50;
+			// 
+			// reloadRateDataGridViewTextBoxColumn
+			// 
+			this.reloadRateDataGridViewTextBoxColumn.DataPropertyName = "ReloadRate";
+			this.reloadRateDataGridViewTextBoxColumn.HeaderText = "Reload";
+			this.reloadRateDataGridViewTextBoxColumn.Name = "reloadRateDataGridViewTextBoxColumn";
+			this.reloadRateDataGridViewTextBoxColumn.ReadOnly = true;
+			this.reloadRateDataGridViewTextBoxColumn.ToolTipText = "The weapon\'s reload time.";
+			this.reloadRateDataGridViewTextBoxColumn.Width = 50;
+			// 
+			// weaponInfoBindingSource
+			// 
+			this.weaponInfoBindingSource.DataSource = typeof(BOSWP.WeaponInfo);
 			// 
 			// galaxyMap
 			// 
@@ -182,11 +265,11 @@
 			this.galaxyMap.BackColor = System.Drawing.Color.Black;
 			this.galaxyMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.galaxyMap.Grid = null;
-			this.galaxyMap.Location = new System.Drawing.Point(509, 13);
+			this.galaxyMap.Location = new System.Drawing.Point(563, 13);
 			this.galaxyMap.Name = "galaxyMap";
 			this.galaxyMap.NullColor = System.Drawing.Color.Empty;
 			this.galaxyMap.NullGlyph = '\0';
-			this.galaxyMap.Size = new System.Drawing.Size(212, 212);
+			this.galaxyMap.Size = new System.Drawing.Size(208, 212);
 			this.galaxyMap.TabIndex = 2;
 			this.galaxyMap.TabStop = false;
 			this.galaxyMap.Text = "charGridView1";
@@ -213,7 +296,8 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(728, 626);
+			this.ClientSize = new System.Drawing.Size(778, 626);
+			this.Controls.Add(this.gridWeapons);
 			this.Controls.Add(this.lblSpeed);
 			this.Controls.Add(this.lblThrust);
 			this.Controls.Add(this.lblCrew);
@@ -236,6 +320,8 @@
 			this.Load += new System.EventHandler(this.GameForm_Load);
 			this.SizeChanged += new System.EventHandler(this.GameForm_SizeChanged);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
+			((System.ComponentModel.ISupportInitialize)(this.gridWeapons)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.weaponInfoBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -258,6 +344,13 @@
 		private System.Windows.Forms.Label lblCrew;
 		private System.Windows.Forms.Label lblThrust;
 		private System.Windows.Forms.Label lblSpeed;
+		private System.Windows.Forms.DataGridView gridWeapons;
+		private System.Windows.Forms.BindingSource weaponInfoBindingSource;
+		private System.Windows.Forms.DataGridViewTextBoxColumn waitDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn damageDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn rangeDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn isMissileDataGridViewCheckBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn reloadRateDataGridViewTextBoxColumn;
 	}
 }
 
