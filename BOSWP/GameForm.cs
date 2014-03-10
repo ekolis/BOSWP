@@ -27,6 +27,7 @@ namespace BOSWP
 			systemMap.Focus();
 
 			runner = new Thread(new ThreadStart(RunGame));
+			runner.IsBackground = true;
 			runner.Start();
 		}
 
@@ -83,7 +84,7 @@ namespace BOSWP
 					{
 						PlayerShip.Instance.Delete();
 						MessageBox.Show("Your ship is destroyed! Game over!");
-						Application.Exit();
+						Environment.Exit(0);
 					}
 					foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray().Where(sy => sy.Hitpoints <= 0))
 					{
@@ -100,7 +101,7 @@ namespace BOSWP
 					if (Galaxy.Current.FindSpaceObjects<EnemyShipyard>().Count() == 0)
 					{
 						MessageBox.Show("You have successfully destroyed all Jraenar shipyards! The remaining Jraenar forces make a hasty retreat. You are promoted to Admiral - Congratulatiions!");
-						Application.Exit();
+						Environment.Exit(0);
 					}
 
 					// update log
