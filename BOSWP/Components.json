@@ -32,6 +32,7 @@
 		{
 			"Damage": 20,
 			"Range": 3,
+			"ReloadRate": 10,
 		},
 	}
 ]

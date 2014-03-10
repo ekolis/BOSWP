@@ -97,6 +97,7 @@ namespace BOSWP
 				c.WeaponInfo.Range = WeaponInfo.Range;
 			}
 			c.Crew = Crew;
+			c.Thrust = Thrust;
 			return c;
 		}
 
@@ -116,5 +117,12 @@ namespace BOSWP
 		/// Ships with insufficient crew will be destroyed.
 		/// </summary>
 		public int Crew { get; set; }
+
+		/// <summary>
+		/// Amount of thrust this component provides.
+		/// Ships require thrust equal to their mass for each point of speed.
+		/// Ships that don't even have enough thrust for one speed point will be destroyed.
+		/// </summary>
+		public int Thrust { get; set; }
 	}
 }

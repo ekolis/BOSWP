@@ -41,8 +41,8 @@ namespace BOSWP
 			lblShields.Text = "0"; // TODO - shields
 			lblMass.Text = PlayerShip.Instance.Mass + " kT";
 			lblCrew.Text = PlayerShip.Instance.Crew.ToString();
-			lblThrust.Text = "N/A"; // TODO - thrust
-			lblSpeed.Text = "1"; // TODO - speed
+			lblThrust.Text = PlayerShip.Instance.Thrust.ToString();
+			lblSpeed.Text = PlayerShip.Instance.Speed.ToString();
 		}
 
 		private void GameForm_SizeChanged(object sender, EventArgs e)
@@ -75,8 +75,13 @@ namespace BOSWP
 					// let enemy ships move
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray())
 					{
-						var eMoved = ship.Move();
-						doUpdate |= eMoved;
+						ship.Wait -= 1d / PlayerShip.Instance.Speed;
+						if (ship.Wait <= 0)
+						{
+							var eMoved = ship.Move();
+							doUpdate |= eMoved;
+							ship.Wait = 1d / ship.Speed;
+						}
 					}
 
 					// let enemy SYs build

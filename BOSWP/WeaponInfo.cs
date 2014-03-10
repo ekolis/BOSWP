@@ -26,6 +26,11 @@ namespace BOSWP
 		/// </summary>
 		public bool IsMissile { get; set; }
 
+		/// <summary>
+		/// How often this weapon can fire.
+		/// </summary>
+		public int ReloadRate { get; set; }
+
 		// TODO - damage types?
 	}
 }

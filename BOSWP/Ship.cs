@@ -88,7 +88,24 @@ namespace BOSWP
 
 		/// <summary>
 		/// Total crew on the ship.
+		/// If this is less than the ship's mass, the ship will be derelict.
 		/// </summary>
 		public int Crew { get { return Components.Sum(c => c.Crew); } }
+
+		/// <summary>
+		/// Total thrust of the ship's engines.
+		/// </summary>
+		public int Thrust { get { return Components.Sum(c => c.Thrust); } }
+
+		/// <summary>
+		/// Thrust divided by mass.
+		/// If this is zero (i.e. thrust is less than mass), the ship will be derelict.
+		/// </summary>
+		public int Speed { get { return Thrust / Mass; } }
+
+		/// <summary>
+		/// How long until this ship can move again?
+		/// </summary>
+		public double Wait { get; set; }
 	}
 }
