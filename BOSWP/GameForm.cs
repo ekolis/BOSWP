@@ -80,6 +80,14 @@ namespace BOSWP
 						ship.Attack();
 
 					// scan for destroyed stuff
+					foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>())
+					{
+						foreach (var comp in ship.Components.ToArray())
+						{
+							if (comp.Hitpoints <= 0)
+								ship.Components.Remove(comp);
+						}
+					}
 					if (PlayerShip.Instance.Hitpoints <= 0)
 					{
 						PlayerShip.Instance.Delete();
