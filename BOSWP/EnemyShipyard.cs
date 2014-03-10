@@ -106,6 +106,7 @@ namespace BOSWP
 
 		public int TakeDamage(int damage)
 		{
+			Log.Add("The Jraenar shipyard takes " + damage + " damage!");
 			Hitpoints -= damage;
 			if (Hitpoints < 0)
 			{
