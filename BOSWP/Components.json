@@ -1,0 +1,37 @@
+[
+	{
+		"Name": "Bridge",
+		"Description": "Main command center of a starship. One is required per ship.",
+		"Cost": 100,
+		"Mass": 10,
+		"MaxHitpoints": 10,
+	},
+	{
+		"Name": "Crew Quarters",
+		"Description": "Living space for ship crew. One is required for each 500kT of ship mass.",
+		"Cost": 100,
+		"Mass": 10,
+		"MaxHitpoints": 10,
+		"CrewSupport": 0.002,
+	},
+	{
+		"Name": "Ion Engine",
+		"Description": "Provides enough thrust for a 500kT ship to move at speed 1.",
+		"Cost": 100,
+		"Mass": 10,
+		"MaxHitpoints": 20,
+		"Thrust": 500,
+	},
+	{
+		"Name": "Depleted Uranium Cannon",
+		"Description": "Projectile weapon which fires dense metallic slugs.",
+		"Cost": 100,
+		"Mass": 10,
+		"MaxHitpoints": 20,
+		"WeaponInfo":
+		{
+			"Damage": 20,
+			"Range": 3,
+		},
+	}
+]

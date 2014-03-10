@@ -52,35 +52,56 @@ namespace BOSWP
 		{
 			Savings += BuildRate;
 
-			// TODO - have a "target design" once we have components
-			if (Savings >= 1000)
+			if (PlayerShip.Instance.StarSystem == StarSystem)
 			{
-				// find sector to place ship in
-				var places = new List<dynamic>();
-				var sys = StarSystem;
-				var x = X;
-				var y = Y;
-				for (int dx = -1; dx <= 1; dx++)
-				{
-					for (int dy = -1; dy <= 1; dy++)
-					{
-						if (sys.SpaceObjects.AreCoordsInBounds(x + dx, y + dy) && sys.SpaceObjects[x + dx, y + dy] == null)
-							places.Add(new { X = x + dx, Y = y + dy });
-					}
-				}
-				if (!places.Any())
-					return false; // nowhere to put the ship
-				var coords = places.PickRandom();
-
-				// create the ship and place it
-				var ship = new EnemyShip();
-				Savings -= ship.Cost;
-				StarSystem.PlaceSpaceObject(ship, coords.X, coords.Y, 0);
-				Galaxy.Current.RefreshEnemyCounts();
-				return true;
+				// oh noes! a wild player ship draws near! gotta defend ourselves!
+				var affordable = EnemyShip.Library.Where(d => d.Cost <= Savings);
+				if (!affordable.Any())
+					return false;
+				var best = affordable.Where(d => d.Cost == affordable.Max(d2 => d2.Cost)).PickRandom();
+				return Build(best);				
 			}
 			else
-				return false;
+			{
+				// sometimes build a ship just for fun, so it can patrol the galaxy
+				if (Dice.Range(0, 99) == 0)
+				{
+					var affordable = EnemyShip.Library.Where(d => d.Cost <= Savings);
+					if (!affordable.Any())
+						return false;
+					var best = affordable.Where(d => d.Cost == affordable.Max(d2 => d2.Cost)).PickRandom();
+					return Build(best);
+				}
+				else
+					return false;
+			}
+		}
+
+		private bool Build(EnemyShip design)
+		{
+			// find sector to place ship in
+			var places = new List<dynamic>();
+			var sys = StarSystem;
+			var x = X;
+			var y = Y;
+			for (int dx = -1; dx <= 1; dx++)
+			{
+				for (int dy = -1; dy <= 1; dy++)
+				{
+					if (sys.SpaceObjects.AreCoordsInBounds(x + dx, y + dy) && sys.SpaceObjects[x + dx, y + dy] == null)
+						places.Add(new { X = x + dx, Y = y + dy });
+				}
+			}
+			if (!places.Any())
+				return false; // nowhere to put the ship
+			var coords = places.PickRandom();
+
+			// create the ship and place it
+			var ship = design.Clone();
+			Savings -= ship.Cost;
+			StarSystem.PlaceSpaceObject(ship, coords.X, coords.Y, 0);
+			Galaxy.Current.RefreshEnemyCounts();
+			return true;
 		}
 
 		public int TakeDamage(int damage)

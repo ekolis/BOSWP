@@ -102,7 +102,7 @@ namespace BOSWP
 					}
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray().Where(s => s.Hitpoints <= 0))
 					{
-						Log.Add("The Jraenar ship explodes!");
+						Log.Add("The " + ship + " explodes!");
 						ship.Delete();
 						Galaxy.Current.RefreshEnemyCounts();
 					}

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +13,39 @@ namespace BOSWP
 	/// </summary>
 	public class Component : IDamageable
 	{
+		static Component()
+		{
+			Library = JsonConvert.DeserializeObject<IEnumerable<Component>>(File.ReadAllText("Components.json"));
+		}
+
+		public static IEnumerable<Component> Library { get; private set; }
+
+		public static Component Get(string name)
+		{
+			try
+			{
+				return Library.Single(c => c.Name == name);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Either no component named \"" + name + "\" was found in Components.json, or multiple such components were found.", ex);
+			}
+		}
+
 		/// <summary>
 		/// The name of the component.
 		/// </summary>
 		public string Name { get; set; }
+
+		/// <summary>
+		/// Description of the component.
+		/// </summary>
+		public string Description { get; set; }
+
+		/// <summary>
+		/// The cost of the component.
+		/// </summary>
+		public int Cost { get; set; }
 
 		/// <summary>
 		/// The mass of the component, in kT.
@@ -53,6 +84,8 @@ namespace BOSWP
 		{
 			var c = new Component();
 			c.Name = Name;
+			c.Description = Description;
+			c.Cost = Cost;
 			c.Mass = Mass;
 			c.MaxHitpoints = MaxHitpoints;
 			c.Hitpoints = Hitpoints;

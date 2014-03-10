@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,33 +14,45 @@ namespace BOSWP
 	/// </summary>
 	public class EnemyShip : Ship
 	{
+		static EnemyShip()
+		{
+			// load enemy ship designs
+			var designsData = JsonConvert.DeserializeObject<IDictionary<string, IEnumerable<string>>>(File.ReadAllText("EnemyShips.json"));
+			var library = new List<EnemyShip>();
+			foreach (var designData in designsData)
+			{
+				var design = new EnemyShip();
+				design.Name = designData.Key;
+				foreach (var compName in designData.Value)
+				{
+					var comp = Component.Get(compName).Clone();
+					comp.Hitpoints = comp.MaxHitpoints;
+					design.Components.Add(comp);
+				}
+				library.Add(design);
+			}
+			Library = library;
+		}
+
+		public static IEnumerable<EnemyShip> Library { get; private set; }
+
 		public EnemyShip()
 			: base('J', Color.Firebrick)
 		{
 			NeedsNewWaypoint = true;
-			var generic = new Component();
-			generic.Name = "generic component";
-			generic.Mass = 30;
-			generic.MaxHitpoints = 30;
-			generic.Hitpoints = generic.MaxHitpoints;
-			for (var i = 0; i < 8; i++)
-				Components.Add(generic.Clone());
-			var duc = new Component();
-			duc.Name = "depleted uranium cannon";
-			duc.Mass = 30;
-			duc.MaxHitpoints = 30;
-			duc.Hitpoints = duc.MaxHitpoints;
-			duc.WeaponInfo = new WeaponInfo();
-			duc.WeaponInfo.Damage = 20;
-			duc.WeaponInfo.Range = 3;
-			Components.Add(duc);
 		}
+
+		/// <summary>
+		/// The name of the ship.
+		/// </summary>
+		public string Name { get; set; }
 
 		public override bool Move()
 		{
 			if (PlayerShip.Instance.StarSystem == StarSystem)
 			{
 				// player ship sighted! CHASE HIM!!!
+				// TODO - stay at max weapons range
 				NeedsNewWaypoint = false;
 				WaypointX = PlayerShip.Instance.X;
 				WaypointY = PlayerShip.Instance.Y;
@@ -78,7 +92,7 @@ namespace BOSWP
 				{
 					if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= comp.WeaponInfo.Range)
 					{
-						Log.Add("The Jraenar ship is firing its " + comp + "!");
+						Log.Add("The " + this + " is firing its " + comp + "!");
 						// TODO - evasion/PD
 						PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
 					}
@@ -104,7 +118,21 @@ namespace BOSWP
 		public override void LogComponentDamage(Component component, int damage)
 		{
 			// TODO - if player has long range scanners, he should see component damage on enemies
-			Log.Add(damage + " damage to the Jraenar ship's hull!");
+			Log.Add(damage + " damage to the " + this + "'s hull!");
+		}
+
+		public EnemyShip Clone()
+		{
+			var s = new EnemyShip();
+			s.Name = Name;
+			foreach (var comp in Components)
+				s.Components.Add(comp.Clone());
+			return s;
+		}
+
+		public override string ToString()
+		{
+			return "Jraenar " + Name;
 		}
 	}
 }

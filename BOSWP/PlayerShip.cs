@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace BOSWP
 {
@@ -22,23 +24,13 @@ namespace BOSWP
 		private PlayerShip()
 			: base('@', Color.Blue)
 		{
-			var generic = new Component();
-			generic.Name = "generic component";
-			generic.Mass = 30;
-			generic.MaxHitpoints = 30;
-			generic.Hitpoints = generic.MaxHitpoints;
-			for (var i = 0; i < 8; i++)
-				Components.Add(generic.Clone());
-			var duc = new Component();
-			duc.Name = "depleted uranium cannon";
-			duc.Mass = 30;
-			duc.MaxHitpoints = 30;
-			duc.Hitpoints = duc.MaxHitpoints;
-			duc.WeaponInfo = new WeaponInfo();
-			duc.WeaponInfo.Damage = 20;
-			duc.WeaponInfo.Range = 3;
-			for (var i = 0; i < 2; i++)
-				Components.Add(duc.Clone());
+			var compNames = JsonConvert.DeserializeObject<IEnumerable<string>>(File.ReadAllText("PlayerShip.json"));
+			foreach (var compName in compNames)
+			{
+				var comp = Component.Get(compName).Clone();
+				comp.Hitpoints = comp.MaxHitpoints;
+				Components.Add(comp);
+			}
 		}
 
 		public override bool Move()
@@ -121,7 +113,7 @@ namespace BOSWP
 					}
 
 					// fire!
-					Log.Add("Firing " + comp + " at the Jraenar ship!");
+					Log.Add("Firing " + comp + " at the " + target + "!");
 					// TODO - evasion/PD
 					target.TakeDamage(comp.WeaponInfo.Damage);
 				}
