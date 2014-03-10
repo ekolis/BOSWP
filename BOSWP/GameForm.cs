@@ -37,7 +37,7 @@ namespace BOSWP
 			systemMap.Invalidate();
 			galaxyMap.Invalidate();
 
-			lblHitpoints.Text = PlayerShip.Instance.Hitpoints.ToString();
+			lblHitpoints.Text = PlayerShip.Instance.Hitpoints + " / " + PlayerShip.Instance.MaxHitpoints;
 			lblShields.Text = "0"; // TODO - shields
 			lblMass.Text = PlayerShip.Instance.Mass + " kT";
 			lblCrew.Text = PlayerShip.Instance.Crew.ToString();
@@ -197,6 +197,12 @@ namespace BOSWP
 		private StarSystem FindPlayerSystem()
 		{
 			return Galaxy.Current.StarSystems.Where(s => s != null && s.SpaceObjects.OfType<PlayerShip>().Any()).SingleOrDefault();
+		}
+
+		private void btnComponents_Click(object sender, EventArgs e)
+		{
+			var form = new ScanForm(PlayerShip.Instance);
+			form.ShowDialog();
 		}
 	}
 }

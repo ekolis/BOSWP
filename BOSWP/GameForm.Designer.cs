@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lstMessages = new System.Windows.Forms.ListBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblHitpoints = new System.Windows.Forms.Label();
@@ -44,14 +44,15 @@
 			this.lblThrust = new System.Windows.Forms.Label();
 			this.lblSpeed = new System.Windows.Forms.Label();
 			this.gridWeapons = new System.Windows.Forms.DataGridView();
-			this.weaponInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.galaxyMap = new BOSWP.CharGridView();
-			this.systemMap = new BOSWP.CharGridView();
 			this.waitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.damageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.rangeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.isMissileDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.reloadRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.weaponInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.galaxyMap = new BOSWP.CharGridView();
+			this.systemMap = new BOSWP.CharGridView();
+			this.btnComponents = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.gridWeapons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.weaponInfoBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -211,49 +212,12 @@
 			this.gridWeapons.Size = new System.Drawing.Size(262, 263);
 			this.gridWeapons.TabIndex = 15;
 			// 
-			// weaponInfoBindingSource
-			// 
-			this.weaponInfoBindingSource.DataSource = typeof(BOSWP.WeaponInfo);
-			// 
-			// galaxyMap
-			// 
-			this.galaxyMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.galaxyMap.BackColor = System.Drawing.Color.Black;
-			this.galaxyMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.galaxyMap.Grid = null;
-			this.galaxyMap.Location = new System.Drawing.Point(563, 13);
-			this.galaxyMap.Name = "galaxyMap";
-			this.galaxyMap.NullColor = System.Drawing.Color.Empty;
-			this.galaxyMap.NullGlyph = '\0';
-			this.galaxyMap.Size = new System.Drawing.Size(208, 212);
-			this.galaxyMap.TabIndex = 2;
-			this.galaxyMap.TabStop = false;
-			this.galaxyMap.Text = "charGridView1";
-			// 
-			// systemMap
-			// 
-			this.systemMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.systemMap.BackColor = System.Drawing.Color.Black;
-			this.systemMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.systemMap.Grid = null;
-			this.systemMap.Location = new System.Drawing.Point(12, 123);
-			this.systemMap.Name = "systemMap";
-			this.systemMap.NullColor = System.Drawing.Color.Silver;
-			this.systemMap.NullGlyph = '.';
-			this.systemMap.Size = new System.Drawing.Size(491, 491);
-			this.systemMap.TabIndex = 0;
-			this.systemMap.Text = "charGridView1";
-			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
-			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
-			// 
 			// waitDataGridViewTextBoxColumn
 			// 
 			this.waitDataGridViewTextBoxColumn.DataPropertyName = "Wait";
-			dataGridViewCellStyle1.Format = "N2";
-			dataGridViewCellStyle1.NullValue = null;
-			this.waitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Format = "N2";
+			dataGridViewCellStyle2.NullValue = null;
+			this.waitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
 			this.waitDataGridViewTextBoxColumn.HeaderText = "Wait";
 			this.waitDataGridViewTextBoxColumn.Name = "waitDataGridViewTextBoxColumn";
 			this.waitDataGridViewTextBoxColumn.ReadOnly = true;
@@ -296,11 +260,59 @@
 			this.reloadRateDataGridViewTextBoxColumn.ToolTipText = "The weapon\'s reload time.";
 			this.reloadRateDataGridViewTextBoxColumn.Width = 50;
 			// 
+			// weaponInfoBindingSource
+			// 
+			this.weaponInfoBindingSource.DataSource = typeof(BOSWP.WeaponInfo);
+			// 
+			// galaxyMap
+			// 
+			this.galaxyMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.galaxyMap.BackColor = System.Drawing.Color.Black;
+			this.galaxyMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.galaxyMap.Grid = null;
+			this.galaxyMap.Location = new System.Drawing.Point(563, 13);
+			this.galaxyMap.Name = "galaxyMap";
+			this.galaxyMap.NullColor = System.Drawing.Color.Empty;
+			this.galaxyMap.NullGlyph = '\0';
+			this.galaxyMap.Size = new System.Drawing.Size(208, 212);
+			this.galaxyMap.TabIndex = 2;
+			this.galaxyMap.TabStop = false;
+			this.galaxyMap.Text = "charGridView1";
+			// 
+			// systemMap
+			// 
+			this.systemMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.systemMap.BackColor = System.Drawing.Color.Black;
+			this.systemMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.systemMap.Grid = null;
+			this.systemMap.Location = new System.Drawing.Point(12, 123);
+			this.systemMap.Name = "systemMap";
+			this.systemMap.NullColor = System.Drawing.Color.Silver;
+			this.systemMap.NullGlyph = '.';
+			this.systemMap.Size = new System.Drawing.Size(491, 491);
+			this.systemMap.TabIndex = 0;
+			this.systemMap.Text = "charGridView1";
+			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
+			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
+			// 
+			// btnComponents
+			// 
+			this.btnComponents.Location = new System.Drawing.Point(696, 326);
+			this.btnComponents.Name = "btnComponents";
+			this.btnComponents.Size = new System.Drawing.Size(75, 23);
+			this.btnComponents.TabIndex = 16;
+			this.btnComponents.Text = "Components";
+			this.btnComponents.UseVisualStyleBackColor = true;
+			this.btnComponents.Click += new System.EventHandler(this.btnComponents_Click);
+			// 
 			// GameForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(778, 626);
+			this.Controls.Add(this.btnComponents);
 			this.Controls.Add(this.gridWeapons);
 			this.Controls.Add(this.lblSpeed);
 			this.Controls.Add(this.lblThrust);
@@ -355,6 +367,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn rangeDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn isMissileDataGridViewCheckBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn reloadRateDataGridViewTextBoxColumn;
+		private System.Windows.Forms.Button btnComponents;
 	}
 }
 
