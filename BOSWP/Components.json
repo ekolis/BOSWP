@@ -1,12 +1,5 @@
 [
 	{
-		"Name": "Bridge",
-		"Description": "Main command center of a starship. One is required per ship.",
-		"Cost": 500,
-		"Mass": 10,
-		"MaxHitpoints": 10,
-	},
-	{
 		"Name": "Crew Quarters",
 		"Description": "Provides enough crew for a 200kT ship.",
 		"Cost": 250,

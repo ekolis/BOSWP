@@ -1,7 +1,6 @@
 {
 	"scout":
 		[
-			"Bridge",
 			"Crew Quarters",
 			"Ion Engine",
 			"Ion Engine",
@@ -13,7 +12,6 @@
 		],
 	"destroyer":
 		[
-			"Bridge",
 			"Crew Quarters",
 			"Ion Engine",
 			"Ion Engine",
@@ -27,7 +25,6 @@
 		],
 	"cruiser":
 		[
-			"Bridge",
 			"Crew Quarters",
 			"Crew Quarters",
 			"Ion Engine",
@@ -46,7 +43,6 @@
 		],
 	"battleship":
 		[
-			"Bridge",
 			"Crew Quarters",
 			"Crew Quarters",
 			"Crew Quarters",
