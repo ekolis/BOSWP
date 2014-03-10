@@ -47,8 +47,7 @@ namespace BOSWP
 		{
 			get
 			{
-				// TODO - compute cost based on components
-				return 1000;
+				return Components.Sum(c => c.Cost);
 			}
 		}
 
