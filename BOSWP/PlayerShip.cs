@@ -22,13 +22,23 @@ namespace BOSWP
 		private PlayerShip()
 			: base('@', Color.Blue)
 		{
-			var template = new Component();
-			template.Name = "generic component";
-			template.Mass = 30;
-			template.MaxHitpoints = 30;
-			template.Hitpoints = template.MaxHitpoints;
-			for (var i = 0; i < 10; i++)
-				Components.Add(template.Clone());
+			var generic = new Component();
+			generic.Name = "generic component";
+			generic.Mass = 30;
+			generic.MaxHitpoints = 30;
+			generic.Hitpoints = generic.MaxHitpoints;
+			for (var i = 0; i < 8; i++)
+				Components.Add(generic.Clone());
+			var duc = new Component();
+			duc.Name = "depleted uranium cannon";
+			duc.Mass = 30;
+			duc.MaxHitpoints = 30;
+			duc.Hitpoints = duc.MaxHitpoints;
+			duc.WeaponInfo = new WeaponInfo();
+			duc.WeaponInfo.Damage = 20;
+			duc.WeaponInfo.Range = 3;
+			for (var i = 0; i < 2; i++)
+				Components.Add(duc.Clone());
 		}
 
 		public override bool Move()
@@ -60,50 +70,61 @@ namespace BOSWP
 
 		public override void Attack()
 		{
-			// first targeting priority: shipyards
-			var sys = FindSpaceObjectsInRange<EnemyShipyard>(3);
-			if (sys.Any())
-			{
-				// find closest
-				EnemyShipyard target = null;
-				var dist = int.MaxValue;
-				foreach (var sy in sys)
-				{
-					var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
-					if (nd < dist)
-					{
-						target = sy;
-						dist = nd;
-					}
-				}
+			var fired = new List<Component>();
 
-				// TODO - weapons
-				Log.Add("Firing on the Jraenar shipyard!");
-				target.TakeDamage(20);
-				return;
+			// first targeting priority: shipyards
+			// find weapons to fire
+			foreach (var comp in Components.Where(c => c.WeaponInfo != null))
+			{
+				var sys = FindSpaceObjectsInRange<EnemyShipyard>(comp.WeaponInfo.Range);
+				if (sys.Any())
+				{
+					// find closest
+					EnemyShipyard target = null;
+					var dist = int.MaxValue;
+					foreach (var sy in sys)
+					{
+						var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
+						if (nd < dist)
+						{
+							target = sy;
+							dist = nd;
+						}
+					}
+
+					// fire!
+					Log.Add("Firing " + comp + " at the Jraenar shipyard!");
+					fired.Add(comp);
+					// TODO - evasion/PD
+					target.TakeDamage(comp.WeaponInfo.Damage);
+				}
 			}
 
 			// second targeting priority: enemy ships
-			var ships = FindSpaceObjectsInRange<EnemyShip>(3);
-			if (ships.Any())
+			// find weapons to fire
+			foreach (var comp in Components.Where(c => c.WeaponInfo != null && !fired.Contains(c)))
 			{
-				// find closest
-				EnemyShip target = null;
-				var dist = int.MaxValue;
-				foreach (var ship in ships)
+				var ships = FindSpaceObjectsInRange<EnemyShip>(comp.WeaponInfo.Range);
+				if (ships.Any())
 				{
-					var nd = Utilities.Distance(X, Y, ship.X, ship.Y);
-					if (nd < dist)
+					// find closest
+					EnemyShip target = null;
+					var dist = int.MaxValue;
+					foreach (var sy in ships)
 					{
-						target = ship;
-						dist = nd;
+						var nd = Utilities.Distance(X, Y, sy.X, sy.Y);
+						if (nd < dist)
+						{
+							target = sy;
+							dist = nd;
+						}
 					}
-				}
 
-				// TODO - weapons
-				Log.Add("Firing on the Jraenar ship!");
-				target.TakeDamage(20);
-				return;
+					// fire!
+					Log.Add("Firing " + comp + " at the Jraenar ship!");
+					// TODO - evasion/PD
+					target.TakeDamage(comp.WeaponInfo.Damage);
+				}
 			}
 		}
 

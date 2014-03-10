@@ -16,13 +16,22 @@ namespace BOSWP
 			: base('J', Color.Firebrick)
 		{
 			NeedsNewWaypoint = true;
-			var template = new Component();
-			template.Name = "generic component";
-			template.Mass = 30;
-			template.MaxHitpoints = 30;
-			template.Hitpoints = template.MaxHitpoints;
-			for (var i = 0; i < 4; i++)
-				Components.Add(template.Clone());
+			var generic = new Component();
+			generic.Name = "generic component";
+			generic.Mass = 30;
+			generic.MaxHitpoints = 30;
+			generic.Hitpoints = generic.MaxHitpoints;
+			for (var i = 0; i < 8; i++)
+				Components.Add(generic.Clone());
+			var duc = new Component();
+			duc.Name = "depleted uranium cannon";
+			duc.Mass = 30;
+			duc.MaxHitpoints = 30;
+			duc.Hitpoints = duc.MaxHitpoints;
+			duc.WeaponInfo = new WeaponInfo();
+			duc.WeaponInfo.Damage = 20;
+			duc.WeaponInfo.Range = 3;
+			Components.Add(duc);
 		}
 
 		public override bool Move()
@@ -65,10 +74,14 @@ namespace BOSWP
 			// targeting priority: player ship
 			if (PlayerShip.Instance.StarSystem == StarSystem)
 			{
-				if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= 3)
+				foreach (var comp in Components.Where(c => c.WeaponInfo != null))
 				{
-					Log.Add("The Jraenar ship is firing on us!");
-					PlayerShip.Instance.TakeDamage(20);
+					if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= comp.WeaponInfo.Range)
+					{
+						Log.Add("The Jraenar ship is firing its " + comp + "!");
+						// TODO - evasion/PD
+						PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
+					}
 				}
 			}
 		}

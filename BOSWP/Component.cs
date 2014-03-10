@@ -56,6 +56,13 @@ namespace BOSWP
 			c.Mass = Mass;
 			c.MaxHitpoints = MaxHitpoints;
 			c.Hitpoints = Hitpoints;
+			if (WeaponInfo != null)
+			{
+				c.WeaponInfo = new WeaponInfo();
+				c.WeaponInfo.Damage = WeaponInfo.Damage;
+				c.WeaponInfo.IsMissile = WeaponInfo.IsMissile;
+				c.WeaponInfo.Range = WeaponInfo.Range;
+			}
 			return c;
 		}
 
@@ -63,5 +70,10 @@ namespace BOSWP
 		{
 			return Name;
 		}
+
+		/// <summary>
+		/// If this is a weapon, information about it will be stored here.
+		/// </summary>
+		public WeaponInfo WeaponInfo { get; set; }
 	}
 }
