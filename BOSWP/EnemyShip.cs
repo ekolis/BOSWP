@@ -23,6 +23,7 @@ namespace BOSWP
 			{
 				var design = new EnemyShip();
 				design.Name = designData.Key;
+				design.Glyph = design.Name[0].ToString().ToUpper()[0];
 				foreach (var compName in designData.Value)
 				{
 					var comp = Component.Get(compName).Clone();
@@ -125,6 +126,8 @@ namespace BOSWP
 		{
 			var s = new EnemyShip();
 			s.Name = Name;
+			s.Glyph = Glyph;
+			s.Color = Color;
 			foreach (var comp in Components)
 				s.Components.Add(comp.Clone());
 			return s;
