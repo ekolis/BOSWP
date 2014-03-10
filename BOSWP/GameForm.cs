@@ -20,7 +20,7 @@ namespace BOSWP
 
 		private void GameForm_Load(object sender, EventArgs e)
 		{
-			new Galaxy(4, 30, 7, 6, 10, 1000);
+			new Galaxy(4, 30, 7, 6, 10, 2000);
 			DoUpdate();
 
 			runner = new Thread(new ThreadStart(RunGame));
