@@ -22,7 +22,13 @@ namespace BOSWP
 		private PlayerShip()
 			: base('@', Color.Blue)
 		{
-			Hitpoints = 500;
+			var template = new Component();
+			template.Name = "generic component";
+			template.Mass = 30;
+			template.MaxHitpoints = 30;
+			template.Hitpoints = template.MaxHitpoints;
+			for (var i = 0; i < 10; i++)
+				Components.Add(template.Clone());
 		}
 
 		public override bool Move()
@@ -71,7 +77,8 @@ namespace BOSWP
 					}
 				}
 
-				Log.Add("Firing on the Jraenar shipyard! 20 damage to their hull!");
+				// TODO - weapons
+				Log.Add("Firing on the Jraenar shipyard!");
 				target.TakeDamage(20);
 				return;
 			}
@@ -93,10 +100,18 @@ namespace BOSWP
 					}
 				}
 
-				Log.Add("Firing on the Jraenar ship! 20 damage to their hull!");
+				// TODO - weapons
+				Log.Add("Firing on the Jraenar ship!");
 				target.TakeDamage(20);
 				return;
 			}
+		}
+
+		public override void LogComponentDamage(Component component, int damage)
+		{
+			Log.Add(damage + " damage to our " + component + "!");
+			if (component.Hitpoints <= 0)
+				Log.Add("Our " + component + " has been destroyed!");
 		}
 	}
 }

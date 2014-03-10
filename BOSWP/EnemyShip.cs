@@ -15,8 +15,14 @@ namespace BOSWP
 		public EnemyShip()
 			: base('J', Color.Firebrick)
 		{
-			Hitpoints = 100;
 			NeedsNewWaypoint = true;
+			var template = new Component();
+			template.Name = "generic component";
+			template.Mass = 30;
+			template.MaxHitpoints = 30;
+			template.Hitpoints = template.MaxHitpoints;
+			for (var i = 0; i < 4; i++)
+				Components.Add(template.Clone());
 		}
 
 		public override bool Move()
@@ -61,7 +67,7 @@ namespace BOSWP
 			{
 				if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= 3)
 				{
-					Log.Add("The Jraenar ship is firing on us! 20 damage to the hull!");
+					Log.Add("The Jraenar ship is firing on us!");
 					PlayerShip.Instance.TakeDamage(20);
 				}
 			}
@@ -81,5 +87,11 @@ namespace BOSWP
 		/// Does this ship need a new waypoint?
 		/// </summary>
 		public bool NeedsNewWaypoint { get; set; }
+
+		public override void LogComponentDamage(Component component, int damage)
+		{
+			// TODO - if player has long range scanners, he should see component damage on enemies
+			Log.Add(damage + " damage to the Jraenar ship's hull!");
+		}
 	}
 }

@@ -83,9 +83,17 @@ namespace BOSWP
 				return false;
 		}
 
-		public void TakeDamage(int damage)
+		public int TakeDamage(int damage)
 		{
 			Hitpoints -= damage;
+			if (Hitpoints < 0)
+			{
+				var leftovers = -Hitpoints;
+				Hitpoints = 0;
+				return leftovers;
+			}
+			else
+				return 0;
 		}
 
 		public int Hitpoints

@@ -15,7 +15,8 @@ namespace BOSWP
 		/// Inflicts damage.
 		/// </summary>
 		/// <param name="damage">The amount of damage.</param>
-		void TakeDamage(int damage);
+		/// <returns>Leftover damage that should leak to the next avaiable component, if this is a component.</returns>
+		int TakeDamage(int damage);
 
 		/// <summary>
 		/// Remaining hitpoints.

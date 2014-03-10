@@ -51,6 +51,7 @@
     <Compile Include="CharGridView.Designer.cs">
       <DependentUpon>CharGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Component.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="EnemyShip.cs" />

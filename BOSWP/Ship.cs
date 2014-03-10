@@ -15,7 +15,7 @@ namespace BOSWP
 		protected Ship(char glyph, Color color)
 			: base(glyph, color)
 		{
-			
+			Components = new HashSet<Component>();
 		}
 
 		/// <summary>
@@ -52,15 +52,34 @@ namespace BOSWP
 			}
 		}
 
-		public void TakeDamage(int damage)
+		/// <summary>
+		/// The components which make up this ship.
+		/// </summary>
+		public ISet<Component> Components { get; private set; }
+
+		public int TakeDamage(int damage)
 		{
-			Hitpoints -= damage;
+			while (damage > 0 && Hitpoints > 0)
+			{
+				var comp = Components.PickRandom();
+				var leftovers = comp.TakeDamage(damage);
+				if (damage - leftovers > 0)
+					LogComponentDamage(comp, damage - leftovers);
+				damage = leftovers;
+			}
+			return damage;
 		}
+
+		public abstract void LogComponentDamage(Component component, int damage);
 
 		public int Hitpoints
 		{
-			get;
-			protected set;
+			get { return Components.Sum(c => c.Hitpoints); }
+		}
+
+		public int MaxHitpoints
+		{
+			get	{ return Components.Sum(c => c.MaxHitpoints); }
 		}
 	}
 }
