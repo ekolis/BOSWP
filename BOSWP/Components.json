@@ -8,11 +8,11 @@
 	},
 	{
 		"Name": "Crew Quarters",
-		"Description": "Living space for ship crew. One is required for each 500kT of ship mass.",
+		"Description": "Provides enough crew for a 500kT ship.",
 		"Cost": 250,
 		"Mass": 10,
 		"MaxHitpoints": 10,
-		"CrewSupport": 0.002,
+		"Crew": 500,
 	},
 	{
 		"Name": "Ion Engine",

@@ -123,7 +123,8 @@ namespace BOSWP
 		/// </summary>
 		public void Delete()
 		{
-			StarSystem.SpaceObjects[X, Y] = null;
+			if (StarSystem != null)
+				StarSystem.SpaceObjects[X, Y] = null;
 		}
 	}
 }

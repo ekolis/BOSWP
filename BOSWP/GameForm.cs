@@ -80,15 +80,22 @@ namespace BOSWP
 						ship.Attack();
 
 					// scan for destroyed stuff
-					foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>())
+					foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>().ToArray())
 					{
 						foreach (var comp in ship.Components.ToArray())
 						{
 							if (comp.Hitpoints <= 0)
 								ship.Components.Remove(comp);
 						}
+						if (ship.Crew < ship.Mass)
+						{
+							// lack of crew destroys ships
+							ship.Delete();
+							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
+							Log.Add(name + " has insufficient crew and drifts off into space...");
+						}
 					}
-					if (PlayerShip.Instance.Hitpoints <= 0)
+					if (PlayerShip.Instance.Hitpoints <= 0 || PlayerShip.Instance.StarSystem == null)
 					{
 						PlayerShip.Instance.Delete();
 						MessageBox.Show("Your ship is destroyed! Game over!");

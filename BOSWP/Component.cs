@@ -96,6 +96,7 @@ namespace BOSWP
 				c.WeaponInfo.IsMissile = WeaponInfo.IsMissile;
 				c.WeaponInfo.Range = WeaponInfo.Range;
 			}
+			c.Crew = Crew;
 			return c;
 		}
 
@@ -108,5 +109,12 @@ namespace BOSWP
 		/// If this is a weapon, information about it will be stored here.
 		/// </summary>
 		public WeaponInfo WeaponInfo { get; set; }
+
+		/// <summary>
+		/// Amount of crew this component provides.
+		/// Ships require crew greater than or equal to their mass.
+		/// Ships with insufficient crew will be destroyed.
+		/// </summary>
+		public int Crew { get; set; }
 	}
 }

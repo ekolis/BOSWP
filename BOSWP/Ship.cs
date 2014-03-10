@@ -81,5 +81,15 @@ namespace BOSWP
 		{
 			get	{ return Components.Sum(c => c.MaxHitpoints); }
 		}
+
+		/// <summary>
+		/// Total mass of ship components.
+		/// </summary>
+		public int Mass { get { return Components.Sum(c => c.Mass); } }
+
+		/// <summary>
+		/// Total crew on the ship.
+		/// </summary>
+		public int Crew { get { return Components.Sum(c => c.Crew); } }
 	}
 }
