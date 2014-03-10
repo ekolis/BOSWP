@@ -26,8 +26,8 @@
 		"Name": "Depleted Uranium Cannon",
 		"Description": "Projectile weapon which fires dense metallic slugs.",
 		"Cost": 200,
-		"Mass": 10,
-		"MaxHitpoints": 20,
+		"Mass": 30,
+		"MaxHitpoints": 30,
 		"WeaponInfo":
 		{
 			"Damage": 20,
