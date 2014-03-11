@@ -57,6 +57,7 @@
     <Compile Include="CharGridView.Designer.cs">
       <DependentUpon>CharGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Colony.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Direction.cs" />
@@ -86,6 +87,12 @@
       <DependentUpon>ScanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Ship.cs" />
+    <Compile Include="ShopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopForm.Designer.cs">
+      <DependentUpon>ShopForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SpaceObject.cs" />
     <Compile Include="Star.cs" />
     <Compile Include="StarSystem.cs" />
@@ -109,6 +116,9 @@
     </Compile>
     <EmbeddedResource Include="ScanForm.resx">
       <DependentUpon>ScanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShopForm.resx">
+      <DependentUpon>ShopForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Components.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

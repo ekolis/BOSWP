@@ -28,7 +28,7 @@ namespace BOSWP
 			lblThrustTotal.Text = Ship.Thrust.ToString();
 			lblSpeed.Text = Ship.Speed.ToString();
 
-			lstComponents.DataSource = Ship.Components.ToList();
+			lstComponents.DataSource = Ship.Components.OrderBy(c => c.Name).ThenByDescending(c => c.Hitpoints).ToList();
 		}
 
 		public Ship Ship { get; private set; }
@@ -40,7 +40,7 @@ namespace BOSWP
 			if (item == null)
 			{
 				lblDescription.Text = "Component Description";
-				lblHitpoints.Text = lblShields.Text = lblMassTotal.Text = lblCrew.Text = lblThrust.Text = lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "?";
+				lblHitpoints.Text = lblShields.Text = lblMass.Text = lblCrew.Text = lblThrust.Text = lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "?";
 			}
 			else
 			{
