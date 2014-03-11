@@ -33,6 +33,11 @@ namespace BOSWP
 			}
 		}
 
+		/// <summary>
+		/// Minerals saved for buying components.
+		/// </summary>
+		public int Savings { get; set; }
+
 		public override bool Move()
 		{
 			foreach (var k in PlayerInput.PressedKeys.ToArray())

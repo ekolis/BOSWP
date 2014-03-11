@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.lstMessages = new System.Windows.Forms.ListBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblHitpoints = new System.Windows.Forms.Label();
@@ -53,6 +53,8 @@
 			this.galaxyMap = new BOSWP.CharGridView();
 			this.systemMap = new BOSWP.CharGridView();
 			this.btnComponents = new System.Windows.Forms.Button();
+			this.label7 = new System.Windows.Forms.Label();
+			this.lblSavings = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.gridWeapons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.weaponInfoBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -205,19 +207,19 @@
             this.isMissileDataGridViewCheckBoxColumn,
             this.reloadRateDataGridViewTextBoxColumn});
 			this.gridWeapons.DataSource = this.weaponInfoBindingSource;
-			this.gridWeapons.Location = new System.Drawing.Point(509, 351);
+			this.gridWeapons.Location = new System.Drawing.Point(509, 381);
 			this.gridWeapons.Name = "gridWeapons";
 			this.gridWeapons.ReadOnly = true;
 			this.gridWeapons.RowHeadersVisible = false;
-			this.gridWeapons.Size = new System.Drawing.Size(262, 263);
+			this.gridWeapons.Size = new System.Drawing.Size(262, 233);
 			this.gridWeapons.TabIndex = 15;
 			// 
 			// waitDataGridViewTextBoxColumn
 			// 
 			this.waitDataGridViewTextBoxColumn.DataPropertyName = "Wait";
-			dataGridViewCellStyle2.Format = "N2";
-			dataGridViewCellStyle2.NullValue = null;
-			this.waitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = null;
+			this.waitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
 			this.waitDataGridViewTextBoxColumn.HeaderText = "Wait";
 			this.waitDataGridViewTextBoxColumn.Name = "waitDataGridViewTextBoxColumn";
 			this.waitDataGridViewTextBoxColumn.ReadOnly = true;
@@ -299,7 +301,8 @@
 			// 
 			// btnComponents
 			// 
-			this.btnComponents.Location = new System.Drawing.Point(696, 326);
+			this.btnComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnComponents.Location = new System.Drawing.Point(696, 352);
 			this.btnComponents.Name = "btnComponents";
 			this.btnComponents.Size = new System.Drawing.Size(75, 23);
 			this.btnComponents.TabIndex = 16;
@@ -307,11 +310,33 @@
 			this.btnComponents.UseVisualStyleBackColor = true;
 			this.btnComponents.Click += new System.EventHandler(this.btnComponents_Click);
 			// 
+			// label7
+			// 
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(560, 336);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(48, 13);
+			this.label7.TabIndex = 17;
+			this.label7.Text = "Savings:";
+			// 
+			// lblSavings
+			// 
+			this.lblSavings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblSavings.Location = new System.Drawing.Point(705, 336);
+			this.lblSavings.Name = "lblSavings";
+			this.lblSavings.Size = new System.Drawing.Size(61, 13);
+			this.lblSavings.TabIndex = 18;
+			this.lblSavings.Text = "$0";
+			this.lblSavings.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// GameForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(778, 626);
+			this.Controls.Add(this.lblSavings);
+			this.Controls.Add(this.label7);
 			this.Controls.Add(this.btnComponents);
 			this.Controls.Add(this.gridWeapons);
 			this.Controls.Add(this.lblSpeed);
@@ -368,6 +393,8 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn isMissileDataGridViewCheckBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn reloadRateDataGridViewTextBoxColumn;
 		private System.Windows.Forms.Button btnComponents;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label lblSavings;
 	}
 }
 

@@ -43,6 +43,7 @@ namespace BOSWP
 			lblCrew.Text = PlayerShip.Instance.Crew.ToString();
 			lblThrust.Text = PlayerShip.Instance.Thrust.ToString();
 			lblSpeed.Text = PlayerShip.Instance.Speed.ToString();
+			lblSavings.Text = "$" + PlayerShip.Instance.Savings;
 
 			weaponInfoBindingSource.DataSource = PlayerShip.Instance.Components.Where(c => c.WeaponInfo != null).Select(c => c.WeaponInfo);
 
@@ -129,6 +130,12 @@ namespace BOSWP
 							ship.Delete();
 							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
 							Log.Add(name + " has insufficient crew and drifts off into space...");
+							if (ship is EnemyShip)
+							{
+								var salvage = ship.Cost / 2;
+								PlayerShip.Instance.Savings += salvage;
+								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
+							}
 						}
 						if (ship.Speed <= 0)
 						{
@@ -136,6 +143,12 @@ namespace BOSWP
 							ship.Delete();
 							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
 							Log.Add(name + "'s engines are destroyed and it is dead in space!");
+							if (ship is EnemyShip)
+							{
+								var salvage = ship.Cost / 2;
+								PlayerShip.Instance.Savings += salvage;
+								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
+							}
 						}
 					}
 					if (PlayerShip.Instance.Hitpoints <= 0 || PlayerShip.Instance.StarSystem == null)
@@ -147,6 +160,9 @@ namespace BOSWP
 					{
 						Log.Add("The Jraenar shipyard explodes!");
 						sy.Delete();
+						var salvage = sy.Savings / 2;
+						PlayerShip.Instance.Savings += salvage;
+						Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
 						Galaxy.Current.RefreshEnemyCounts();
 					}
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray().Where(s => s.Hitpoints <= 0))
