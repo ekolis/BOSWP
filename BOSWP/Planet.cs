@@ -42,6 +42,7 @@ namespace BOSWP
 					foreach (var comp in PlayerShip.Instance.Components)
 						comp.Hitpoints = comp.MaxHitpoints;
 					new ShopForm(Colony).ShowDialog();
+					PlayerShip.Instance.Shields = PlayerShip.Instance.MaxShields; // do this after shopping in case the player bought a shield
 				}
 			}
 			else

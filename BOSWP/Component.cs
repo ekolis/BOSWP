@@ -127,5 +127,29 @@ namespace BOSWP
 		/// Ships that don't even have enough thrust for one speed point will be destroyed.
 		/// </summary>
 		public int Thrust { get; set; }
+
+		/// <summary>
+		/// Percent chance to evade enemy direct fire weapons.
+		/// If multiple components on a ship grant evasion, the chances will be applied consecutively.
+		/// Thus if two components grant 10% evasion, the actual evasion chance will be 19%. (100% to hit - ((100% to hit * 10% to miss) - (90% to hit * 10% to miss))))
+		/// </summary>
+		public int Evasion { get; set; }
+
+		/// <summary>
+		/// Percent chance to shoot down enemy missile weapons.
+		/// If multiple components on a ship grant PD, the chances will be applied consecutively.
+		/// Thus if two components grant 10% PD, the actual PD chance will be 19%. (100% to hit - ((100% to hit * 10% to miss) - (90% to hit * 10% to miss))))
+		/// </summary>
+		public int PointDefense { get; set; }
+
+		/// <summary>
+		/// Component blocks a random amount of damage striking the ship (after shields are pierced) from zero up to the emissive value.
+		/// </summary>
+		public int Emissive { get; set; }
+
+		/// <summary>
+		/// Component generates shield points for the ship.
+		/// </summary>
+		public int Shields { get; set; }
 	}
 }

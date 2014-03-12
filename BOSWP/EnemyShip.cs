@@ -97,8 +97,10 @@ namespace BOSWP
 						if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= comp.WeaponInfo.Range)
 						{
 							Log.Add("The " + this + " is firing its " + comp + "!");
-							// TODO - evasion/PD
-							PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
+							if (PlayerShip.Instance.RollEvasionOrPD(comp.WeaponInfo.IsMissile))
+								Log.Add("But it misses!");
+							else
+								PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
 							comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
 						}
 					}
@@ -124,9 +126,26 @@ namespace BOSWP
 		public override void LogComponentDamage(Component component, int damage)
 		{
 			// TODO - if player has long range scanners, he should see component damage on enemies
-			Log.Add(damage + " damage to the " + this + "'s hull!");
 			if (component.Hitpoints <= 0)
-				Log.Add("Scans indicate an enemy component was destroyed!");
+				Log.Add(damage + " damage to " + this + "'s hull! Scans indicate a component was destroyed!");
+			else
+				Log.Add(damage + " damage to " + this + "'s hull!");
+		}
+
+		public override void LogEmissiveDamage(int damage, bool soakedAll)
+		{
+			if (soakedAll)
+				Log.Add("Their emissive armor blocked all " + damage + " of the damage.");
+			else
+				Log.Add("Their emissive armor blocked " + damage + " of the damage.");
+		}
+
+		public override void LogShieldDamage(int damage, bool soakedAll)
+		{
+			if (soakedAll)
+				Log.Add("Their shields blocked all " + damage + " of the damage.");
+			else
+				Log.Add("Their shields blocked " + damage + " of the damage.");
 		}
 
 		public EnemyShip Clone()

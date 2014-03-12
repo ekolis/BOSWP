@@ -58,6 +58,29 @@ namespace BOSWP
 
 		public int TakeDamage(int damage)
 		{
+			// deal with shields
+			if (damage < Shields)
+			{
+				Shields -= damage;
+				LogShieldDamage(damage, true);
+				damage = 0;
+			}
+			else if (Shields > 0)
+			{
+				damage -= Shields;
+				LogShieldDamage(Shields, false);
+				Shields = 0;
+			}
+
+			// deal with emissive armor
+			var emissive = Math.Min(damage, RollEmissive());
+			if (emissive > 0)
+			{
+				LogEmissiveDamage(emissive, damage <= emissive);
+				damage -= emissive;
+			}
+
+			// regular damage
 			while (damage > 0 && Hitpoints > 0)
 			{
 				var comp = Components.PickRandom();
@@ -70,6 +93,10 @@ namespace BOSWP
 		}
 
 		public abstract void LogComponentDamage(Component component, int damage);
+
+		public abstract void LogEmissiveDamage(int damage, bool soakedAll);
+
+		public abstract void LogShieldDamage(int damage, bool soakedAll);
 
 		public int Hitpoints
 		{
@@ -125,6 +152,79 @@ namespace BOSWP
 			{
 				return Hitpoints <= 0 || Speed <= 0 || Crew < Mass;
 			}
+		}
+
+		/// <summary>
+		/// Percent chance to evade enemy direct fire weapons.
+		/// If multiple components on a ship grant evasion, the chances will be applied consecutively.
+		/// Thus if two components grant 10% evasion, the actual evasion chance will be 19%. (100% to hit - ((100% to hit * 10% to miss) - (90% to hit * 10% to miss))))
+		/// Max evasion value allowed: 99%.
+		/// </summary>
+		public int Evasion
+		{
+			get
+			{
+				var tohit = 100;
+				foreach (var comp in Components)
+					tohit -= tohit * comp.Evasion / 100;
+				return Math.Min(100 - tohit, 99);
+			}
+		}
+
+		/// <summary>
+		/// Percent chance to shoot down enemy missile weapons.
+		/// If multiple components on a ship grant PD, the chances will be applied consecutively.
+		/// Thus if two components grant 10% PD, the actual PD chance will be 19%. (100% to hit - ((100% to hit * 10% to miss) - (90% to hit * 10% to miss))))
+		/// Max PD value allowed: 99%.
+		/// </summary>
+		public int PointDefense
+		{
+			get
+			{
+				var tohit = 100;
+				foreach (var comp in Components)
+					tohit -= tohit * comp.PointDefense / 100;
+				return Math.Min(100 - tohit, 99);
+			}
+		}
+
+		/// <summary>
+		/// Maximum shield points of this ship.
+		/// </summary>
+		public int MaxShields
+		{
+			get
+			{
+				return Components.Sum(c => c.Shields);
+			}
+		}
+
+		/// <summary>
+		/// Current shield points of this ship.
+		/// </summary>
+		public int Shields { get; set; }
+
+		/// <summary>
+		/// Rolls evasion (for direct fire weapons) or PD (for missile weapons) against this ship.
+		/// </summary>
+		/// <param name="isMissile"></param>
+		/// <returns>true if evaded/shot down, false if it's a hit</returns>
+		public bool RollEvasionOrPD(bool isMissile)
+		{
+			var chance = isMissile ? PointDefense : Evasion;
+			return Dice.Range(0, 99) < chance;
+		}
+
+		/// <summary>
+		/// Rolls emissive defense for this ship.
+		/// </summary>
+		/// <returns>Damage blocked.</returns>
+		public int RollEmissive()
+		{
+			int result = 0;
+			foreach (var comp in Components)
+				result += Dice.Range(0, comp.Emissive);
+			return result;
 		}
 	}
 }

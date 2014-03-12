@@ -95,7 +95,6 @@ namespace BOSWP
 						// fire!
 						Log.Add("Firing " + comp + " at the Jraenar shipyard!");
 						fired.Add(comp);
-						// TODO - evasion/PD
 						target.TakeDamage(comp.WeaponInfo.Damage);
 						comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
 						didstuff = true;
@@ -128,8 +127,10 @@ namespace BOSWP
 
 						// fire!
 						Log.Add("Firing " + comp + " at the " + target + "!");
-						// TODO - evasion/PD
-						target.TakeDamage(comp.WeaponInfo.Damage);
+						if (target.RollEvasionOrPD(comp.WeaponInfo.IsMissile))
+							Log.Add("We missed!");
+						else
+							target.TakeDamage(comp.WeaponInfo.Damage);
 						comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
 						didstuff = true;
 					}
@@ -139,9 +140,26 @@ namespace BOSWP
 
 		public override void LogComponentDamage(Component component, int damage)
 		{
-			Log.Add(damage + " damage to our " + component + "!");
 			if (component.Hitpoints <= 0)
-				Log.Add("Our " + component + " has been destroyed!");
+				Log.Add(damage + " damage to our " + component + "! It was destroyed!");
+			else
+				Log.Add(damage + " damage to our " + component + "!");
+		}
+
+		public override void LogEmissiveDamage(int damage, bool soakedAll)
+		{
+			if (soakedAll)
+				Log.Add("Our emissive armor blocked all " +  damage + " of the damage.");
+			else
+				Log.Add("Our emissive armor blocked " + damage + " of the damage.");
+		}
+
+		public override void LogShieldDamage(int damage, bool soakedAll)
+		{
+			if (soakedAll)
+				Log.Add("Our shields blocked all " + damage + " of the damage.");
+			else
+				Log.Add("Our shields blocked " + damage + " of the damage.");
 		}
 	}
 }
