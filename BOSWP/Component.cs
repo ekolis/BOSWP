@@ -101,6 +101,12 @@ namespace BOSWP
 			}
 			c.Crew = Crew;
 			c.Thrust = Thrust;
+			c.Evasion = Evasion;
+			c.PointDefense = PointDefense;
+			c.Emissive = Emissive;
+			c.Shields = Shields;
+			c.ScannerRange = ScannerRange;
+			c.SensorRange = SensorRange;
 			return c;
 		}
 
