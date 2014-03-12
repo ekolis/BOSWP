@@ -16,6 +16,30 @@
 		"Thrust": 200,
 	},
 	{
+		"Name": "Contra-Terrene Engine",
+		"Description": "Provides enough thrust for a 300kT ship to move at speed 1.",
+		"Cost": 400,
+		"Mass": 10,
+		"MaxHitpoints": 20,
+		"Thrust": 300,
+	},
+	{
+		"Name": "Jacketed-Photon Engine",
+		"Description": "Provides enough thrust for a 400kT ship to move at speed 1.",
+		"Cost": 600,
+		"Mass": 10,
+		"MaxHitpoints": 20,
+		"Thrust": 400,
+	},
+	{
+		"Name": "Quantum Engine",
+		"Description": "Provides enough thrust for a 500kT ship to move at speed 1.",
+		"Cost": 800,
+		"Mass": 10,
+		"MaxHitpoints": 20,
+		"Thrust": 500,
+	},
+	{
 		"Name": "Depleted Uranium Cannon",
 		"Description": "Projectile weapon which fires dense metallic slugs.",
 		"Cost": 200,
@@ -27,5 +51,111 @@
 			"Range": 3,
 			"ReloadRate": 1,
 		},
-	}
+	},
+	{
+		"Name": "Anti-Proton Beam",
+		"Description": "Particle beam weapon which fires a coherent stream of anti-protons.",
+		"Cost": 400,
+		"Mass": 30,
+		"MaxHitpoints": 30,
+		"WeaponInfo":
+		{
+			"Damage": 30,
+			"Range": 4,
+			"ReloadRate": 1,
+		},
+	},
+	{
+		"Name": "Ripper Beam",
+		"Description": "Short range graviton beam which tears enemy ships apart.",
+		"Cost": 400,
+		"Mass": 20,
+		"MaxHitpoints": 20,
+		"WeaponInfo":
+		{
+			"Damage": 40,
+			"Range": 2,
+			"ReloadRate": 1,
+		},
+	},
+	{
+		"Name": "Wave Motion Gun",
+		"Description": "Long range subspace distortion beam. Very powerful, but slow to reload.",
+		"Cost": 1000,
+		"Mass": 70,
+		"MaxHitpoints": 70,
+		"WeaponInfo":
+		{
+			"Damage": 200,
+			"Range": 5,
+			"ReloadRate": 3,
+		},
+	},
+	{
+		"Name": "Capital Ship Missile",
+		"Description": "Long range nuclear missile. Slow to reload. Evaded using point-defense instead of ECM.",
+		"Cost": 400,
+		"Mass": 50,
+		"MaxHitpoints": 50,
+		"WeaponInfo":
+		{
+			"Damage": 60,
+			"Range": 6,
+			"ReloadRate": 3,
+			"IsMissile": true,
+		},
+	},
+	{
+		"Name": "Plasma Missile",
+		"Description": "Long range plasma missile. Slow to reload. Evaded using point-defense instead of ECM.",
+		"Cost": 600,
+		"Mass": 50,
+		"MaxHitpoints": 50,
+		"WeaponInfo":
+		{
+			"Damage": 90,
+			"Range": 5,
+			"ReloadRate": 3,
+			"IsMissile": true,
+		},
+	},
+	{
+		"Name": "ECM",
+		"Description": "Gives a 20% chance to evade non-missile weapons. Multiple ECM components will apply this chance consecutively.",
+		"Cost": 200,
+		"Mass": 10,
+		"MaxHitpoints": 10,
+		"Evasion": 20,
+	},
+	{
+		"Name": "Point Defense Cannon",
+		"Description": "Gives a 20% chance to shoot down missile weapons. Multiple PD components will apply this chance consecutively.",
+		"Cost": 100,
+		"Mass": 20,
+		"MaxHitpoints": 20,
+		"PointDefense": 20
+	},
+	{
+		"Name": "Armor",
+		"Description": "Tough but otherwise inert metallic reinforcements to a ship's superstructure.",
+		"Cost": 100,
+		"Mass": 5,
+		"MaxHitpoints": 50,
+	},
+	{
+		"Name": "Emissive Armor",
+		"Description": "Specialized armor which bleeds off energy into space, reducing the damage of incoming attacks by up to 10 points.",
+		"Cost": 300,
+		"Mass": 20,
+		"MaxHitpoints": 50,
+		"Emissive": 10,
+	},
+	{
+		"Name": "Shield Generator",
+		"Description": "Generates a protective energy barrier around a ship which must be dissipated before the ship can be damaged.",
+		"Cost": 250,
+		"Mass": 30,
+		"MaxHitpoints": 30,
+		"Shields": 100,
+	},
 ]
