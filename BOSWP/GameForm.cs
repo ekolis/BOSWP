@@ -38,7 +38,7 @@ namespace BOSWP
 			galaxyMap.Invalidate();
 
 			lblHitpoints.Text = PlayerShip.Instance.Hitpoints + " / " + PlayerShip.Instance.MaxHitpoints;
-			lblShields.Text = "0"; // TODO - shields
+			lblShields.Text = PlayerShip.Instance.Shields + " / " + PlayerShip.Instance.MaxShields;
 			lblMass.Text = PlayerShip.Instance.Mass + " kT";
 			lblCrew.Text = PlayerShip.Instance.Crew.ToString();
 			lblThrust.Text = PlayerShip.Instance.Thrust.ToString();

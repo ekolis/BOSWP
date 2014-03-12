@@ -29,6 +29,7 @@ namespace BOSWP
 					var comp = Component.Get(compName).Clone();
 					design.Components.Add(comp);
 				}
+				design.Shields = design.MaxShields;
 				library.Add(design);
 			}
 			Library = library;
@@ -163,6 +164,7 @@ namespace BOSWP
 			s.Name = Name;
 			s.Glyph = Glyph;
 			s.Color = Color;
+			s.Shields = Shields;
 			foreach (var comp in Components)
 				s.Components.Add(comp.Clone());
 			return s;

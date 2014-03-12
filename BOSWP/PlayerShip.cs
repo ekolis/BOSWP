@@ -30,6 +30,7 @@ namespace BOSWP
 				var comp = Component.Get(compName).Clone();
 				Components.Add(comp);
 			}
+			Shields = MaxShields;
 		}
 
 		/// <summary>
