@@ -121,7 +121,7 @@
 	},
 	{
 		"Name": "ECM",
-		"Description": "Gives a 20% chance to evade non-missile weapons. Multiple ECM components will apply this chance consecutively.",
+		"Description": "Gives a 10% chance to evade non-missile weapons. Multiple ECM components will apply this chance consecutively.",
 		"Cost": 200,
 		"Mass": 10,
 		"MaxHitpoints": 10,
@@ -129,7 +129,7 @@
 	},
 	{
 		"Name": "Point Defense Cannon",
-		"Description": "Gives a 20% chance to shoot down missile weapons. Multiple PD components will apply this chance consecutively.",
+		"Description": "Gives a 10% chance to shoot down missile weapons. Multiple PD components will apply this chance consecutively.",
 		"Cost": 100,
 		"Mass": 20,
 		"MaxHitpoints": 20,
