@@ -14,6 +14,7 @@
 	"destroyer":
 		[
 			"Crew Quarters",
+			"Crew Quarters",
 			"Ion Engine",
 			"Ion Engine",
 			"Ion Engine",
@@ -30,6 +31,7 @@
 		],
 	"cruiser":
 		[
+			"Crew Quarters",
 			"Crew Quarters",
 			"Crew Quarters",
 			"Contra-Terrene Engine",
@@ -54,6 +56,8 @@
 		],
 	"battleship":
 		[
+			"Crew Quarters",
+			"Crew Quarters",
 			"Crew Quarters",
 			"Crew Quarters",
 			"Crew Quarters",
