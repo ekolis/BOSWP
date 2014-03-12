@@ -76,17 +76,22 @@ namespace BOSWP
 			if (item == null)
 			{
 				lblDescription.Text = "Component Description";
-				lblHitpoints.Text = lblShields.Text = lblMass.Text = lblCrew.Text = lblThrust.Text = lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "?";
+				lblHitpoints.Text = lblShields.Text = lblEvasion.Text = lblPD.Text = lblEmissive.Text = lblMass.Text = lblCrew.Text = lblThrust.Text = lblScanner.Text = lblSensor.Text = lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "?";
 				lblCost.Text = "Choose a component to view its price.";
 			}
 			else
 			{
 				lblDescription.Text = item.Description;
 				lblHitpoints.Text = item.Hitpoints + " / " + item.MaxHitpoints;
-				lblShields.Text = "0"; // TODO - shields
+				lblShields.Text = item.Shields.ToString();
+				lblEvasion.Text = item.Evasion + "%";
+				lblPD.Text = item.PointDefense + "%";
+				lblEmissive.Text = item.Emissive.ToString();
 				lblMass.Text = item.Mass.ToString();
 				lblCrew.Text = item.Crew.ToString();
 				lblThrust.Text = item.Thrust.ToString();
+				lblScanner.Text = item.ScannerRange.ToString();
+				lblSensor.Text = item.SensorRange.ToString();
 				if (item.WeaponInfo == null)
 					lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "N/A";
 				else

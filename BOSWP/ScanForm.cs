@@ -22,11 +22,16 @@ namespace BOSWP
 				Text = "Our Ship";
 
 			lblHitpointsTotal.Text = Ship.Hitpoints + " / " + Ship.MaxHitpoints;
-			lblShieldsTotal.Text = "0"; // TODO - shields
+			lblShieldsTotal.Text = Ship.Shields + " / " + Ship.MaxShields;
+			lblEvasionTotal.Text = Ship.Evasion + "%";
+			lblPDTotal.Text = Ship.PointDefense + "%";
+			lblEmissiveTotal.Text = Ship.Emissive.ToString();
 			lblMassTotal.Text = Ship.Mass + " kT";
 			lblCrewTotal.Text = Ship.Crew.ToString();
 			lblThrustTotal.Text = Ship.Thrust.ToString();
 			lblSpeed.Text = Ship.Speed.ToString();
+			lblScannerTotal.Text = Ship.ScannerRange.ToString();
+			lblSensorTotal.Text = Ship.SensorRange.ToString();
 
 			lstComponents.DataSource = Ship.Components.OrderBy(c => c.Name).ThenByDescending(c => c.Hitpoints).ToList();
 		}
@@ -40,16 +45,21 @@ namespace BOSWP
 			if (item == null)
 			{
 				lblDescription.Text = "Component Description";
-				lblHitpoints.Text = lblShields.Text = lblMass.Text = lblCrew.Text = lblThrust.Text = lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "?";
+				lblHitpoints.Text = lblShields.Text = lblEvasion.Text = lblPD.Text = lblEmissive.Text = lblMass.Text = lblCrew.Text = lblThrust.Text = lblScanner.Text = lblSensor.Text = lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "?";
 			}
 			else
 			{
 				lblDescription.Text = item.Description;
 				lblHitpoints.Text = item.Hitpoints + " / " + item.MaxHitpoints;
-				lblShields.Text = "0"; // TODO - shields
+				lblShields.Text = item.Shields.ToString();
+				lblEvasion.Text = item.Evasion + "%";
+				lblPD.Text = item.PointDefense + "%";
+				lblEmissive.Text = item.Emissive.ToString();
 				lblMass.Text = item.Mass.ToString();
 				lblCrew.Text = item.Crew.ToString();
 				lblThrust.Text = item.Thrust.ToString();
+				lblScanner.Text = item.ScannerRange.ToString();
+				lblSensor.Text = item.SensorRange.ToString();
 				if (item.WeaponInfo == null)
 					lblDamage.Text = lblRange.Text = lblReload.Text = lblMissile.Text = "N/A";
 				else
