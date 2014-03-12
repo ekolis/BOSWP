@@ -105,7 +105,7 @@ namespace BOSWP
 				didstuff = false;
 				foreach (var comp in Components.Where(c => c.WeaponInfo != null && c.WeaponInfo.Wait <= 0))
 				{
-					var sys = FindSpaceObjectsInRange<EnemyShipyard>(comp.WeaponInfo.Range);
+					var sys = FindSpaceObjectsInRange<EnemyShipyard>(comp.WeaponInfo.Range).Where(sy => sy.IsRevealed);
 					if (sys.Any())
 					{
 						// find closest
