@@ -53,7 +53,7 @@ namespace BOSWP
 		{
 			Savings += BuildRate;
 
-			if (PlayerShip.Instance.StarSystem == StarSystem)
+			if (PlayerShip.Instance.StarSystem == StarSystem && IsRevealed)
 			{
 				// oh noes! a wild player ship draws near! gotta defend ourselves!
 				var affordable = EnemyShip.Library.Where(d => d.Cost <= Savings);
