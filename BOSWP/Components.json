@@ -138,7 +138,7 @@
 	{
 		"Name": "Armor",
 		"Description": "Tough but otherwise inert metallic reinforcements to a ship's superstructure.",
-		"Cost": 100,
+		"Cost": 50,
 		"Mass": 5,
 		"MaxHitpoints": 50,
 	},
