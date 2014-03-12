@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BOSWP
 {
@@ -76,6 +77,11 @@ namespace BOSWP
 				var sys = TargetSystem;
 				return sys.SpaceObjects.OfType<WarpPoint>().Single(wp => wp.Direction == Direction.Opposite);
 			}
+		}
+
+		public override void Scan()
+		{
+			MessageBox.Show("It's a warp point. You can use it to travel to the next system.");
 		}
 	}
 }

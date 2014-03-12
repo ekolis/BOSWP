@@ -259,5 +259,10 @@ namespace BOSWP
 		{
 			return sy.IsRevealed || StarSystem == sy.StarSystem && Utilities.Distance(X, Y, sy.Y, sy.Y) <= SensorRange;
 		}
+
+		public override void Scan()
+		{
+			new ScanForm(this).ShowDialog();
+		}
 	}
 }

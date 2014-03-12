@@ -298,6 +298,7 @@
 			this.systemMap.Text = "charGridView1";
 			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
 			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
+			this.systemMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.systemMap_MouseDown);
 			// 
 			// btnComponents
 			// 

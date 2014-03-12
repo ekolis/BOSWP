@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BOSWP
 {
@@ -22,6 +23,11 @@ namespace BOSWP
 		{
 			// TODO - message for player when he bumps a star?
 			return false;
+		}
+
+		public override void Scan()
+		{
+			MessageBox.Show("Twinkle, twinkle, little star...");
 		}
 	}
 }

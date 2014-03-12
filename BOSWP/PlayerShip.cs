@@ -72,6 +72,20 @@ namespace BOSWP
 							}
 						}
 
+						// scan planets for allied colonies
+						sr = ScannerRange;
+						for (var x = X - sr; x <= X + sr; x++)
+						{
+							for (var y = Y - sr; y <= Y + sr; y++)
+							{
+								if (StarSystem.SpaceObjects.AreCoordsInBounds(x, y) && StarSystem.SpaceObjects[x, y] is Planet)
+								{
+									var p = (Planet)StarSystem.SpaceObjects[x, y];
+									p.Explore(false);
+								}
+							}
+						}
+
 						return true;
 					}
 				}

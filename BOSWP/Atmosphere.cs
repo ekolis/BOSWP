@@ -22,5 +22,10 @@ namespace BOSWP
 		{
 			return false;
 		}
+
+		public override void Scan()
+		{
+			
+		}
 	}
 }

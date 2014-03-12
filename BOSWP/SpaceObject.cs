@@ -36,6 +36,11 @@ namespace BOSWP
 		public abstract bool BeBumped(Ship source);
 
 		/// <summary>
+		/// What happens when this space object is scanned with the player's long range scanner?
+		/// </summary>
+		public abstract void Scan();
+
+		/// <summary>
 		/// The star system containing this space object.
 		/// </summary>
 		public StarSystem StarSystem

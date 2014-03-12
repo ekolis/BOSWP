@@ -30,6 +30,11 @@ namespace BOSWP
 		/// </summary>
 		public Color NullColor { get; set; }
 
+		/// <summary>
+		/// The size to draw each glyph.
+		/// </summary>
+		public int GlyphSize { get { return Math.Min(Width, Height) / Grid.Diameter; } }
+
 		protected override void OnPaint(PaintEventArgs pe)
 		{
 			base.OnPaint(pe);
@@ -37,8 +42,7 @@ namespace BOSWP
 			if (Grid == null)
 				return; // nothing to draw
 
-			var glyphSize = Math.Min(Width, Height) / Grid.Diameter;
-
+			var glyphSize = GlyphSize;
 			if (glyphSize < 1)
 				return; // can't draw it
 

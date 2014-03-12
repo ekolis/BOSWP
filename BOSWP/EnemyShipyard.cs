@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BOSWP
 {
@@ -140,6 +141,11 @@ namespace BOSWP
 			IsRevealed = true;
 			Glyph = '#';
 			Color = Color.Red;
+		}
+
+		public override void Scan()
+		{
+			MessageBox.Show("This shipyard has " + Hitpoints + " hitpoints remaining, and $" + Savings + " worth of saved construction progress.");
 		}
 	}
 }
