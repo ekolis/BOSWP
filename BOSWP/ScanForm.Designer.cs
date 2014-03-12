@@ -156,9 +156,9 @@
 			// 
 			// lblShieldsTotal
 			// 
-			this.lblShieldsTotal.Location = new System.Drawing.Point(157, 22);
+			this.lblShieldsTotal.Location = new System.Drawing.Point(132, 22);
 			this.lblShieldsTotal.Name = "lblShieldsTotal";
-			this.lblShieldsTotal.Size = new System.Drawing.Size(61, 13);
+			this.lblShieldsTotal.Size = new System.Drawing.Size(86, 13);
 			this.lblShieldsTotal.TabIndex = 18;
 			this.lblShieldsTotal.Text = "0";
 			this.lblShieldsTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -174,9 +174,9 @@
 			// 
 			// lblHitpointsTotal
 			// 
-			this.lblHitpointsTotal.Location = new System.Drawing.Point(157, 9);
+			this.lblHitpointsTotal.Location = new System.Drawing.Point(129, 9);
 			this.lblHitpointsTotal.Name = "lblHitpointsTotal";
-			this.lblHitpointsTotal.Size = new System.Drawing.Size(61, 13);
+			this.lblHitpointsTotal.Size = new System.Drawing.Size(89, 13);
 			this.lblHitpointsTotal.TabIndex = 16;
 			this.lblHitpointsTotal.Text = "0";
 			this.lblHitpointsTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;

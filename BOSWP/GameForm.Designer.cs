@@ -44,6 +44,9 @@
 			this.lblThrust = new System.Windows.Forms.Label();
 			this.lblSpeed = new System.Windows.Forms.Label();
 			this.gridWeapons = new System.Windows.Forms.DataGridView();
+			this.btnComponents = new System.Windows.Forms.Button();
+			this.label7 = new System.Windows.Forms.Label();
+			this.lblSavings = new System.Windows.Forms.Label();
 			this.waitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.damageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.rangeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,9 +55,6 @@
 			this.weaponInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.galaxyMap = new BOSWP.CharGridView();
 			this.systemMap = new BOSWP.CharGridView();
-			this.btnComponents = new System.Windows.Forms.Button();
-			this.label7 = new System.Windows.Forms.Label();
-			this.lblSavings = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.gridWeapons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.weaponInfoBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -83,9 +83,9 @@
 			// lblHitpoints
 			// 
 			this.lblHitpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblHitpoints.Location = new System.Drawing.Point(705, 232);
+			this.lblHitpoints.Location = new System.Drawing.Point(681, 232);
 			this.lblHitpoints.Name = "lblHitpoints";
-			this.lblHitpoints.Size = new System.Drawing.Size(61, 13);
+			this.lblHitpoints.Size = new System.Drawing.Size(85, 13);
 			this.lblHitpoints.TabIndex = 4;
 			this.lblHitpoints.Text = "0";
 			this.lblHitpoints.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -103,9 +103,9 @@
 			// lblShields
 			// 
 			this.lblShields.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblShields.Location = new System.Drawing.Point(705, 245);
+			this.lblShields.Location = new System.Drawing.Point(681, 245);
 			this.lblShields.Name = "lblShields";
-			this.lblShields.Size = new System.Drawing.Size(61, 13);
+			this.lblShields.Size = new System.Drawing.Size(85, 13);
 			this.lblShields.TabIndex = 6;
 			this.lblShields.Text = "0";
 			this.lblShields.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -214,6 +214,37 @@
 			this.gridWeapons.Size = new System.Drawing.Size(262, 233);
 			this.gridWeapons.TabIndex = 15;
 			// 
+			// btnComponents
+			// 
+			this.btnComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnComponents.Location = new System.Drawing.Point(696, 352);
+			this.btnComponents.Name = "btnComponents";
+			this.btnComponents.Size = new System.Drawing.Size(75, 23);
+			this.btnComponents.TabIndex = 16;
+			this.btnComponents.Text = "Components";
+			this.btnComponents.UseVisualStyleBackColor = true;
+			this.btnComponents.Click += new System.EventHandler(this.btnComponents_Click);
+			// 
+			// label7
+			// 
+			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(560, 336);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(48, 13);
+			this.label7.TabIndex = 17;
+			this.label7.Text = "Savings:";
+			// 
+			// lblSavings
+			// 
+			this.lblSavings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblSavings.Location = new System.Drawing.Point(705, 336);
+			this.lblSavings.Name = "lblSavings";
+			this.lblSavings.Size = new System.Drawing.Size(61, 13);
+			this.lblSavings.TabIndex = 18;
+			this.lblSavings.Text = "$0";
+			this.lblSavings.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
 			// waitDataGridViewTextBoxColumn
 			// 
 			this.waitDataGridViewTextBoxColumn.DataPropertyName = "Wait";
@@ -299,37 +330,6 @@
 			this.systemMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.systemMap_KeyDown);
 			this.systemMap.Leave += new System.EventHandler(this.systemMap_Leave);
 			this.systemMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.systemMap_MouseDown);
-			// 
-			// btnComponents
-			// 
-			this.btnComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnComponents.Location = new System.Drawing.Point(696, 352);
-			this.btnComponents.Name = "btnComponents";
-			this.btnComponents.Size = new System.Drawing.Size(75, 23);
-			this.btnComponents.TabIndex = 16;
-			this.btnComponents.Text = "Components";
-			this.btnComponents.UseVisualStyleBackColor = true;
-			this.btnComponents.Click += new System.EventHandler(this.btnComponents_Click);
-			// 
-			// label7
-			// 
-			this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(560, 336);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(48, 13);
-			this.label7.TabIndex = 17;
-			this.label7.Text = "Savings:";
-			// 
-			// lblSavings
-			// 
-			this.lblSavings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblSavings.Location = new System.Drawing.Point(705, 336);
-			this.lblSavings.Name = "lblSavings";
-			this.lblSavings.Size = new System.Drawing.Size(61, 13);
-			this.lblSavings.TabIndex = 18;
-			this.lblSavings.Text = "$0";
-			this.lblSavings.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// GameForm
 			// 
