@@ -99,6 +99,8 @@ namespace BOSWP
 
 			// create the ship and place it
 			var ship = design.Clone();
+			if (PlayerShip.Instance.StarSystem == StarSystem)
+				Log.Add("An enemy shipyard builds a " + ship.Name + "!");
 			Savings -= ship.Cost;
 			StarSystem.PlaceSpaceObject(ship, coords.X, coords.Y, 0);
 			Galaxy.Current.RefreshEnemyCounts();
