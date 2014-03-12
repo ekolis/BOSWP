@@ -58,7 +58,6 @@ namespace BOSWP
 
 			// buy the component
 			var copycomp = comp.Clone();
-			copycomp.Hitpoints = copycomp.MaxHitpoints;
 			PlayerShip.Instance.Components.Add(copycomp);
 			PlayerShip.Instance.Savings -= comp.Cost;
 			Text = "Shop - $" + PlayerShip.Instance.Savings;

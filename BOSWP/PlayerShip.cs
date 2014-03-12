@@ -28,7 +28,6 @@ namespace BOSWP
 			foreach (var compName in compNames)
 			{
 				var comp = Component.Get(compName).Clone();
-				comp.Hitpoints = comp.MaxHitpoints;
 				Components.Add(comp);
 			}
 		}

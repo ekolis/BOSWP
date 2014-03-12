@@ -27,7 +27,6 @@ namespace BOSWP
 				foreach (var compName in designData.Value)
 				{
 					var comp = Component.Get(compName).Clone();
-					comp.Hitpoints = comp.MaxHitpoints;
 					design.Components.Add(comp);
 				}
 				library.Add(design);

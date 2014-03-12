@@ -16,6 +16,8 @@ namespace BOSWP
 		static Component()
 		{
 			Library = JsonConvert.DeserializeObject<IEnumerable<Component>>(File.ReadAllText("Components.json"));
+			foreach (var comp in Library)
+				comp.Hitpoints = comp.MaxHitpoints;
 		}
 
 		public static IEnumerable<Component> Library { get; private set; }
