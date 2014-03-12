@@ -189,6 +189,14 @@ namespace BOSWP
 		}
 
 		/// <summary>
+		/// Emissive defense rating of this ship. Shots piercing the shields are reduced by a random amount of damage up to this value.
+		/// </summary>
+		public int Emissive
+		{
+			get { return Components.Sum(c => c.Emissive); }
+		}
+
+		/// <summary>
 		/// Maximum shield points of this ship.
 		/// </summary>
 		public int MaxShields
@@ -221,10 +229,7 @@ namespace BOSWP
 		/// <returns>Damage blocked.</returns>
 		public int RollEmissive()
 		{
-			int result = 0;
-			foreach (var comp in Components)
-				result += Dice.Range(0, comp.Emissive);
-			return result;
+			return Dice.Range(0, Emissive);
 		}
 
 		/// <summary>
