@@ -64,7 +64,7 @@ namespace BOSWP
 						{
 							for (var y = Y - sr; y <= Y + sr; y++)
 							{
-								if (StarSystem.SpaceObjects[x, y] is EnemyShipyard)
+								if (StarSystem.SpaceObjects.AreCoordsInBounds(x, y) && StarSystem.SpaceObjects[x, y] is EnemyShipyard)
 								{
 									Log.Add("Enemy shipyard sighted!");
 									((EnemyShipyard)StarSystem.SpaceObjects[x, y]).Reveal();
