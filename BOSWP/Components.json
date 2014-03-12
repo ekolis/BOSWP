@@ -158,4 +158,20 @@
 		"MaxHitpoints": 30,
 		"Shields": 100,
 	},
+	{
+		"Name": "Long Range Scanner",
+		"Description": "Allows enemy ships to be scanned in detail. Two sectors range per scanner component.",
+		"Cost": 500,
+		"Mass": 20,
+		"MaxHitpoints": 20,
+		"ScannerRange": 2
+	},
+	{
+		"Name": "Tachyon Sensor",
+		"Description": "Extends the range at which shipyards can be detected by one sector.",
+		"Cost": 500,
+		"Mass": 40,
+		"MaxHitpoints": 40,
+		"SensorRange": 1
+	},
 ]

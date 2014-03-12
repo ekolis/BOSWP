@@ -151,5 +151,15 @@ namespace BOSWP
 		/// Component generates shield points for the ship.
 		/// </summary>
 		public int Shields { get; set; }
+
+		/// <summary>
+		/// Range at which this component can perform long range scans of enemy ships.
+		/// </summary>
+		public int ScannerRange { get; set; }
+
+		/// <summary>
+		/// Range at which this component can detect cloaked objects (i.e. shipyards).
+		/// </summary>
+		public int SensorRange { get; set; }
 	}
 }

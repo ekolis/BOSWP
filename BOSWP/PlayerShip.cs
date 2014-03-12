@@ -57,6 +57,21 @@ namespace BOSWP
 						var oldy = Y;
 						StarSystem.SpaceObjects[newx, newy] = this;
 						StarSystem.SpaceObjects[oldx, oldy] = null;
+
+						// do sensor sweep
+						var sr = SensorRange;
+						for (var x = X - sr; x <= X + sr; x++)
+						{
+							for (var y = Y - sr; y <= Y + sr; y++)
+							{
+								if (StarSystem.SpaceObjects[x, y] is EnemyShipyard)
+								{
+									Log.Add("Enemy shipyard sighted!");
+									((EnemyShipyard)StarSystem.SpaceObjects[x, y]).Reveal();
+								}
+							}
+						}
+
 						return true;
 					}
 				}

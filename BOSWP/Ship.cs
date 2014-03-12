@@ -226,5 +226,38 @@ namespace BOSWP
 				result += Dice.Range(0, comp.Emissive);
 			return result;
 		}
+
+		/// <summary>
+		/// Range at which this ship can scan enemy ships in detail.
+		/// </summary>
+		public int ScannerRange
+		{
+			get
+			{
+				return Components.Sum(c => c.ScannerRange);
+			}
+		}
+
+		/// <summary>
+		/// Range at which this ship can detect cloaked objects (i.e. shipyards).
+		/// All ships get one point of sensor range for free.
+		/// </summary>
+		public int SensorRange
+		{
+			get
+			{
+				return 1 + Components.Sum(c => c.ScannerRange);
+			}
+		}
+
+		public bool CanScan(Ship ship)
+		{
+			return StarSystem == ship.StarSystem && Utilities.Distance(X, Y, ship.Y, ship.Y) <= ScannerRange;
+		}
+
+		public bool CanSee(EnemyShipyard sy)
+		{
+			return sy.IsRevealed || StarSystem == sy.StarSystem && Utilities.Distance(X, Y, sy.Y, sy.Y) <= SensorRange;
+		}
 	}
 }

@@ -27,12 +27,7 @@ namespace BOSWP
 		/// The color of this space object.
 		/// </summary>
 		public Color Color { get; set; }
-
-		/// <summary>
-		/// Is this space object invisible to ships lacking tachyon sensors?
-		/// </summary>
-		public bool IsCloaked { get; set; }
-
+		
 		/// <summary>
 		/// What happens when this space object is bumped by a ship?
 		/// </summary>

@@ -10,7 +10,7 @@ namespace BOSWP
 	public class EnemyShipyard : SpaceObject, IDamageable
 	{
 		public EnemyShipyard(int maxBuildRate)
-			: base('#', Color.Red)
+			: base('.', Color.Silver) // make it invisible :D
 		{
 			MaxBuildRate = maxBuildRate;
 			Savings = maxBuildRate;
@@ -19,7 +19,8 @@ namespace BOSWP
 
 		public override bool BeBumped(Ship source)
 		{
-			// TODO - notify player if he bumps a shipyard
+			Log.Add("Enemy shipyard dead ahead!");
+			Reveal();
 			return false;
 		}
 
@@ -122,6 +123,21 @@ namespace BOSWP
 		{
 			get;
 			private set;
+		}
+
+		/// <summary>
+		/// Has the player seen this shipyard yet?
+		/// </summary>
+		public bool IsRevealed { get; private set; }
+
+		/// <summary>
+		/// Reveals the shipyard to the player.
+		/// </summary>
+		public void Reveal()
+		{
+			IsRevealed = true;
+			Glyph = '#';
+			Color = Color.Red;
 		}
 	}
 }
