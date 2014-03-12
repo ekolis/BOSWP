@@ -125,7 +125,7 @@
 		"Cost": 200,
 		"Mass": 10,
 		"MaxHitpoints": 10,
-		"Evasion": 20,
+		"Evasion": 10,
 	},
 	{
 		"Name": "Point Defense Cannon",
@@ -133,7 +133,7 @@
 		"Cost": 100,
 		"Mass": 20,
 		"MaxHitpoints": 20,
-		"PointDefense": 20
+		"PointDefense": 10
 	},
 	{
 		"Name": "Armor",
