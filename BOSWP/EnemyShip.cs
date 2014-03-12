@@ -125,11 +125,20 @@ namespace BOSWP
 
 		public override void LogComponentDamage(Component component, int damage)
 		{
-			// TODO - if player has long range scanners, he should see component damage on enemies
-			if (component.Hitpoints <= 0)
-				Log.Add(damage + " damage to " + this + "'s hull! Scans indicate a component was destroyed!");
+			if (PlayerShip.Instance.CanScan(this))
+			{
+				if (component.Hitpoints <= 0)
+					Log.Add(damage + " damage to the " + this + "'s " + component + "! It was destroyed!");
+				else
+					Log.Add(damage + " damage to the " + this + "'s " + component + "!");
+			}
 			else
-				Log.Add(damage + " damage to " + this + "'s hull!");
+			{
+				if (component.Hitpoints <= 0)
+					Log.Add(damage + " damage to the " + this + "'s hull! Scans indicate a component was destroyed!");
+				else
+					Log.Add(damage + " damage to the " + this + "'s hull!");
+			}
 		}
 
 		public override void LogEmissiveDamage(int damage, bool soakedAll)
