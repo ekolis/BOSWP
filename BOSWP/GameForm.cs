@@ -115,7 +115,7 @@ namespace BOSWP
 					{
 						foreach (var comp in ship.Components.Where(c => c.WeaponInfo != null))
 						{
-							comp.WeaponInfo.Wait -= 1d / spd;
+							comp.WeaponInfo.Wait -= time;
 							if (comp.WeaponInfo.Wait < 0)
 								comp.WeaponInfo.Wait = 0;
 						}
