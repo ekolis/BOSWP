@@ -48,6 +48,16 @@ namespace BOSWP
 			lblSpeed.Text = PlayerShip.Instance.Speed.ToString();
 			lblSavings.Text = "$" + PlayerShip.Instance.Savings;
 
+			// warnings for vulnerability to critical hits on crew quarters and engines
+			if (PlayerShip.Instance.Components.Any(c => PlayerShip.Instance.Crew - c.Crew < PlayerShip.Instance.Mass))
+				lblCrew.ForeColor = Color.Red;
+			else
+				lblCrew.ForeColor = SystemColors.ControlText;
+			if (PlayerShip.Instance.Components.Any(c => PlayerShip.Instance.Thrust - c.Thrust < PlayerShip.Instance.Mass))
+				lblThrust.ForeColor = Color.Red;
+			else
+				lblThrust.ForeColor = SystemColors.ControlText;
+
 			weaponInfoBindingSource.DataSource = PlayerShip.Instance.Components.Where(c => c.WeaponInfo != null).Select(c => c.WeaponInfo);
 
 		}

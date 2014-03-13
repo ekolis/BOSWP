@@ -33,6 +33,16 @@ namespace BOSWP
 			lblScannerTotal.Text = Ship.ScannerRange.ToString();
 			lblSensorTotal.Text = Ship.SensorRange.ToString();
 
+			// warnings for vulnerability to critical hits on crew quarters and engines
+			if (Ship.Components.Any(c => Ship.Crew - c.Crew < Ship.Mass))
+				lblCrew.ForeColor = Color.Red;
+			else
+				lblCrew.ForeColor = SystemColors.ControlText;
+			if (Ship.Components.Any(c => Ship.Thrust - c.Thrust < Ship.Mass))
+				lblThrust.ForeColor = Color.Red;
+			else
+				lblThrust.ForeColor = SystemColors.ControlText;
+
 			lstComponents.DataSource = Ship.Components.OrderBy(c => c.Name).ThenByDescending(c => c.Hitpoints).ToList();
 		}
 
