@@ -18,9 +18,15 @@ namespace BOSWP
 			DoubleBuffered = true;
 		}
 
+		/// <summary>
+		/// The grid of characters.
+		/// </summary>
 		public IReadableGrid<IColoredGlyphObject> Grid { get; set; }
 
-		public IReadableGrid<IEnumerable<Color>> Overlay { get; set; }
+		/// <summary>
+		/// Rectangles to draw on the grid.
+		/// </summary>
+		public ICollection<Tuple<Rectangle, Color>> Rectangles { get; set; }
 
 		/// <summary>
 		/// Glyph for representing null items.
@@ -70,14 +76,6 @@ namespace BOSWP
 					var cx = l + glyphSize / 2;
 					var cy = t + glyphSize / 2;
 
-					// OK technically it's an underlay...
-					if (Overlay != null)
-					{
-						var colors = Overlay[x, y];
-						foreach (var color in colors)
-							g.FillRectangle(new SolidBrush(color), l, t, glyphSize, glyphSize);
-					}
-
 					if (Grid != null)
 					{
 						var item = Grid[x, y];
@@ -86,6 +84,22 @@ namespace BOSWP
 						else
 							g.DrawString(item.Glyph.ToString(), font, new SolidBrush(item.Color), cx, cy, sf);
 					}
+				}
+			}
+
+			if (Rectangles != null)
+			{
+				foreach (var rectangle in Rectangles)
+				{
+					var rect = rectangle.Item1;
+					var rect2 = new Rectangle(
+						(rect.Left + Grid.Radius) * glyphSize,
+						(rect.Top + Grid.Radius) * glyphSize,
+						rect.Width * glyphSize,
+						rect.Height * glyphSize);
+
+					g.FillRectangle(new SolidBrush(Color.FromArgb(16, rectangle.Item2)), rect2);
+					g.DrawRectangle(new Pen(rectangle.Item2), rect2);
 				}
 			}
 		}

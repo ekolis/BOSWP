@@ -38,33 +38,21 @@ namespace BOSWP
 			if (sys != null)
 			{
 				systemMap.Grid = FindPlayerSystem().SpaceObjects;
-				var overlay = new Grid<IEnumerable<Color>>(sys.SpaceObjects.Radius);
+				var rectangles = new List<Tuple<Rectangle, Color>>();
 
-				// compute overlay colors
-				for (var x = -overlay.Radius; x <= overlay.Radius; x++)
+				// weapon ranges
+				foreach (var ship in sys.FindSpaceObjects<Ship>())
 				{
-					for (var y = -overlay.Radius; y <= overlay.Radius; y++)
+					foreach (var w in ship.Components.Select(c => c.WeaponInfo).Where(w => w != null))
 					{
-						var colors = new List<Color>();
-
-						// weapon ranges
-						foreach (var ship in sys.FindSpaceObjects<Ship>())
-						{
-							foreach (var w in ship.Components.Select(c => c.WeaponInfo).Where(w => w != null))
-							{
-								if (Utilities.Distance(ship.X, ship.Y, x, y) <= w.Range)
-									colors.Add(Color.FromArgb(32, ship.Color));
-							}
-						}
-
-						// player ship scanner range
-						if (Utilities.Distance(PlayerShip.Instance.X, PlayerShip.Instance.Y, x, y) <= PlayerShip.Instance.ScannerRange)
-							colors.Add(Color.FromArgb(32, Color.Silver));
-
-						overlay[x, y] = colors;
+						rectangles.Add(Tuple.Create(new Rectangle(ship.X - w.Range, ship.Y - w.Range, w.Range * 2 + 1, w.Range * 2 + 1), ship.Color));
 					}
 				}
-				systemMap.Overlay = overlay;
+
+				// player ship scanner range
+				rectangles.Add(Tuple.Create(new Rectangle(PlayerShip.Instance.X - PlayerShip.Instance.ScannerRange, PlayerShip.Instance.Y - PlayerShip.Instance.ScannerRange, PlayerShip.Instance.ScannerRange * 2 + 1, PlayerShip.Instance.ScannerRange * 2 + 1), Color.Silver));
+				
+				systemMap.Rectangles = rectangles;
 			}
 			systemMap.Invalidate();
 			galaxyMap.Invalidate();
