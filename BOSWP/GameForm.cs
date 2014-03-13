@@ -76,27 +76,32 @@ namespace BOSWP
 				// other turn stuff (only happens if player moves)
 				if (moved)
 				{
+					// how much time was used?
+					var time = 1d / PlayerShip.Instance.Speed;
+
 					// let enemy ships move
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray())
 					{
-						ship.Wait -= 1d / PlayerShip.Instance.Speed;
-						if (ship.Wait <= 0)
+						ship.Wait -= time;
+						while (ship.Wait <= 0)
 						{
 							var eMoved = ship.Move();
 							doUpdate |= eMoved;
-							ship.Wait = 1d / ship.Speed;
+							ship.Wait += time;
 						}
 					}
 
 					// let enemy SYs build
 					foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray())
 					{
-						var built = sy.Build();
-						doUpdate |= built;
+						sy.Wait -= time;
+						while (sy.Wait <= 0)
+						{
+							var built = sy.Build();
+							doUpdate |= built;
+							sy.Wait += time;
+						}
 					}
-
-					// how much time was used?
-					var spd = PlayerShip.Instance.Speed;
 
 					// let player attack
 					PlayerShip.Instance.Attack();

@@ -33,6 +33,11 @@ namespace BOSWP
 		public int MaxBuildRate { get; set; }
 
 		/// <summary>
+		/// How long until this shipyard can gain resources and try to build?
+		/// </summary>
+		public double Wait { get; set; }
+
+		/// <summary>
 		/// The rate at which the shipyard builds new ships.
 		/// Due to maintenance costs, more shipyards and more ships slow down build rate.
 		/// </summary>
