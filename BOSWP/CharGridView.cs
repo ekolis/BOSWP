@@ -65,6 +65,22 @@ namespace BOSWP
 			sf.Alignment = StringAlignment.Center;
 			sf.LineAlignment = StringAlignment.Center;
 
+			if (Rectangles != null)
+			{
+				foreach (var rectangle in Rectangles)
+				{
+					var rect = rectangle.Item1;
+					var rect2 = new Rectangle(
+						(rect.Left + Grid.Radius) * glyphSize,
+						(rect.Top + Grid.Radius) * glyphSize,
+						rect.Width * glyphSize,
+						rect.Height * glyphSize);
+
+					g.FillRectangle(new SolidBrush(Color.FromArgb(16, rectangle.Item2)), rect2);
+					g.DrawRectangle(new Pen(rectangle.Item2), rect2);
+				}
+			}
+
 			for (var x = -Grid.Radius; x <= Grid.Radius; x++)
 			{
 				for (var y = -Grid.Radius; y <= Grid.Radius; y++)
@@ -84,22 +100,6 @@ namespace BOSWP
 						else
 							g.DrawString(item.Glyph.ToString(), font, new SolidBrush(item.Color), cx, cy, sf);
 					}
-				}
-			}
-
-			if (Rectangles != null)
-			{
-				foreach (var rectangle in Rectangles)
-				{
-					var rect = rectangle.Item1;
-					var rect2 = new Rectangle(
-						(rect.Left + Grid.Radius) * glyphSize,
-						(rect.Top + Grid.Radius) * glyphSize,
-						rect.Width * glyphSize,
-						rect.Height * glyphSize);
-
-					g.FillRectangle(new SolidBrush(Color.FromArgb(16, rectangle.Item2)), rect2);
-					g.DrawRectangle(new Pen(rectangle.Item2), rect2);
 				}
 			}
 		}
