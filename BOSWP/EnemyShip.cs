@@ -52,11 +52,48 @@ namespace BOSWP
 		{
 			if (PlayerShip.Instance.StarSystem == StarSystem)
 			{
-				// player ship sighted! CHASE HIM!!!
-				// TODO - stay at max weapons range
+				// player ship sighted!
 				NeedsNewWaypoint = false;
-				WaypointX = PlayerShip.Instance.X;
-				WaypointY = PlayerShip.Instance.Y;
+				int desiredRange;
+				var ourRanges = Components.Select(c => c.WeaponInfo).Where(w => w != null).Select(w => w.Range).Distinct();
+				var theirRanges = PlayerShip.Instance.Components.Select(c => c.WeaponInfo).Where(w => w != null).Select(w => w.Range).Distinct();
+				if (!ourRanges.Any())
+				{
+					// RUN AWAY!!!
+					// get new waypoint - random warp point to "patrol"
+					desiredRange = int.MaxValue;
+					NeedsNewWaypoint = false;
+					var wp = StarSystem.FindSpaceObjects<WarpPoint>().PickRandom();
+					WaypointX = wp.X;
+					WaypointY = wp.Y;
+				}
+				else if (ourRanges.Any(r => r > theirRanges.Max()))
+				{
+					// stay at max range of closest ranged weapon that is outside their max range
+					desiredRange = ourRanges.Where(r => r > theirRanges.Max()).Min();
+				}
+				else
+				{
+					// stay at max range of closest ranged weapon
+					desiredRange = ourRanges.Min();
+				}
+				if (desiredRange < int.MaxValue)
+				{
+					// stay at desired range
+					var dir = Utilities.Pathfind(StarSystem, X, Y, (nx, ny) =>
+					{
+						var dist = Math.Abs(Utilities.Distance(nx, ny, PlayerShip.Instance.X, PlayerShip.Instance.Y));
+						var offset = dist - desiredRange;
+
+						// being too close is better than being too far away
+						if (offset > 0)
+							return offset * 2;
+						else
+							return -offset;
+					});
+					Go(dir);
+					return true;
+				}
 			}
 			else if (NeedsNewWaypoint)
 			{
@@ -72,16 +109,21 @@ namespace BOSWP
 			}
 
 			// pursue warp point
-			var dir = Utilities.Pathfind(StarSystem, X, Y, WaypointX, WaypointY);
+			var wpDir = Utilities.Pathfind(StarSystem, X, Y, (nx, ny) => Utilities.Distance(nx, ny, WaypointX, WaypointY));
+			Go(wpDir);
+
+			// no need to wait for player input
+			return true;
+		}
+
+		private void Go(Direction dir)
+		{
 			var x = X + dir.DeltaX;
 			var y = Y + dir.DeltaY;
 			if (StarSystem.SpaceObjects[x, y] is WarpPoint)
 				StarSystem.SpaceObjects[x, y].BeBumped(this);
 			else
 				Place(StarSystem, x, y);
-
-			// no need to wait for player input
-			return true;
 		}
 
 		public override void Attack()

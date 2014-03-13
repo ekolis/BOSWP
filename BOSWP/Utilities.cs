@@ -43,10 +43,9 @@ namespace BOSWP
 		/// <param name="sys">The star system to navigate.</param>
 		/// <param name="x">Starting X coordinate.</param>
 		/// <param name="y">Starting Y coordinate.</param>
-		/// <param name="tx">Target X coordinate.</param>
-		/// <param name="ty">Target Y coordinate.</param>
+		/// <param name="priority">Priority function. Takes x and y coordinates; returns priority value (zero is optimal, higher numbers are worse).</param>
 		/// <returns>Direction to travel.</returns>
-		public static Direction Pathfind(StarSystem sys, int x, int y, int tx, int ty)
+		public static Direction Pathfind(StarSystem sys, int x, int y, Func<int, int, int> priority)
 		{
 			// create "check-it" queue and add start node to it
 			var pQueue = new List<PathfindingNode>();
@@ -64,7 +63,7 @@ namespace BOSWP
 				pQueue.Remove(node);
 
 				// did we reach the goal?
-				if (node.X == tx && node.Y == ty)
+				if (priority(node.X, node.Y) <= 0)
 				{
 					var first = node.SecondAncestor;
 					return Direction.Get(first.X - x, first.Y - y);
@@ -97,7 +96,7 @@ namespace BOSWP
 			}
 
 			// get as close as possible
-			var closest = visited.OrderBy(n => Distance(tx, ty, n.X, n.Y)).FirstOrDefault();
+			var closest = visited.OrderBy(n => priority(n.X, n.Y)).FirstOrDefault();
 
 			if (closest == null)
 				return Direction.None; // no path leads closer than where we are now
