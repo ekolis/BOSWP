@@ -81,7 +81,16 @@ namespace BOSWP
 				}
 				var coords = places.PickRandom();
 				sys.PlaceSpaceObject(PlayerShip.Instance, coords.X, coords.Y, 0);
-				sys.SensorGrid[coords.X, coords.Y] = true; // he's swept where he is!
+				
+				// perform initial sensor sweep
+				for (var x = coords.X - PlayerShip.Instance.SensorRange; x <= coords.X + PlayerShip.Instance.SensorRange; x++)
+				{
+					for (var y = coords.Y - PlayerShip.Instance.SensorRange; y <= coords.Y + PlayerShip.Instance.SensorRange; y++)
+					{
+						if (sys.SensorGrid.AreCoordsInBounds(x, y))
+							sys.SensorGrid[x, y] = true;
+					}
+				}
 			}
 
 			// place enemy shipyards
