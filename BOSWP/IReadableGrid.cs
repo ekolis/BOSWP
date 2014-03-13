@@ -16,5 +16,6 @@ namespace BOSWP
 		int Radius { get; }
 		int Diameter { get; }
 		T this[int x, int y] { get; }
+		bool AreCoordsInBounds(int x, int y);
 	}
 }

@@ -22,6 +22,7 @@ namespace BOSWP
 				throw new ArgumentOutOfRangeException("radius", "Star system radius must be at least 2 to leave room for a star, planets, and warp points.");
 
 			SpaceObjects = new Grid<SpaceObject>(radius);
+			SensorGrid = new Grid<bool>(radius);
 
 			// place star in center
 			PlaceSpaceObject(new Star(), 0, 0, 1);
@@ -141,5 +142,10 @@ namespace BOSWP
 		{
 			return SpaceObjects.OfType<T>();
 		}
+
+		/// <summary>
+		/// Grid of sectors that the player has swept with his sensors.
+		/// </summary>
+		public Grid<bool> SensorGrid { get; private set; }
 	}
 }

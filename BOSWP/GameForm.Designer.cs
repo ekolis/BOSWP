@@ -301,12 +301,15 @@
 			// 
 			this.galaxyMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.galaxyMap.BackColor = System.Drawing.Color.Black;
+			this.galaxyMap.BoringColor = System.Drawing.Color.Empty;
+			this.galaxyMap.BoringGrid = null;
 			this.galaxyMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.galaxyMap.Grid = null;
 			this.galaxyMap.Location = new System.Drawing.Point(563, 13);
 			this.galaxyMap.Name = "galaxyMap";
 			this.galaxyMap.NullColor = System.Drawing.Color.Empty;
 			this.galaxyMap.NullGlyph = '\0';
+			this.galaxyMap.Rectangles = null;
 			this.galaxyMap.Size = new System.Drawing.Size(208, 212);
 			this.galaxyMap.TabIndex = 2;
 			this.galaxyMap.TabStop = false;
@@ -318,12 +321,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.systemMap.BackColor = System.Drawing.Color.Black;
+			this.systemMap.BoringColor = System.Drawing.Color.DimGray;
+			this.systemMap.BoringGrid = null;
 			this.systemMap.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.systemMap.Grid = null;
 			this.systemMap.Location = new System.Drawing.Point(12, 123);
 			this.systemMap.Name = "systemMap";
-			this.systemMap.NullColor = System.Drawing.Color.Silver;
+			this.systemMap.NullColor = System.Drawing.Color.White;
 			this.systemMap.NullGlyph = '.';
+			this.systemMap.Rectangles = null;
 			this.systemMap.Size = new System.Drawing.Size(491, 491);
 			this.systemMap.TabIndex = 0;
 			this.systemMap.Text = "charGridView1";

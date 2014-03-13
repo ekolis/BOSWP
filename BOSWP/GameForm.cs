@@ -37,7 +37,8 @@ namespace BOSWP
 			var sys = FindPlayerSystem();
 			if (sys != null)
 			{
-				systemMap.Grid = FindPlayerSystem().SpaceObjects;
+				systemMap.Grid = sys.SpaceObjects;
+				systemMap.BoringGrid = sys.SensorGrid;
 				var rectangles = new List<Tuple<Rectangle, Color>>();
 
 				// weapon ranges

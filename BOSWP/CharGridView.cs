@@ -24,6 +24,12 @@ namespace BOSWP
 		public IReadableGrid<IColoredGlyphObject> Grid { get; set; }
 
 		/// <summary>
+		/// Grid of items that are considered "boring".
+		/// These will be drawn with BoringColor instead of NullColor if the corresponding Grid items are null.
+		/// </summary>
+		public IReadableGrid<bool> BoringGrid { get; set; }
+
+		/// <summary>
 		/// Rectangles to draw on the grid.
 		/// </summary>
 		public ICollection<Tuple<Rectangle, Color>> Rectangles { get; set; }
@@ -37,6 +43,12 @@ namespace BOSWP
 		/// Color for representing null items.
 		/// </summary>
 		public Color NullColor { get; set; }
+
+		/// <summary>
+		/// Color for representing "boring" null items.
+		/// Currently used for empty sectors that have been swept with sensors.
+		/// </summary>
+		public Color BoringColor { get; set; }
 
 		/// <summary>
 		/// The size to draw each glyph.
@@ -96,7 +108,12 @@ namespace BOSWP
 					{
 						var item = Grid[x, y];
 						if (item == null)
-							g.DrawString(NullGlyph.ToString(), font, new SolidBrush(NullColor), cx, cy, sf);
+						{
+							if (BoringGrid != null && BoringGrid.AreCoordsInBounds(x, y) && BoringGrid[x, y])
+								g.DrawString(NullGlyph.ToString(), font, new SolidBrush(BoringColor), cx, cy, sf);
+							else
+								g.DrawString(NullGlyph.ToString(), font, new SolidBrush(NullColor), cx, cy, sf);
+						}
 						else
 							g.DrawString(item.Glyph.ToString(), font, new SolidBrush(item.Color), cx, cy, sf);
 					}
