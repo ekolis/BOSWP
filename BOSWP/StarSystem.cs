@@ -111,8 +111,12 @@ namespace BOSWP
 					return '#';
 				else if (SpaceObjects.OfType<Planet>().Any(p => p.Colony != null))
 					return 'o';
-				else
+				else if (SpaceObjects.OfType<Planet>().Any(p => !p.IsExplored))
+					return 'o';
+				else if (SensorGrid.All(b => !b))
 					return '*';
+				else
+					return '.';
 			}
 		}
 
@@ -128,8 +132,10 @@ namespace BOSWP
 					return Color.Blue;
 				else if (SpaceObjects.OfType<Planet>().Any(p => !p.IsExplored))
 					return Color.White;
-				else
+				else if (SensorGrid.All(b => !b))
 					return Color.Gray;
+				else
+					return Color.DimGray;
 			}
 		}
 
