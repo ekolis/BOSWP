@@ -251,7 +251,7 @@ namespace BOSWP
 		{
 			get
 			{
-				return 1 + Components.Sum(c => c.ScannerRange);
+				return 1 + Components.Sum(c => c.SensorRange);
 			}
 		}
 
