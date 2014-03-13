@@ -5,5 +5,5 @@
 	"PlanetsPerSystem": 6,
 	"ColonyChance": 10,
 	"EnemyShipyards": 10,
-	"EnemyShipyardBuildRate": 5000,
+	"EnemyShipyardBuildRate": 2000,
 }
