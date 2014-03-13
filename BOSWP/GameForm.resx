@@ -117,7 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="weaponInfoBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 17</value>
   </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 17</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 17</value>
+  </metadata>
+  <metadata name="weaponInfoBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>107, 17</value>
+  </metadata>
+  <metadata name="weaponInfoBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>107, 17</value>
+  </metadata>
+  <data name="systemMap.ToolTip" xml:space="preserve">
+    <value>Blue @ is your ship. Blue squares indicate your weapons' ranges.
+Red letters are enemy ships. Red squares indicate their weapons' ranges.
+Gray square indicates your scanner range. Click a ship in range to scan it.
+Red # is an enemy shipyard.
+Aqua + is a warp point. Bump it to warp to the next star system.
+White o is an unexplored planet. Bump it to explore.
+Blue o is an allied colony. Bump it to dock.
+White . is an unswept sector. Move near it to sweep it with your sensors and potentially detect enemy shipyards.
+Gray . is a swept sector.
+Gray o is an uninhabited planet; it does nothing.
+Yellow * is a star; it does nothing.</value>
+  </data>
 </root>
