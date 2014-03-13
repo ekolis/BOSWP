@@ -20,6 +20,8 @@ namespace BOSWP
 
 		public IReadableGrid<IColoredGlyphObject> Grid { get; set; }
 
+		public IReadableGrid<IEnumerable<Color>> Overlay { get; set; }
+
 		/// <summary>
 		/// Glyph for representing null items.
 		/// </summary>
@@ -33,14 +35,19 @@ namespace BOSWP
 		/// <summary>
 		/// The size to draw each glyph.
 		/// </summary>
-		public int GlyphSize { get { return Math.Min(Width, Height) / Grid.Diameter; } }
+		public int GlyphSize
+		{
+			get
+			{
+				if (Grid == null)
+					return 0;
+				return Math.Min(Width, Height) / Grid.Diameter;
+			}
+		}
 
 		protected override void OnPaint(PaintEventArgs pe)
 		{
 			base.OnPaint(pe);
-
-			if (Grid == null)
-				return; // nothing to draw
 
 			var glyphSize = GlyphSize;
 			if (glyphSize < 1)
@@ -56,11 +63,29 @@ namespace BOSWP
 			{
 				for (var y = -Grid.Radius; y <= Grid.Radius; y++)
 				{
-					var item = Grid[x, y];
-					if (item == null)
-						g.DrawString(NullGlyph.ToString(), font, new SolidBrush(NullColor), (x + Grid.Radius) * glyphSize + glyphSize / 2, (y + Grid.Radius) * glyphSize + glyphSize / 2, sf);
-					else
-						g.DrawString(item.Glyph.ToString(), font, new SolidBrush(item.Color), (x + Grid.Radius) * glyphSize + glyphSize / 2, (y + Grid.Radius) * glyphSize + glyphSize / 2, sf);
+					var l = (x + Grid.Radius) * glyphSize;
+					var r = (x + Grid.Radius + 1) * glyphSize;
+					var t = (y + Grid.Radius) * glyphSize;
+					var b = (y + Grid.Radius + 1) * glyphSize;
+					var cx = l + glyphSize / 2;
+					var cy = t + glyphSize / 2;
+
+					// OK technically it's an underlay...
+					if (Overlay != null)
+					{
+						var colors = Overlay[x, y];
+						foreach (var color in colors)
+							g.FillRectangle(new SolidBrush(color), l, t, glyphSize, glyphSize);
+					}
+
+					if (Grid != null)
+					{
+						var item = Grid[x, y];
+						if (item == null)
+							g.DrawString(NullGlyph.ToString(), font, new SolidBrush(NullColor), cx, cy, sf);
+						else
+							g.DrawString(item.Glyph.ToString(), font, new SolidBrush(item.Color), cx, cy, sf);
+					}
 				}
 			}
 		}

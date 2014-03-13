@@ -36,7 +36,36 @@ namespace BOSWP
 		{
 			var sys = FindPlayerSystem();
 			if (sys != null)
+			{
 				systemMap.Grid = FindPlayerSystem().SpaceObjects;
+				var overlay = new Grid<IEnumerable<Color>>(sys.SpaceObjects.Radius);
+
+				// compute overlay colors
+				for (var x = -overlay.Radius; x <= overlay.Radius; x++)
+				{
+					for (var y = -overlay.Radius; y <= overlay.Radius; y++)
+					{
+						var colors = new List<Color>();
+
+						// weapon ranges
+						foreach (var ship in sys.FindSpaceObjects<Ship>())
+						{
+							foreach (var w in ship.Components.Select(c => c.WeaponInfo).Where(w => w != null))
+							{
+								if (Utilities.Distance(ship.X, ship.Y, x, y) <= w.Range)
+									colors.Add(Color.FromArgb(32, ship.Color));
+							}
+						}
+
+						// player ship scanner range
+						if (Utilities.Distance(PlayerShip.Instance.X, PlayerShip.Instance.Y, x, y) <= PlayerShip.Instance.ScannerRange)
+							colors.Add(Color.FromArgb(32, Color.Silver));
+
+						overlay[x, y] = colors;
+					}
+				}
+				systemMap.Overlay = overlay;
+			}
 			systemMap.Invalidate();
 			galaxyMap.Invalidate();
 
