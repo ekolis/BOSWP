@@ -102,16 +102,33 @@ namespace BOSWP
 
 		public char Glyph
 		{
-			get { return '*'; }
+			get 
+			{
+				if (SpaceObjects.Contains(PlayerShip.Instance))
+					return '@';
+				else if (SpaceObjects.OfType<EnemyShipyard>().Any(sy => sy.IsRevealed))
+					return '#';
+				else if (SpaceObjects.OfType<Planet>().Any(p => p.Colony != null))
+					return 'o';
+				else
+					return '*';
+			}
 		}
 
 		public Color Color
 		{
 			get
 			{
-				if (SpaceObjects.OfType<PlayerShip>().Any())
+				if (SpaceObjects.Contains(PlayerShip.Instance))
 					return Color.Blue;
-				return Color.White;
+				else if (SpaceObjects.OfType<EnemyShipyard>().Any(sy => sy.IsRevealed))
+					return Color.Red;
+				else if (SpaceObjects.OfType<Planet>().Any(p => p.Colony != null))
+					return Color.Blue;
+				else if (SpaceObjects.OfType<Planet>().Any(p => !p.IsExplored))
+					return Color.White;
+				else
+					return Color.Gray;
 			}
 		}
 
