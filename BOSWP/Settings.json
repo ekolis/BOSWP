@@ -1,0 +1,9 @@
+{
+	"GalaxyRadius": 4,
+	"Systems": 30,
+	"SystemRadius": 7,
+	"PlanetsPerSystem": 6,
+	"ColonyChance": 10,
+	"EnemyShipyards": 10,
+	"EnemyShipyardBuildRate": 5000,
+}

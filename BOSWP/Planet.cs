@@ -71,7 +71,7 @@ namespace BOSWP
 		public void Explore(bool bumping)
 		{
 			IsExplored = true;
-			var hasColony = Dice.Range(0, 9) == 0;
+			var hasColony = Dice.Range(0, 99) < Galaxy.Current.ColonyChance;
 			if (hasColony)
 			{
 				if (bumping)

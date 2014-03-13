@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,7 +22,8 @@ namespace BOSWP
 
 		private void GameForm_Load(object sender, EventArgs e)
 		{
-			new Galaxy(4, 30, 7, 6, 10, 5000);
+			var settings = JsonConvert.DeserializeObject<GameSettings>(File.ReadAllText("Settings.json"));
+			new Galaxy(settings);
 			galaxyMap.Grid = Galaxy.Current.StarSystems;
 			DoUpdate();
 

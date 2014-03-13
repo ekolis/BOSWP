@@ -17,12 +17,24 @@ namespace BOSWP
 		public static Galaxy Current { get; private set; }
 
 		/// <summary>
-		/// Creates a galaxy with a specified radius (radius 0 = 1x1, radius 1 = 3x3, etc.)
+		/// Creates a galaxy with the specified settings.
+		/// </summary>
+		/// <param name="settings"></param>
+		public Galaxy(GameSettings settings)
+			: this(settings.GalaxyRadius, settings.Systems, settings.SystemRadius, settings.PlanetsPerSystem, settings.ColonyChance, settings.EnemyShipyards, settings.EnemyShipyardBuildRate)
+		{
+
+		}
+
+		/// <summary>
+		/// Creates a galaxy with the specified settings (radius 0 = 1x1, radius 1 = 3x3, etc.)
 		/// </summary>
 		/// <param name="radius"></param>
-		public Galaxy(int radius, int numSystems, int systemRadius, int planetsPerSystem, int enemyShipyards, int enemyShipyardBuildRate)
+		public Galaxy(int radius, int numSystems, int systemRadius, int planetsPerSystem, int colonyChance, int enemyShipyards, int enemyShipyardBuildRate)
 		{
 			Current = this;
+
+			ColonyChance = colonyChance;
 
 			StarSystems = new Grid<StarSystem>(radius);
 
@@ -116,6 +128,11 @@ namespace BOSWP
 
 			RefreshEnemyCounts();
 		}
+
+		/// <summary>
+		/// Percent chance of finding a colony on any given planet.
+		/// </summary>
+		public int ColonyChance { get; private set; }
 
 		/// <summary>
 		/// Does a space have an orthogonally neighboring space that has a system in it?
