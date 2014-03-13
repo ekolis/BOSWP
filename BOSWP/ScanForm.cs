@@ -17,7 +17,7 @@ namespace BOSWP
 			InitializeComponent();
 			Ship = ship;
 			if (Ship is EnemyShip)
-				Text = ((EnemyShip)Ship).Name;
+				Text = ((EnemyShip)Ship).ToString();
 			else
 				Text = "Our Ship";
 
