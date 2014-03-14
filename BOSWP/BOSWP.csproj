@@ -129,6 +129,9 @@
     <None Include="EnemyShips.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Manual.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="PlayerShip.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
