@@ -22,8 +22,11 @@ namespace BOSWP
 		/// <summary>
 		/// Has this planet been explored yet?
 		/// </summary>
-		public bool IsExplored { get; private set; }
-
+        public bool IsExplored { get; private set; }
+        /// <summary>
+        /// Lootable resources this planet has.
+        /// </summary>
+        private int mineralValue { get; set; }
 		/// <summary>
 		/// The colony on this planet, if any.
 		/// </summary>
@@ -35,18 +38,30 @@ namespace BOSWP
 			{
 				if (IsExplored)
 				{
-					if (Colony == null)
-						Log.Add("This planet is uninhabited; there's nothing of interest here.");
-					else if (StarSystem.FindSpaceObjects<EnemyShip>().Any() || StarSystem.FindSpaceObjects<EnemyShipyard>().Any())
-						Log.Add("The colony hails you: \"Take care of the Jraenar invaders in the system first!\"");
-					else
-					{
-						Log.Add("The colony repairs your ship and opens up its spacedock.");
-						foreach (var comp in PlayerShip.Instance.Components)
-							comp.Hitpoints = comp.MaxHitpoints;
-						new ShopForm(Colony).ShowDialog();
-						PlayerShip.Instance.Shields = PlayerShip.Instance.MaxShields; // do this after shopping in case the player bought a shield
-					}
+                    if (Colony == null)
+                    {
+                        if (mineralValue > 0)
+                        {
+                            Log.Add("A landing team has collected $" + mineralValue + " worth of useful materials!");
+                            PlayerShip.Instance.Savings += mineralValue;
+                            mineralValue = 0;
+                            Color = Color.Gray;
+                        }
+                        else
+                        {
+                            Log.Add("This planet is uninhabited; there's nothing of interest here.");
+                        }
+                    }
+                    else if (StarSystem.FindSpaceObjects<EnemyShip>().Any() || StarSystem.FindSpaceObjects<EnemyShipyard>().Any())
+                        Log.Add("The colony hails you: \"Take care of the Jraenar invaders in the system first!\"");
+                    else
+                    {
+                        Log.Add("The colony repairs your ship and opens up its spacedock.");
+                        foreach (var comp in PlayerShip.Instance.Components)
+                            comp.Hitpoints = comp.MaxHitpoints;
+                        new ShopForm(Colony).ShowDialog();
+                        PlayerShip.Instance.Shields = PlayerShip.Instance.MaxShields; // do this after shopping in case the player bought a shield
+                    }
 				}
 				else
 				{
@@ -61,10 +76,21 @@ namespace BOSWP
 		{
 			if (IsExplored)
 			{
-				if (Colony == null)
-					MessageBox.Show("It's an uninhabited planet. Nothing of interest here.");
-				else
-					MessageBox.Show("It's an allied colony. Dock here to repair and upgrade your ship. But only when there are no enemies in the system.");
+                if (Colony == null)
+                {
+                    if (mineralValue > 0)
+                    {
+                        MessageBox.Show("Scans indicate a small deposit of valuable minerals.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("It's an uninhabited planet. Nothing of interest here.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("It's an allied colony. Dock here to repair and upgrade your ship. But only when there are no enemies in the system.");
+                }
 			}
 		}
 
@@ -85,9 +111,18 @@ namespace BOSWP
                 }
                 else
                 {
-                    if (bumping)
-                        Log.Add("This planet appears to be uninhabited. There's nothing of interest here.");
-                    Color = Color.Gray;
+                    if (Dice.Range(0, 99) < Galaxy.Current.MineralsChance)
+                    {
+                        Log.Add("Sensors have detected valuable minerals on a nearby world!");
+                        mineralValue = Dice.Range(1, 100) * Dice.Range(1, 100) * Galaxy.Current.MaxMinerals / 10000;
+                        Color = Color.Gold;
+                    }
+                    else
+                    {
+                        if (bumping)
+                            Log.Add("This planet appears to be uninhabited. There's nothing of interest here.");
+                        Color = Color.Gray;
+                    }
                 }
             }
 		}
