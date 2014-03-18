@@ -21,7 +21,7 @@ namespace BOSWP
 		/// </summary>
 		/// <param name="settings"></param>
 		public Galaxy(GameSettings settings)
-			: this(settings.GalaxyRadius, settings.Systems, settings.SystemRadius, settings.PlanetsPerSystem, settings.ColonyChance, settings.EnemyShipyards, settings.EnemyShipyardBuildRate)
+            : this(settings.GalaxyRadius, settings.Systems, settings.SystemRadius, settings.PlanetsPerSystem, settings.ColonyChance, settings.MineralsChance, settings.MaxMinerals, settings.EnemyShipyards, settings.EnemyShipyardBuildRate)
 		{
 
 		}
@@ -30,11 +30,13 @@ namespace BOSWP
 		/// Creates a galaxy with the specified settings (radius 0 = 1x1, radius 1 = 3x3, etc.)
 		/// </summary>
 		/// <param name="radius"></param>
-		public Galaxy(int radius, int numSystems, int systemRadius, int planetsPerSystem, int colonyChance, int enemyShipyards, int enemyShipyardBuildRate)
+        public Galaxy(int radius, int numSystems, int systemRadius, int planetsPerSystem, int colonyChance, int mineralsChance, int maxMinerals, int enemyShipyards, int enemyShipyardBuildRate)
 		{
 			Current = this;
 
-			ColonyChance = colonyChance;
+            ColonyChance = colonyChance;
+            MineralsChance = mineralsChance;
+            MaxMinerals= maxMinerals;
 
 			StarSystems = new Grid<StarSystem>(radius);
 
@@ -142,7 +144,15 @@ namespace BOSWP
 		/// <summary>
 		/// Percent chance of finding a colony on any given planet.
 		/// </summary>
-		public int ColonyChance { get; private set; }
+        public int ColonyChance { get; private set; }
+        /// <summary>
+        /// Percent chance of finding a minerals on any given planet.
+        /// </summary>
+        public int MineralsChance { get; private set; }
+        /// <summary>
+        /// Maximum Minerals per planet.
+        /// </summary>
+        public int MaxMinerals { get; private set; }
 
 		/// <summary>
 		/// Does a space have an orthogonally neighboring space that has a system in it?

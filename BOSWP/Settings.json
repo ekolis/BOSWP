@@ -4,6 +4,8 @@
 	"SystemRadius": 7,
 	"PlanetsPerSystem": 6,
 	"ColonyChance": 10,
+	"MineralsChance": 20,
+	"MaxMinerals": 1000,
 	"EnemyShipyards": 10,
 	"EnemyShipyardBuildRate": 2000,
 }

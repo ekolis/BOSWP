@@ -33,7 +33,15 @@ namespace BOSWP
 		/// <summary>
 		/// Chance for each planet to contain an allied colony.
 		/// </summary>
-		public int ColonyChance { get; set; }
+        public int ColonyChance { get; set; }
+        /// <summary>
+        /// Chance for each uninhabited planet to contain minerals.
+        /// </summary>
+        public int MineralsChance { get; set; }
+        /// <summary>
+        /// Max about of minerals that can be found per planet.
+        /// </summary>
+        public int MaxMinerals { get; set; }
 
 		/// <summary>
 		/// Number of enemy shipyards in the galaxy.
