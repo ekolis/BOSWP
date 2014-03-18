@@ -210,7 +210,11 @@ namespace BOSWP
 		/// <summary>
 		/// Current shield points of this ship.
 		/// </summary>
-		public int Shields { get; set; }
+        public int Shields { get; set; }
+        /// <summary>
+        /// Carryover from partial shield regeneration due to high speed
+        /// </summary>
+        public double PartialShields { get; set; }
 
 		/// <summary>
 		/// Rolls evasion (for direct fire weapons) or PD (for missile weapons) against this ship.

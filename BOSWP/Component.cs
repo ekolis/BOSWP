@@ -105,6 +105,7 @@ namespace BOSWP
 			c.PointDefense = PointDefense;
 			c.Emissive = Emissive;
 			c.Shields = Shields;
+            c.ShieldRegeneration = ShieldRegeneration;
 			c.ScannerRange = ScannerRange;
 			c.SensorRange = SensorRange;
 			return c;
@@ -157,6 +158,11 @@ namespace BOSWP
 		/// Component generates shield points for the ship.
 		/// </summary>
 		public int Shields { get; set; }
+
+        /// <summary>
+        /// Component generates shield points for the ship.
+        /// </summary>
+        public int ShieldRegeneration { get; set; }
 
 		/// <summary>
 		/// Range at which this component can perform long range scans of enemy ships.

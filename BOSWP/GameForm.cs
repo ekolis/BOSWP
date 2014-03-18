@@ -151,6 +151,16 @@ namespace BOSWP
 								comp.WeaponInfo.Wait = 0;
 						}
 					}
+                    // recharge shields
+                    foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>().ToArray())
+                    {
+                        foreach (var comp in ship.Components.Where(c => c.ShieldRegeneration >0))
+                        {
+                            ship.PartialShields += (double)comp.ShieldRegeneration * time;
+                        }
+                        ship.Shields = Math.Min(ship.MaxShields, ship.Shields + (int)ship.PartialShields);
+                        ship.PartialShields -= (int)ship.PartialShields;
+                    }
 
 					// scan for destroyed stuff
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<Ship>().ToArray())
