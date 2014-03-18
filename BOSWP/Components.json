@@ -159,6 +159,14 @@
 		"Shields": 100,
 	},
 	{
+		"Name": "Shield Regenerator",
+		"Description": "Rapidly recharges shields to restore their durability while in combat.",
+		"Cost": 450,
+		"Mass": 20,
+		"MaxHitpoints": 20,
+		"ShieldRegeneration": 10,
+	},
+	{
 		"Name": "Long Range Scanner",
 		"Description": "Allows enemy ships and shipyards to be scanned in detail. Also allows automatic remote exploration of planets. Two sectors range per scanner component.",
 		"Cost": 1000,
