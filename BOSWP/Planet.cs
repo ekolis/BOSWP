@@ -70,23 +70,26 @@ namespace BOSWP
 
 		public void Explore(bool bumping)
 		{
-			IsExplored = true;
-			var hasColony = Dice.Range(0, 99) < Galaxy.Current.ColonyChance;
-			if (hasColony)
-			{
-				if (bumping)
-					Log.Add("This planet contains an allied colony! Bump it again to dock.");
-				else
-					Log.Add("Our scanners picked up an allied colony! Bump it to dock.");
-				Color = Color.Blue;
-				Colony = new Colony();
-			}
-			else
-			{
-				if (bumping)
-					Log.Add("This planet appears to be uninhabited. There's nothing of interest here.");
-				Color = Color.Gray;
-			}
+            if (!IsExplored)
+            {
+                IsExplored = true;
+                var hasColony = Dice.Range(0, 99) < Galaxy.Current.ColonyChance;
+                if (hasColony)
+                {
+                    if (bumping)
+                        Log.Add("This planet contains an allied colony! Bump it again to dock.");
+                    else
+                        Log.Add("Our scanners picked up an allied colony! Bump it to dock.");
+                    Color = Color.Blue;
+                    Colony = new Colony();
+                }
+                else
+                {
+                    if (bumping)
+                        Log.Add("This planet appears to be uninhabited. There's nothing of interest here.");
+                    Color = Color.Gray;
+                }
+            }
 		}
 	}
 }
