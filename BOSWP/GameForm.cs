@@ -118,7 +118,7 @@ namespace BOSWP
 						{
 							var eMoved = ship.Move();
 							doUpdate |= eMoved;
-							ship.Wait += time;
+                            ship.Wait += 1d / ship.Speed;
 						}
 					}
 
