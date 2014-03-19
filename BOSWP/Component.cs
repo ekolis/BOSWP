@@ -115,6 +115,19 @@ namespace BOSWP
 		{
 			return Name;
 		}
+        public bool IsArmor()
+        {
+            return this.Crew == 0 &&
+                this.Thrust == 0 &&
+                this.PointDefense == 0 &&
+                this.Evasion == 0 &&
+                this.ShieldRegeneration == 0 &&
+                this.Shields == 0 &&
+                this.ScannerRange == 0 &&
+                this.SensorRange == 0 &&
+                this.WeaponInfo == null &&
+                true;
+        }
 
 		/// <summary>
 		/// If this is a weapon, information about it will be stored here.

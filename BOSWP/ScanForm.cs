@@ -23,9 +23,11 @@ namespace BOSWP
 
 			lblHitpointsTotal.Text = Ship.Hitpoints + " / " + Ship.MaxHitpoints;
 			lblShieldsTotal.Text = Ship.Shields + " / " + Ship.MaxShields;
+            lblShieldRegenerationTotal.Text = "+" + ship.Components.Sum(c => c.ShieldRegeneration) + "/turn";
 			lblEvasionTotal.Text = Ship.Evasion + "%";
 			lblPDTotal.Text = Ship.PointDefense + "%";
-			lblEmissiveTotal.Text = Ship.Emissive.ToString();
+            lblArmorRating.Text = ship.Components.Where(c => c.IsArmor()).Sum(c => c.Hitpoints) + "hp@" + (Ship.Components.Count(c => c.IsArmor()) * 100 / Math.Max(1, ship.Components.Count())) + "%";
+            lblEmissiveTotal.Text = Ship.Emissive.ToString();
 			lblMassTotal.Text = Ship.Mass + " kT";
 			lblCrewTotal.Text = Ship.Crew.ToString();
 			lblThrustTotal.Text = Ship.Thrust.ToString();
@@ -62,6 +64,7 @@ namespace BOSWP
 				lblDescription.Text = item.Description;
 				lblHitpoints.Text = item.Hitpoints + " / " + item.MaxHitpoints;
 				lblShields.Text = item.Shields.ToString();
+                lblShieldRegeneration.Text = "+" + item.ShieldRegeneration + "/turn";
 				lblEvasion.Text = item.Evasion + "%";
 				lblPD.Text = item.PointDefense + "%";
 				lblEmissive.Text = item.Emissive.ToString();
