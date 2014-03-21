@@ -29,9 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
-			this.lstMessages = new System.Windows.Forms.ListBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblHitpoints = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.lblSavings = new System.Windows.Forms.Label();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.rtbMessages = new System.Windows.Forms.RichTextBox();
 			this.waitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.damageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.rangeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,18 +60,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridWeapons)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.weaponInfoBindingSource)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// lstMessages
-			// 
-			this.lstMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.lstMessages.FormattingEnabled = true;
-			this.lstMessages.Location = new System.Drawing.Point(12, 13);
-			this.lstMessages.Name = "lstMessages";
-			this.lstMessages.Size = new System.Drawing.Size(545, 95);
-			this.lstMessages.TabIndex = 1;
-			this.lstMessages.TabStop = false;
-			this.toolTip.SetToolTip(this.lstMessages, "Message log for the previous turn. Newer messages are on top.");
 			// 
 			// label1
 			// 
@@ -260,12 +248,25 @@
 			this.toolTip.SetToolTip(this.lblSavings, "Saved resources, gained by salvaging enemy ships and shipyards. Use them at a fri" +
         "endly colony to upgrade your ship.");
 			// 
+			// rtbMessages
+			// 
+			this.rtbMessages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.rtbMessages.BackColor = System.Drawing.Color.Black;
+			this.rtbMessages.ForeColor = System.Drawing.Color.White;
+			this.rtbMessages.Location = new System.Drawing.Point(13, 13);
+			this.rtbMessages.Name = "rtbMessages";
+			this.rtbMessages.ReadOnly = true;
+			this.rtbMessages.Size = new System.Drawing.Size(544, 96);
+			this.rtbMessages.TabIndex = 19;
+			this.rtbMessages.Text = "";
+			// 
 			// waitDataGridViewTextBoxColumn
 			// 
 			this.waitDataGridViewTextBoxColumn.DataPropertyName = "Wait";
-			dataGridViewCellStyle3.Format = "N2";
-			dataGridViewCellStyle3.NullValue = null;
-			this.waitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Format = "N2";
+			dataGridViewCellStyle1.NullValue = null;
+			this.waitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
 			this.waitDataGridViewTextBoxColumn.HeaderText = "Wait";
 			this.waitDataGridViewTextBoxColumn.Name = "waitDataGridViewTextBoxColumn";
 			this.waitDataGridViewTextBoxColumn.ReadOnly = true;
@@ -361,6 +362,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(778, 626);
+			this.Controls.Add(this.rtbMessages);
 			this.Controls.Add(this.lblSavings);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.btnComponents);
@@ -378,7 +380,6 @@
 			this.Controls.Add(this.lblHitpoints);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.galaxyMap);
-			this.Controls.Add(this.lstMessages);
 			this.Controls.Add(this.systemMap);
 			this.KeyPreview = true;
 			this.Name = "GameForm";
@@ -398,7 +399,6 @@
 
 		private CharGridView systemMap;
 		private CharGridView galaxyMap;
-		private System.Windows.Forms.ListBox lstMessages;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lblHitpoints;
 		private System.Windows.Forms.Label label2;
@@ -422,6 +422,7 @@
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label lblSavings;
 		private System.Windows.Forms.ToolTip toolTip;
+		private System.Windows.Forms.RichTextBox rtbMessages;
 	}
 }
 

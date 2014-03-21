@@ -227,10 +227,16 @@ namespace BOSWP
 					// update log
 					Invoke(new DoStuffDelegate(() =>
 							{
-								lstMessages.Items.Clear();
-								foreach (var msg in Log.Entries.Reverse())
-									lstMessages.Items.Add(msg);
-								Log.Clear();
+								rtbMessages.Clear();
+								foreach (var msg in Log.Entries)
+								{
+									// add to log view
+									rtbMessages.AppendLine(msg.Text, msg.Color);
+
+									// mark gray for read
+									msg.Color = Color.Gray;
+								}
+								rtbMessages.ScrollToCaret();
 							}));
 				}
 
