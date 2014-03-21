@@ -183,9 +183,9 @@ namespace BOSWP
 								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
 							}
 						}
-						if (ship.Speed <= 0)
+						else if (ship.Speed <= 0)
 						{
-							// lack of crew destroys ships
+							// lack of speed destroys ships
 							ship.Delete();
 							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
 							Log.Add(name + "'s engines are destroyed and it is dead in space!");
