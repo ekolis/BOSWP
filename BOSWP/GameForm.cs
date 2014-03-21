@@ -95,7 +95,7 @@ namespace BOSWP
 		private void RunGame()
 		{
 			// TODO - AI ships, etc.
-			while (!PlayerShip.Instance.IsDestroyed)
+			while (!IsGameOver)
 			{
 				// refresh the screen?
 				bool doUpdate = false;
@@ -201,6 +201,7 @@ namespace BOSWP
 					{
 						PlayerShip.Instance.Delete();
 						MessageBox.Show("Your ship is destroyed! Game over!");
+						IsGameOver = true;
 					}
 					foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray().Where(sy => sy.Hitpoints <= 0))
 					{
@@ -220,6 +221,7 @@ namespace BOSWP
 					if (Galaxy.Current.FindSpaceObjects<EnemyShipyard>().Count() == 0)
 					{
 						MessageBox.Show("You have successfully destroyed all Jraenar shipyards! The remaining Jraenar forces make a hasty retreat. You are promoted to Admiral - Congratulations!");
+						IsGameOver = true;
 					}
 
 					// update log
@@ -283,5 +285,7 @@ namespace BOSWP
 				sobj.Scan();
 			}
 		}
+
+		private bool IsGameOver { get; set; }
 	}
 }
