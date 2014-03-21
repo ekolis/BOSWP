@@ -70,7 +70,7 @@ namespace BOSWP
 									StarSystem.SensorGrid[x, y] = true;
 									if (StarSystem.SpaceObjects[x, y] is EnemyShipyard)
 									{
-										Log.Add("Enemy shipyard sighted!");
+										Log.Add("Enemy shipyard sighted!", Color.Red);
 										((EnemyShipyard)StarSystem.SpaceObjects[x, y]).Reveal();
 									}
 								}
@@ -165,11 +165,11 @@ namespace BOSWP
                         {
                             if (comp.WeaponInfo.IsMissile)
                             {
-                                Log.Add("It was shot down!");
+                                Log.Add("It was shot down!", Color.Yellow);
                             }
                             else
                             {
-                                Log.Add("We missed!");
+                                Log.Add("We missed!", Color.Yellow);
                             }
                         }
                         else
@@ -184,9 +184,9 @@ namespace BOSWP
 		public override void LogComponentDamage(Component component, int damage)
 		{
 			if (component.Hitpoints <= 0)
-				Log.Add(damage + " damage to our " + component + "! It was destroyed!");
+				Log.Add(damage + " damage to our " + component + "! It was destroyed!", Color.Red);
 			else
-				Log.Add(damage + " damage to our " + component + "!");
+				Log.Add(damage + " damage to our " + component + "!", Color.Yellow);
 		}
 
 		public override void LogEmissiveDamage(int damage, bool soakedAll)

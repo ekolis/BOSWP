@@ -180,7 +180,7 @@ namespace BOSWP
 							{
 								var salvage = ship.Cost / 2;
 								PlayerShip.Instance.Savings += salvage;
-								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
+								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.", Color.CornflowerBlue);
 							}
 						}
 						else if (ship.Speed <= 0)
@@ -193,7 +193,7 @@ namespace BOSWP
 							{
 								var salvage = ship.Cost / 2;
 								PlayerShip.Instance.Savings += salvage;
-								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
+								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.", Color.CornflowerBlue);
 							}
 						}
 					}
@@ -205,16 +205,16 @@ namespace BOSWP
 					}
 					foreach (var sy in Galaxy.Current.FindSpaceObjects<EnemyShipyard>().ToArray().Where(sy => sy.Hitpoints <= 0))
 					{
-						Log.Add("The Jraenar shipyard explodes!");
+						Log.Add("The Jraenar shipyard explodes!", Color.LightCyan);
 						sy.Delete();
 						var salvage = sy.Savings / 2;
 						PlayerShip.Instance.Savings += salvage;
-						Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.");
+						Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.", Color.CornflowerBlue);
 						Galaxy.Current.RefreshEnemyCounts();
 					}
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray().Where(s => s.Hitpoints <= 0))
 					{
-						Log.Add("The " + ship + " explodes!");
+						Log.Add("The " + ship + " explodes!", Color.LightCyan);
 						ship.Delete();
 						Galaxy.Current.RefreshEnemyCounts();
 					}

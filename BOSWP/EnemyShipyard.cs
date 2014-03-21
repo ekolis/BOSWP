@@ -20,7 +20,7 @@ namespace BOSWP
 
 		public override bool BeBumped(Ship source)
 		{
-			Log.Add("Enemy shipyard dead ahead!");
+			Log.Add("Enemy shipyard dead ahead!", Color.Red);
 			Reveal();
 			return false;
 		}
@@ -106,7 +106,7 @@ namespace BOSWP
 			// create the ship and place it
 			var ship = design.Clone();
 			if (PlayerShip.Instance.StarSystem == StarSystem)
-				Log.Add("An enemy shipyard builds a " + ship.Name + "!");
+				Log.Add("An enemy shipyard builds a " + ship.Name + "!", Color.Red);
 			Savings -= ship.Cost;
 			StarSystem.PlaceSpaceObject(ship, coords.X, coords.Y, 0);
 			Galaxy.Current.RefreshEnemyCounts();
@@ -115,7 +115,7 @@ namespace BOSWP
 
 		public int TakeDamage(int damage)
 		{
-			Log.Add("The Jraenar shipyard takes " + damage + " damage!");
+			Log.Add("The Jraenar shipyard takes " + damage + " damage!", Color.CornflowerBlue);
 			Hitpoints -= damage;
 			if (Hitpoints < 0)
 			{

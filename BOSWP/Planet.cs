@@ -42,7 +42,7 @@ namespace BOSWP
                     {
                         if (mineralValue > 0)
                         {
-                            Log.Add("A landing team has collected $" + mineralValue + " worth of useful materials!");
+                            Log.Add("A landing team has collected $" + mineralValue + " worth of useful materials!", Color.Cyan);
                             PlayerShip.Instance.Savings += mineralValue;
                             mineralValue = 0;
                             Color = Color.Gray;
@@ -53,7 +53,7 @@ namespace BOSWP
                         }
                     }
                     else if (StarSystem.FindSpaceObjects<EnemyShip>().Any() || StarSystem.FindSpaceObjects<EnemyShipyard>().Any())
-                        Log.Add("The colony hails you: \"Take care of the Jraenar invaders in the system first!\"");
+                        Log.Add("The colony hails you: \"Take care of the Jraenar invaders in the system first!\"", Color.Yellow);
                     else
                     {
                         Log.Add("The colony repairs your ship and opens up its spacedock.");
@@ -103,9 +103,9 @@ namespace BOSWP
                 if (hasColony)
                 {
                     if (bumping)
-                        Log.Add("This planet contains an allied colony! Bump it again to dock.");
+                        Log.Add("This planet contains an allied colony! Bump it again to dock.", Color.Cyan);
                     else
-                        Log.Add("Our scanners picked up an allied colony! Bump it to dock.");
+						Log.Add("Our scanners picked up an allied colony! Bump it to dock.", Color.Cyan);
                     Color = Color.Blue;
                     Colony = new Colony();
                 }
@@ -113,7 +113,10 @@ namespace BOSWP
                 {
                     if (Dice.Range(0, 99) < Galaxy.Current.MineralsChance)
                     {
-                        Log.Add("Sensors have detected valuable minerals on a nearby world!");
+						if (bumping)
+							Log.Add("This planet contains valuable mineral deposits! Bump it again to collect the minerals.", Color.CornflowerBlue);
+						else
+							Log.Add("Sensors have detected valuable minerals on a nearby world! Bump it to collect the minerals.", Color.CornflowerBlue);
                         mineralValue = Dice.Range(1, 100) * Dice.Range(1, 100) * Galaxy.Current.MaxMinerals / 10000;
                         Color = Color.Gold;
                     }
