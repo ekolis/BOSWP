@@ -161,10 +161,19 @@ namespace BOSWP
 
 						// fire!
 						Log.Add("Firing " + comp + " at the " + target + "!");
-						if (target.RollEvasionOrPD(comp.WeaponInfo.IsMissile))
-							Log.Add("We missed!");
-						else
-							target.TakeDamage(comp.WeaponInfo.Damage);
+                        if (target.RollEvasionOrPD(comp.WeaponInfo.IsMissile))
+                        {
+                            if (comp.WeaponInfo.IsMissile)
+                            {
+                                Log.Add("It was shot down!");
+                            }
+                            else
+                            {
+                                Log.Add("We missed!");
+                            }
+                        }
+                        else
+                            target.TakeDamage(comp.WeaponInfo.Damage);
 						comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
 						didstuff = true;
 					}

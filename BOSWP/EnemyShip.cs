@@ -140,10 +140,19 @@ namespace BOSWP
 						if (Utilities.Distance(X, Y, PlayerShip.Instance.X, PlayerShip.Instance.Y) <= comp.WeaponInfo.Range)
 						{
 							Log.Add("The " + this + " is firing its " + comp + "!");
-							if (PlayerShip.Instance.RollEvasionOrPD(comp.WeaponInfo.IsMissile))
-								Log.Add("But it misses!");
-							else
-								PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
+                            if (PlayerShip.Instance.RollEvasionOrPD(comp.WeaponInfo.IsMissile))
+                            {
+                                if (comp.WeaponInfo.IsMissile)
+                                {
+                                    Log.Add("But it is shot down!");
+                                }
+                                else
+                                {
+                                    Log.Add("But it misses!");
+                                }
+                            }
+                            else
+                                PlayerShip.Instance.TakeDamage(comp.WeaponInfo.Damage);
 							comp.WeaponInfo.Wait += comp.WeaponInfo.ReloadRate;
 						}
 					}
