@@ -237,6 +237,7 @@ namespace BOSWP
 									msg.Color = Color.Gray;
 								}
 								rtbMessages.ScrollToCaret();
+								Log.Trim(25);
 							}));
 				}
 

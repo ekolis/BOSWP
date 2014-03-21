@@ -58,5 +58,10 @@ namespace BOSWP
 			public string Text { get; set; }
 			public Color Color { get; set; }
 		}
+
+		public static void Trim(int num)
+		{
+			entries = entries.Reverse().Take(num).Reverse().ToList();
+		}
 	}
 }
