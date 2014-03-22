@@ -272,18 +272,21 @@ namespace BOSWP
 
 		private void systemMap_MouseDown(object sender, MouseEventArgs e)
 		{
-			var grid = (Grid<SpaceObject>)systemMap.Grid;
-			if (grid == null)
-				return;
-			var x = e.X / systemMap.GlyphSize - grid.Radius;
-			var y = e.Y / systemMap.GlyphSize - grid.Radius;
-			var sobj = grid[x, y];
-			if (sobj != null && Utilities.Distance(PlayerShip.Instance.X, PlayerShip.Instance.Y, x, y) <= PlayerShip.Instance.ScannerRange)
+			if (!PlayerShip.Instance.IsDestroyed)
 			{
-				if (sobj is EnemyShipyard && !((EnemyShipyard)sobj).IsRevealed)
-					return;	// no scanning shipyards we haven't seen yet!
+				var grid = (Grid<SpaceObject>)systemMap.Grid;
+				if (grid == null)
+					return;
+				var x = e.X / systemMap.GlyphSize - grid.Radius;
+				var y = e.Y / systemMap.GlyphSize - grid.Radius;
+				var sobj = grid[x, y];
+				if (sobj != null && Utilities.Distance(PlayerShip.Instance.X, PlayerShip.Instance.Y, x, y) <= PlayerShip.Instance.ScannerRange)
+				{
+					if (sobj is EnemyShipyard && !((EnemyShipyard)sobj).IsRevealed)
+						return;	// no scanning shipyards we haven't seen yet!
 
-				sobj.Scan();
+					sobj.Scan();
+				}
 			}
 		}
 
