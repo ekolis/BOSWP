@@ -187,7 +187,7 @@ namespace BOSWP
 			else
 			{
 				if (component.Hitpoints <= 0)
-					Log.Add(damage + " damage to the " + this + "'s hull! Scans indicate a component was destroyed!", Color.Cyan);
+					Log.Add(damage + " damage to the " + this + "'s hull! Something explodes!", Color.Cyan);
 				else
 					Log.Add(damage + " damage to the " + this + "'s hull!", Color.CornflowerBlue);
 			}
