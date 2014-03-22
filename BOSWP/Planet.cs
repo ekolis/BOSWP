@@ -116,8 +116,8 @@ namespace BOSWP
 						if (bumping)
 							Log.Add("This planet contains valuable mineral deposits! Bump it again to collect the minerals.", Color.CornflowerBlue);
 						else
-							Log.Add("Sensors have detected valuable minerals on a nearby world! Bump it to collect the minerals.", Color.CornflowerBlue);
-                        mineralValue = Dice.Range(1, 100) * Dice.Range(1, 100) * Galaxy.Current.MaxMinerals / 10000;
+							Log.Add("Sensors have detected valuable minerals on a nearby world! Bump it to collect the minerals.", Color.Gold);
+                        mineralValue = 1 + Dice.Range(1, 100) * Dice.Range(1, 100) * Galaxy.Current.MaxMinerals / 10000;
                         Color = Color.Gold;
                     }
                     else
