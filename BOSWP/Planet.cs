@@ -42,7 +42,7 @@ namespace BOSWP
                     {
                         if (mineralValue > 0)
                         {
-                            Log.Add("A landing team has collected $" + mineralValue + " worth of useful materials!", Color.Cyan);
+                            Log.Add("A landing team has collected $" + mineralValue + " worth of useful materials!", Color.Gold);
                             PlayerShip.Instance.Savings += mineralValue;
                             mineralValue = 0;
                             Color = Color.Gray;
@@ -114,7 +114,7 @@ namespace BOSWP
                     if (Dice.Range(0, 99) < Galaxy.Current.MineralsChance)
                     {
 						if (bumping)
-							Log.Add("This planet contains valuable mineral deposits! Bump it again to collect the minerals.", Color.CornflowerBlue);
+							Log.Add("This planet contains valuable mineral deposits! Bump it again to collect the minerals.", Color.Gold);
 						else
 							Log.Add("Sensors have detected valuable minerals on a nearby world! Bump it to collect the minerals.", Color.Gold);
                         mineralValue = 1 + Dice.Range(1, 100) * Dice.Range(1, 100) * Galaxy.Current.MaxMinerals / 10000;
