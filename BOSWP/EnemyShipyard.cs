@@ -150,7 +150,10 @@ namespace BOSWP
 
 		public override void Scan()
 		{
-			MessageBox.Show("This shipyard has " + Hitpoints + " hitpoints remaining, and $" + Savings + " worth of saved construction progress.");
+            if (IsRevealed)
+            {
+                MessageBox.Show("This shipyard has " + Hitpoints + " hitpoints remaining, and $" + Savings + " worth of saved construction progress.");
+            }
 		}
 	}
 }
