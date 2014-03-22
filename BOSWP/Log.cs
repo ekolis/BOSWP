@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BOSWP
 {
@@ -20,14 +21,21 @@ namespace BOSWP
 		private static IList<Entry> entries;
 
 		public static IEnumerable<Entry> Entries { get { return entries; } }
-
+        /// <summary>
+        /// Adds an entry that optionally does not end the line.
+        /// </summary>
+        /// <param name="entry"></param>
+        public static void Add(string text, Color color, bool endOfLine)
+        {
+            entries.Add(new Entry(text, color, endOfLine, (entries.Count > 0 && entries.Last().EndOfLine)));
+        }
 		/// <summary>
 		/// Adds an entry.
 		/// </summary>
 		/// <param name="entry"></param>
 		public static void Add(string text, Color color)
 		{
-			entries.Add(new Entry(text, color));
+            Add(text, color, true);
 		}
 
 		/// <summary>
@@ -36,7 +44,7 @@ namespace BOSWP
 		/// <param name="entry"></param>
 		public static void Add(string text)
 		{
-			entries.Add(new Entry(text, Color.White));
+            Add(text, Color.White);
 		}
 
 		/// <summary>
@@ -49,19 +57,42 @@ namespace BOSWP
 
 		public class Entry
 		{
-			public Entry(string text, Color color)
+			public Entry(string text, Color color, bool endOfLine, bool startOfLine)
 			{
 				Text = text;
 				Color = color;
+                EndOfLine = endOfLine;
+                StartOfLine = startOfLine;
 			}
 
 			public string Text { get; set; }
 			public Color Color { get; set; }
+            public bool EndOfLine { get; set; }
+            public bool StartOfLine { get; set; }
 		}
 
 		public static void Trim(int num)
 		{
-			entries = entries.Reverse().Take(num).Reverse().ToList();
+			int excess = Math.Max(0,entries.Where(e => e.EndOfLine).Count() - num);
+            while (excess > 0
+                ||
+                (entries.Count > 0 && !entries[0].EndOfLine) // Keep trimming until we get to a newline
+                )
+            {
+                excess--;
+                entries.RemoveAt(0);
+            }
 		}
+        
+        public static string toRTF()
+        {
+            RichTextBox temp = new RichTextBox();
+            foreach (var msg in Entries)
+			{
+                temp.AppendLine(msg.Text, msg.Color, msg.EndOfLine);// add to output
+                msg.Color = Color.Gray;// mark gray for read
+            }
+            return temp.Rtf;
+        }
 	}
 }

@@ -152,15 +152,18 @@ namespace BOSWP
 			}
 		}
 
-		public static void AppendLine(this RichTextBox box, string text, Color color)
-		{
-			box.SelectionStart = box.TextLength;
-			box.SelectionLength = 0;
+        public static void AppendLine(this RichTextBox box, string text, Color color, bool newLine = true)
+        {
+            box.SelectionStart = box.TextLength;
+            box.SelectionLength = 0;
 
-			box.SelectionColor = color;
-			box.AppendText(text);
-			box.AppendText("\n");
-			box.SelectionColor = box.ForeColor;
-		}
+            box.SelectionColor = color;
+            box.AppendText(text);
+            if (newLine)
+            {
+                box.AppendText("\n");
+            }
+            box.SelectionColor = box.ForeColor;
+        }
 	}
 }
