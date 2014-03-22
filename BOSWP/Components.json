@@ -139,16 +139,27 @@
 		"Name": "Armor",
 		"Description": "Tough but otherwise inert metallic reinforcements to a ship's superstructure.",
 		"Cost": 50,
+		"Mass": 2,
+		"MaxHitpoints": 30,
+		"IsArmor": true
+	},
+	{
+		"Name": "Stealth Armor",
+		"Description": "High tech armor which degrades targeting locks by 1% per tile.",
+		"Cost": 75,
 		"Mass": 5,
-		"MaxHitpoints": 50,
+		"MaxHitpoints": 30,
+		"Evasion": 1,
+		"IsArmor": true
 	},
 	{
 		"Name": "Emissive Armor",
 		"Description": "Specialized armor which bleeds off energy into space, reducing the damage of incoming attacks by up to 10 points.",
-		"Cost": 300,
+		"Cost": 500,
 		"Mass": 20,
 		"MaxHitpoints": 50,
 		"Emissive": 10,
+		"IsArmor": true
 	},
 	{
 		"Name": "Shield Generator",
@@ -157,6 +168,7 @@
 		"Mass": 30,
 		"MaxHitpoints": 30,
 		"Shields": 100,
+		"ShieldRegeneration": 1,
 	},
 	{
 		"Name": "Shield Regenerator",
