@@ -52,5 +52,14 @@ namespace BOSWP
 		/// Maximum build rate of each enemy shipyard.
 		/// </summary>
 		public int EnemyShipyardBuildRate { get; set; }
+        
+		/// <summary>
+		/// Maximum build rate of each enemy shipyard.
+		/// </summary>
+        public int EnemyShipyardScrapRate { get; set; }
+		/// <summary>
+		/// Maximum build rate of each enemy shipyard.
+		/// </summary>
+        public int EnemyShipScrapRate { get; set; }
 	}
 }

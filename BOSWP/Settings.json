@@ -8,4 +8,6 @@
 	"MaxMinerals": 1000,
 	"EnemyShipyards": 10,
 	"EnemyShipyardBuildRate": 2000,
+	"EnemyShipyardScrapRate": 10,
+	"EnemyShipScrapRate": 35,
 }

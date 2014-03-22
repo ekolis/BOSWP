@@ -177,10 +177,12 @@ namespace BOSWP
 							var name = ship is PlayerShip ? "Our ship " : ("The " + ship);
 							Log.Add(name + " has insufficient crew and drifts off into space...");
 							if (ship is EnemyShip)
-							{
-								var salvage = ship.Cost / 2;
-								PlayerShip.Instance.Savings += salvage;
-								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.", Color.CornflowerBlue);
+                            {
+                                var salvage = ship.Cost * Galaxy.Current.EnemyShipScrapRate / 100;
+                                PlayerShip.Instance.Savings += salvage;
+                                Log.Add("We salvage ", Color.CornflowerBlue, false);
+                                Log.Add("$" + salvage, Color.Gold, false);
+                                Log.Add(" worth of minerals from the wreckage.", Color.CornflowerBlue);
 							}
 						}
 						else if (ship.Speed <= 0)
@@ -191,9 +193,11 @@ namespace BOSWP
 							Log.Add(name + "'s engines are destroyed and it is dead in space!");
 							if (ship is EnemyShip)
 							{
-								var salvage = ship.Cost / 2;
+                                var salvage = ship.Cost * Galaxy.Current.EnemyShipScrapRate / 100;
 								PlayerShip.Instance.Savings += salvage;
-								Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.", Color.CornflowerBlue);
+                                Log.Add("We salvage ", Color.CornflowerBlue, false);
+                                Log.Add("$" + salvage, Color.Gold, false);
+                                Log.Add(" worth of minerals from the wreckage.", Color.CornflowerBlue);
 							}
 						}
 					}
@@ -207,9 +211,11 @@ namespace BOSWP
 					{
 						Log.Add("The Jraenar shipyard explodes!", Color.LightCyan);
 						sy.Delete();
-						var salvage = sy.Savings / 2;
+                        var salvage = sy.Savings * Galaxy.Current.EnemyShipyardScrapRate / 100;
 						PlayerShip.Instance.Savings += salvage;
-						Log.Add("We salvage $" + salvage + " worth of minerals from the wreckage.", Color.CornflowerBlue);
+						Log.Add("We salvage ", Color.CornflowerBlue,false);
+                        Log.Add("$" + salvage,Color.Gold,false);
+                        Log.Add(" worth of minerals from the wreckage.", Color.CornflowerBlue);
 						Galaxy.Current.RefreshEnemyCounts();
 					}
 					foreach (var ship in Galaxy.Current.FindSpaceObjects<EnemyShip>().ToArray().Where(s => s.Hitpoints <= 0))
