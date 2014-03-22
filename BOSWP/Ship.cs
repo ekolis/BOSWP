@@ -171,10 +171,10 @@ namespace BOSWP
 		{
 			get
 			{
-				var tohit = 100;
+				var tohit = 100.0;
 				foreach (var comp in Components)
-					tohit -= tohit * comp.Evasion / 100;
-				return Math.Min(100 - tohit, 99);
+					tohit -= tohit * (double)comp.Evasion / 100.0;
+				return Math.Min(100 - (int)tohit, 99);
 			}
 		}
 
@@ -188,10 +188,10 @@ namespace BOSWP
 		{
 			get
 			{
-				var tohit = 100;
+				var tohit = 100.0;
 				foreach (var comp in Components)
-					tohit -= tohit * comp.PointDefense / 100;
-				return Math.Min(100 - tohit, 99);
+					tohit -= tohit * (double)comp.PointDefense / 100.0;
+				return Math.Min(100 - (int)tohit, 99);
 			}
 		}
 
