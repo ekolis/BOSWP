@@ -180,33 +180,33 @@ namespace BOSWP
 			if (PlayerShip.Instance.CanScan(this))
 			{
 				if (component.Hitpoints <= 0)
-					Log.Add(damage + " damage to the " + this + "'s " + component + "! It was destroyed!", Color.Cyan);
+					Log.Add(damage + " damage to the " + this + "'s " + component + "! It was destroyed!", Color.Lime);
 				else
-					Log.Add(damage + " damage to the " + this + "'s " + component + "!", Color.CornflowerBlue);
+					Log.Add(damage + " damage to the " + this + "'s " + component + "!", Color.Green);
 			}
 			else
 			{
-				if (component.Hitpoints <= 0)
-					Log.Add(damage + " damage to the " + this + "'s hull! Something explodes!", Color.Cyan);
-				else
-					Log.Add(damage + " damage to the " + this + "'s hull!", Color.CornflowerBlue);
+                if (component.Hitpoints <= 0)
+                    Log.Add(damage + " damage to the " + this + "'s hull! Something explodes!", Color.Lime);
+                else
+                    Log.Add(damage + " damage to the " + this + "'s hull!", Color.Green);
 			}
 		}
 
 		public override void LogEmissiveDamage(int damage, bool soakedAll)
 		{
 			if (soakedAll)
-				Log.Add("Their emissive armor blocked all " + damage + " of the damage.", Color.Yellow);
+				Log.Add("Emissive armor blocked all " + damage + " damage.  ", Color.Yellow,false);
 			else
-				Log.Add("Their emissive armor blocked " + damage + " of the damage.", Color.LightYellow);
+                Log.Add("Emissive armor blocked " + damage + " damage.  ", Color.Yellow, false);
 		}
 
 		public override void LogShieldDamage(int damage, bool soakedAll)
 		{
 			if (soakedAll)
-				Log.Add("Their shields blocked all " + damage + " of the damage.", Color.Yellow);
+				Log.Add("Shields blocked all " + damage + " damage.  ", Color.Cyan, false);
 			else
-				Log.Add("Their shields blocked " + damage + " of the damage.", Color.LightYellow);
+                Log.Add("Shields blocked " + damage + " damage.  ", Color.Cyan, false);
 		}
 
 		public EnemyShip Clone()

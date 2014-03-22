@@ -58,18 +58,21 @@ namespace BOSWP
 
 		public int TakeDamage(int damage)
 		{
+            bool needsNewline = false;
 			// deal with shields
 			if (damage < Shields)
 			{
 				Shields -= damage;
 				LogShieldDamage(damage, true);
 				damage = 0;
+                needsNewline = true;
 			}
 			else if (Shields > 0)
 			{
 				damage -= Shields;
 				LogShieldDamage(Shields, false);
-				Shields = 0;
+                Shields = 0;
+                needsNewline = true;
 			}
 
 			// deal with emissive armor
@@ -77,9 +80,13 @@ namespace BOSWP
 			if (emissive > 0)
 			{
 				LogEmissiveDamage(emissive, damage <= emissive);
-				damage -= emissive;
+                damage -= emissive;
+                needsNewline = true;
 			}
-
+            if (needsNewline)
+            {
+                Log.Add("");
+            }
 			// regular damage
 			while (damage > 0 && Hitpoints > 0)
 			{

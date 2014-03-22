@@ -183,26 +183,26 @@ namespace BOSWP
 
 		public override void LogComponentDamage(Component component, int damage)
 		{
-			if (component.Hitpoints <= 0)
-				Log.Add(damage + " damage to our " + component + "! It was destroyed!", Color.Red);
-			else
-				Log.Add(damage + " damage to our " + component + "!", Color.Yellow);
+            if (component.Hitpoints <= 0)
+                Log.Add(damage + " damage to our " + component + "! It was destroyed!", component.IsArmor() ? Color.Yellow : Color.Red);
+            else
+                Log.Add(damage + " damage to our " + component + "!", component.IsArmor() ? Color.Yellow : Color.Orange);
 		}
 
 		public override void LogEmissiveDamage(int damage, bool soakedAll)
 		{
-			if (soakedAll)
-				Log.Add("Our emissive armor blocked all " +  damage + " of the damage.");
-			else
-				Log.Add("Our emissive armor blocked " + damage + " of the damage.");
+            if (soakedAll)
+                Log.Add("Our emissive armor blocked all " + damage + " damage.  ", Color.Yellow, false);
+            else
+                Log.Add("Our emissive armor blocked " + damage + " damage.  ", Color.Yellow, false);
 		}
 
 		public override void LogShieldDamage(int damage, bool soakedAll)
 		{
 			if (soakedAll)
-				Log.Add("Our shields blocked all " + damage + " of the damage.");
+				Log.Add("Our shields blocked all " + damage + " damage.  ", Color.Cyan, false);
 			else
-				Log.Add("Our shields blocked " + damage + " of the damage.");
+				Log.Add("Our shields blocked " + damage + " damage.  ", Color.Cyan, false);
 		}
 	}
 }
