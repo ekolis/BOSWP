@@ -90,9 +90,17 @@ namespace BOSWP
             foreach (var msg in Entries)
 			{
                 temp.AppendLine(msg.Text, msg.Color, msg.EndOfLine);// add to output
-                msg.Color = Color.Gray;// mark gray for read
+                msg.Color = fadeColor(msg.Color);//Color.Gray;// mark gray for read
             }
             return temp.Rtf;
+        }
+        public static Color fadeColor(Color original)
+        {
+            int r = original.R;
+            int g = original.G;
+            int b = original.B;
+            int a = original.A;
+            return Color.FromArgb((int)((double)a*0.9), r/2+a/2, g/2+a/2, b/2+a/2);
         }
 	}
 }
