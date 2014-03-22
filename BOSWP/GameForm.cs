@@ -227,15 +227,18 @@ namespace BOSWP
 					// update log
 					Invoke(new DoStuffDelegate(() =>
 							{
-								rtbMessages.Clear();
+                                RichTextBox temp = new RichTextBox();
+
 								foreach (var msg in Log.Entries)
 								{
 									// add to log view
-									rtbMessages.AppendLine(msg.Text, msg.Color);
+									temp.AppendLine(msg.Text, msg.Color);
 
 									// mark gray for read
 									msg.Color = Color.Gray;
-								}
+                                }
+                                rtbMessages.Rtf=temp.Rtf;
+                                rtbMessages.SelectionStart = rtbMessages.TextLength;
 								rtbMessages.ScrollToCaret();
 								Log.Trim(25);
 							}));
