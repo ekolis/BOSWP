@@ -184,9 +184,9 @@ namespace BOSWP
 		public override void LogComponentDamage(Component component, int damage)
 		{
             if (component.Hitpoints <= 0)
-                Log.Add(damage + " damage to our " + component + "! It was destroyed!", component.IsArmor() ? Color.Yellow : Color.Red);
+                Log.Add(damage + " damage to our " + component + "! It was destroyed!", component.IsArmor ? Color.Yellow : Color.Red);
             else
-                Log.Add(damage + " damage to our " + component + "!", component.IsArmor() ? Color.Yellow : Color.Orange);
+                Log.Add(damage + " damage to our " + component + "!", component.IsArmor ? Color.Yellow : Color.Orange);
 		}
 
 		public override void LogEmissiveDamage(int damage, bool soakedAll)

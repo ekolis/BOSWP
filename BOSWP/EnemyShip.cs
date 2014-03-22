@@ -180,9 +180,9 @@ namespace BOSWP
 			if (PlayerShip.Instance.CanScan(this))
 			{
 				if (component.Hitpoints <= 0)
-                    Log.Add(damage + " damage to the " + this + "'s " + component + "! It was destroyed!", component.IsArmor() ? Color.Yellow : Color.Lime);
+                    Log.Add(damage + " damage to the " + this + "'s " + component + "! It was destroyed!", component.IsArmor ? Color.Yellow : Color.Lime);
 				else
-                    Log.Add(damage + " damage to the " + this + "'s " + component + "!", component.IsArmor() ? Color.Yellow : Color.Green);
+                    Log.Add(damage + " damage to the " + this + "'s " + component + "!", component.IsArmor ? Color.Yellow : Color.Green);
 			}
 			else
 			{
